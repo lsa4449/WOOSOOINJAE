@@ -43,14 +43,19 @@ public class UserService {
 		
 		System.out.print("비밀번호 : ");
 		String password = s.nextLine();
+		
 		System.out.print("이름 : ");
 		String name = s.nextLine();
+		
+		System.out.print("생년원일(ex)202002) : ");
+		int birthdate = Integer.parseInt(s.nextLine());
 		
 		UserVO user = new UserVO();
 		
 		user.setId(id);
 		user.setPassword(password);
 		user.setName(name);
+		user.setBirthdate(birthdate);
 		
 		userDao.insertUser(user);
 		System.out.println("가입해주셔서 감사합니다.");
@@ -78,20 +83,6 @@ public class UserService {
 			System.out.println(user.getName() + "님 환영합니다.");
 			Session.loginUser = user;
 		}
-	}
-	
-	//회원목록
-	public void userList(){
-		ArrayList<UserVO> userList = userDao.selectUserList();
-		
-		System.out.println("---------------------------------");
-		System.out.println("번호\t아이디\t이름");
-		System.out.println("---------------------------------");
-		for(int i = userList.size() - 1; 0 <= i; i--) {
-			UserVO user = userList.get(i);
-			System.out.println(i + 1 + "\t" + user.getId() + "\t" + user.getName());
-		}
-		System.out.println("---------------------------------");
 	}
 	
 }
