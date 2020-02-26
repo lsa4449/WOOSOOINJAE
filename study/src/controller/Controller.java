@@ -1,0 +1,169 @@
+package controller;
+
+import java.util.Scanner;
+
+import dao.UserDao;
+import data.MovieList;
+import service.UserService;
+
+public class Controller {
+	
+	public static void Enter(int input) {
+		for(int i = 0; i <= input; i++) {
+			System.out.println();
+		}
+	}
+
+	public static void main(String[] args) {
+		
+		/*
+		 * 조 소개 > 주제 소개 > 주제 선정 배경 > 프로그램 구조 > 시연
+		 * 발표자 1명, ppt 및 시연 1명
+		 * 
+		 * Controller : 메뉴 선택
+		 * Service : 메뉴 기능 수행
+		 * Dao : 데이터베이스 접속
+		 * VO : 데이터를 담는 클래스
+		 * 
+		 * 회원가입	로그인	회원목록
+		 * 
+		 * 정보입력	정보입력	정보출력
+		 * 
+		 * DB저장	DB조회	DB조회
+		 * 
+		 * 데이터베이스
+		 * 
+		 */
+		
+		new Controller().start();
+		
+	}
+	
+	UserService userService = UserService.getInstance();
+
+	private void start() {
+		Enter(50);
+		Scanner s = new Scanner(System.in);
+		
+		int menu;
+		
+		do{
+			System.out.println("-------------- 메뉴 -------------- ");
+			System.out.println("1. 회원가입");
+			System.out.println("2. 로그인");
+			//System.out.println("3. 회원목록");
+			System.out.println("0. 프로그램 종료");
+			System.out.println("---------------------------------");
+			System.out.print  ("메뉴에 해당하는 번호 입력>");
+			
+			menu = Integer.parseInt(s.nextLine());
+			
+			switch(menu){
+				case 1 : //회원가입
+					userService.join();
+					break;
+				case 2 : //로그인
+					userService.login();
+					
+				//쓰레드	
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+					AfterLogin();
+					break;
+//				case 3 : //회원목록
+//					userService.userList();
+//					break;
+				case 0 : //프로그램 종료
+					System.out.println("프로그램 종료");
+					break;
+			}
+		}while(menu != 0);
+	}
+	
+	private void AfterLogin() {
+		Enter(50);
+		Scanner s = new Scanner(System.in);
+		
+		int menu;
+		
+		do{
+			System.out.println("-------------- 메뉴 -------------- ");
+			System.out.println("1. 영화 목록 조회");
+			System.out.println("2. 예매 영화 조회");
+			System.out.println("3. MY Page");
+			System.out.println("0. 로그 아웃");
+			System.out.println("---------------------------------");
+			System.out.print  ("메뉴에 해당하는 번호 입력>");
+			
+			menu = Integer.parseInt(s.nextLine());
+			
+			switch(menu){
+				case 1 : //영화 목록 조회
+					MovieAgeSelect();
+					break;
+				case 2 : //예매 영화 조회
+					
+					break;
+				case 3 : //MY Page
+					
+					break;
+				case 0 : //뒤로 가기
+					System.out.println("로그아웃 되었습니다.");
+					//쓰레드	
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					
+					System.out.println("잠시 후 로그인 화면으로 돌아갑니다.");
+					//쓰레드	
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					
+					start();
+					break;
+			}
+		}while(menu != 0);
+	}
+	
+	private void MovieAgeSelect() {
+		Enter(50);
+		Scanner s = new Scanner(System.in);
+		
+		MovieList movieList = new MovieList();
+		
+		int menu;
+		
+		do{
+			System.out.println("-------------- 메뉴 -------------- ");
+			System.out.println("1. 전체 이용가 영화");
+			System.out.println("2. 청소년 관람불가 영화");
+			System.out.println("0. 뒤로 가기");
+			System.out.println("---------------------------------");
+			System.out.print  ("메뉴에 해당하는 번호 입력>");
+			
+			menu = Integer.parseInt(s.nextLine());
+			
+			switch(menu){
+				case 1 : //전체 이용가 영화
+					movieList.MovieList_All();
+					break;
+				case 2 : //청소년 관람불가 영화
+					movieList.MovieList_adult();
+					break;
+				case 0 : //뒤로 가기
+					AfterLogin();
+					break;
+			}
+		}while(menu != 0);
+	}
+
+	
+}
