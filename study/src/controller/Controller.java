@@ -2,9 +2,12 @@ package controller;
 
 import java.util.Scanner;
 
+import dao.UserDao;
 import data.MovieList;
+import data.Session;
 import service.AdminService;
 import service.UserService;
+import vo.UserVO;
 
 public class Controller {
 	
@@ -41,6 +44,9 @@ public class Controller {
 	
 	UserService userService = UserService.getInstance();
 	AdminService adminService = new AdminService();
+	
+
+	
 
 	private void start() {
 		Enter(50);
@@ -64,6 +70,11 @@ public class Controller {
 					break;
 				case 2 : //로그인
 					userService.login();
+					if (Session.loginUser.getAuth()) {// admin 페이지
+						AfterAdminLogin();
+					}else {
+						AfterLogin();
+					}
 					
 				//쓰레드	
 				try {

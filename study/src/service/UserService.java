@@ -5,12 +5,14 @@ import java.util.Scanner;
 
 import controller.Controller;
 import dao.UserDao;
+import data.Database;
 import data.Session;
 import vo.UserVO;
 
 public class UserService {
 	
 	private static UserService instance;
+	
 	
 	private UserService(){}
 	
@@ -65,6 +67,7 @@ public class UserService {
 	public void login(){
 		Scanner s = new Scanner(System.in);
 		
+		
 		System.out.print("아이디 : ");
 		String id = s.nextLine();
 		System.out.print("비밀번호 : ");
@@ -76,25 +79,34 @@ public class UserService {
 		
 		UserVO user = userDao.selectUser(param);
 		
-		SortUser(id);
+		//SortUser(id);
+		
 		
 		if(user == null){
 			System.out.println("아이디 혹은 비밀번호를 잘못 입력하셨습니다.");
-		}else{
+		}else {
 			System.out.println("로그인 성공!");
 			System.out.println(user.getName() + "님 환영합니다.");
 			Session.loginUser = user;
+//			if (user.getAuth()) { // admin
+//				
+//				AfterAdminLogin();
+//			}else { // 일반 유저
+//				
+//			}
 		}
+			
+		
 	}
 	
-	//테스트테스트
-	public void SortUser(String id) {
-		
-		Controller controller = new Controller();
-		
-		if(id.equals("admin")) {
-			controller.AfterAdminLogin();
-		}
-	}
+//	//테스트테스트
+//	public void SortUser(String id) {
+//		
+//		Controller controller = new Controller();
+//		
+//		if(id.equals("admin")) {
+//			controller.AfterAdminLogin();
+//		}
+//	}
 	
 }

@@ -41,7 +41,7 @@ public class UserVO {
 		this.birthdate = birthdate;
 	}
 
-	public boolean isAuth() {
+	public boolean getAuth() {
 		return auth;
 	}
 
