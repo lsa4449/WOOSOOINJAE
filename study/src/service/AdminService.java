@@ -40,7 +40,7 @@ public class AdminService {
 	//회원 정보 수정하는 메소드
 	public void UserEdit() {
 		Scanner s = new Scanner(System.in);
-		Database database = new Database();
+		Database database = Database.getInstance();
 		//먼저 회원 리스트를 보여줌
 		userList();
 		
@@ -51,7 +51,6 @@ public class AdminService {
 		
 		UserVO tb_id = database.tb_user.get(IndexNo);
 		
-
 		int menu = 0;
 		
 		
