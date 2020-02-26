@@ -1,5 +1,5 @@
 package vo;
-
+ 
 public class UserVO {
 	// 회원VO
 

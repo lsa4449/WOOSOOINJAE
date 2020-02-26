@@ -3,11 +3,11 @@ package vo;
 public class ReserveVO {
 	// 예매VO
 
-	private int reserveNum;
-	private String reserveDate;
-	private int price;
-	private int time;
-	private String id;
+	private int reserveNum; // 예매 번호
+	private int timeRound; // 회차
+	private String id;// 회원 아이디
+	private String reserveDate; // 예매 일자
+	private int price; // 예매 가격
 
 	public int getReserveNum() {
 		return reserveNum;
@@ -15,6 +15,22 @@ public class ReserveVO {
 
 	public void setReserveNum(int reserveNum) {
 		this.reserveNum = reserveNum;
+	}
+
+	public int getTimeRound() {
+		return timeRound;
+	}
+
+	public void setTimeRound(int timeRound) {
+		this.timeRound = timeRound;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getReserveDate() {
@@ -33,26 +49,10 @@ public class ReserveVO {
 		this.price = price;
 	}
 
-	public int getTime() { 
-		return time;
-	}
-
-	public void setTime(int time) {
-		this.time = time;
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
 	@Override
 	public String toString() {
-		return "ReserveVO [reserveNum=" + reserveNum + ", reserveDate=" + reserveDate + ", price=" + price + ", time="
-				+ time + ", id=" + id + "]";
+		return "ReserveVO [reserveNum=" + reserveNum + ", timeRound=" + timeRound + ", id=" + id + ", reserveDate="
+				+ reserveDate + ", price=" + price + "]";
 	}
 
 }
