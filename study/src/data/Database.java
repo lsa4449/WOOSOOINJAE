@@ -8,7 +8,7 @@ public class Database {
 
 	private static Database instance;
 
-	private Database() {
+	public Database() {
 	}
 
 	public static Database getInstance() {

@@ -2,8 +2,8 @@ package controller;
 
 import java.util.Scanner;
 
-import dao.UserDao;
 import data.MovieList;
+import service.AdminService;
 import service.UserService;
 
 public class Controller {
@@ -40,6 +40,7 @@ public class Controller {
 	}
 	
 	UserService userService = UserService.getInstance();
+	AdminService adminService = new AdminService();
 
 	private void start() {
 		Enter(50);
@@ -51,7 +52,6 @@ public class Controller {
 			System.out.println("-------------- 메뉴 -------------- ");
 			System.out.println("1. 회원가입");
 			System.out.println("2. 로그인");
-			//System.out.println("3. 회원목록");
 			System.out.println("0. 프로그램 종료");
 			System.out.println("---------------------------------");
 			System.out.print  ("메뉴에 해당하는 번호 입력>");
@@ -78,6 +78,57 @@ public class Controller {
 //					break;
 				case 0 : //프로그램 종료
 					System.out.println("프로그램 종료");
+					break;
+			}
+		}while(menu != 0);
+	}
+	
+	public void AfterAdminLogin() {
+		Enter(50);
+		Scanner s = new Scanner(System.in);
+		
+		int menu;
+		
+		do{
+			System.out.println("-------------- 메뉴 -------------- ");
+			System.out.println("1. 회원 목록 조회");
+			System.out.println("2. 회원 정보 수정");
+			System.out.println("3. 영화 등록/수정");
+			System.out.println("0. 로그 아웃");
+			System.out.println("---------------------------------");
+			System.out.print  ("메뉴에 해당하는 번호 입력>");
+			
+			menu = Integer.parseInt(s.nextLine());
+			
+			switch(menu){
+				case 1 : //회원 목록 조회
+					adminService.userList();
+					break;
+				case 2 : //회원 정보 수정
+					adminService.userList();
+					adminService.UserEdit();
+					break;
+				case 3 : //영화 등록/수정
+					
+					break;
+				case 0 : //로그 아웃
+					System.out.println("로그아웃 되었습니다.");
+					//쓰레드	
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					
+					System.out.println("잠시 후 로그인 화면으로 돌아갑니다.");
+					//쓰레드	
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					
+					start();
 					break;
 			}
 		}while(menu != 0);

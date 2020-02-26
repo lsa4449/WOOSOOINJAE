@@ -1,12 +1,12 @@
 package service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import vo.UserVO;
+import controller.Controller;
 import dao.UserDao;
 import data.Session;
+import vo.UserVO;
 
 public class UserService {
 	
@@ -76,12 +76,24 @@ public class UserService {
 		
 		UserVO user = userDao.selectUser(param);
 		
+		SortUser(id);
+		
 		if(user == null){
 			System.out.println("아이디 혹은 비밀번호를 잘못 입력하셨습니다.");
 		}else{
 			System.out.println("로그인 성공!");
 			System.out.println(user.getName() + "님 환영합니다.");
 			Session.loginUser = user;
+		}
+	}
+	
+	//테스트테스트
+	public void SortUser(String id) {
+		
+		Controller controller = new Controller();
+		
+		if(id.equals("admin")) {
+			controller.AfterAdminLogin();
 		}
 	}
 	

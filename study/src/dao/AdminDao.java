@@ -44,7 +44,7 @@ public class AdminDao {
 		}
 		return rtnUser;
 	}
-
+	
 	public ArrayList<UserVO> selectUserList() {
 		return database.tb_user;
 	}
