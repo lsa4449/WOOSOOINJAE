@@ -33,7 +33,7 @@ public class ReserveVO {
 		this.price = price;
 	}
 
-	public int getTime() {
+	public int getTime() { 
 		return time;
 	}
 
