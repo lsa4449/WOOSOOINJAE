@@ -1,8 +1,8 @@
 package vo;
- 
+     
 public class UserVO {
 	// 회원VO
-
+  
 	private String id; // 회원 아이디
 	private String password; // 회원 비밀번호
 	private String name; // 회원 이름
