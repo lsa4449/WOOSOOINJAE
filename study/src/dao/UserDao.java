@@ -6,7 +6,7 @@ import java.util.Set;
 
 import data.Database;
 import vo.UserVO;
-
+   
 public class UserDao {
 
 		private static UserDao instance; // 객체 공유 -> 똑같은 값 -> 메모리 낭비가 덜 된다. 
