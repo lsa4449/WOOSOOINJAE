@@ -1,7 +1,7 @@
 package vo;
 
 public class MovieReviewVO {
-
+ 
 	private int reviewNum; // 영화 리뷰 번호
 	private int movieNum; // 영화 번호
 	private String id; // 회원 아이디
