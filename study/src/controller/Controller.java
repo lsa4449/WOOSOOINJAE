@@ -116,7 +116,7 @@ public class Controller {
 					adminService.userList();
 					break;
 				case 2 : //회원 정보 수정
-					adminService.userList();
+//					adminService.userList(); 중복되서 필요 없음 UserEdit()메소드에서 userList()호출하면 됨
 					adminService.UserEdit();
 					break;
 				case 3 : //영화 등록/수정

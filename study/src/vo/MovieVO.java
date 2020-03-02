@@ -1,17 +1,21 @@
 package vo;
 
-import java.util.ArrayList;
+
 
 public class MovieVO {
 	// 영화VO
 
-	private int movieNum; // 영화 번호
+	private int movieNum; // 영화 번호 // 생성자 만들어서 생성자에서 ++ 되도록?
 	private String movieName; // 영화 이름
 	private String director; // 감독
 	private String plot; // 줄거리
 	private String actor; // 출연진
 	private int openMovieDate; // 개봉일
 
+	// 영화 번호 때문에 생성자를 만들어서 자동으로 늘어나도록
+	public MovieVO() {
+		movieNum++;
+	}
 	public int getMovieNum() {
 		return movieNum;
 	}
