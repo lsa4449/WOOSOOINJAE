@@ -5,16 +5,26 @@ package vo;
 public class MovieVO {
 	// 영화VO
 
-	private int movieNum; // 영화 번호 // 생성자 만들어서 생성자에서 ++ 되도록?
+	private int movieNum; // 영화 번호  
 	private String movieName; // 영화 이름
 	private String director; // 감독
 	private String plot; // 줄거리
 	private String actor; // 출연진
 	private int openMovieDate; // 개봉일
+	private int age; // 영화 관람 나이
+	
+	private static int staticmovieNum = 0; // 생성자 만들어서 생성자에서 ++ 되도록?
 
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
 	// 영화 번호 때문에 생성자를 만들어서 자동으로 늘어나도록
 	public MovieVO() {
-		movieNum++;
+		staticmovieNum++;
+		movieNum = staticmovieNum;
 	}
 	public int getMovieNum() {
 		return movieNum;
@@ -63,11 +73,13 @@ public class MovieVO {
 	public void setOpenMovieDate(int openMovieDate) {
 		this.openMovieDate = openMovieDate;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "MovieVO [movieNum=" + movieNum + ", movieName=" + movieName + ", director=" + director + ", plot="
-				+ plot + ", actor=" + actor + ", openMovieDate=" + openMovieDate + "]";
+				+ plot + ", actor=" + actor + ", openMovieDate=" + openMovieDate + ", age=" + age + "]";
 	}
+
+
 
 }

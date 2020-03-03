@@ -50,13 +50,24 @@ public class Database {
 		private String plot; // 줄거리
 		private String actor; // 출연진
 		private int openMovieDate; // 개봉일
+		private int age; // 영화 관람 나이
 	*/
 		MovieVO movie = new MovieVO();
-		movie.setMovieNum(1);
 		movie.setMovieName("히트맨");
 		movie.setDirector("코미디, 액션");
 		movie.setPlot("최원섭");
 		movie.setActor("누구지?");
 		movie.setOpenMovieDate(20200120);
+		movie.setAge(19);
+		tb_movie.add(movie);
+		
+		movie = new MovieVO();
+		movie.setMovieName("조선 명탐정 어쩌구");
+		movie.setDirector("코미디, 사극");
+		movie.setPlot("이선균 아는 배우");
+		movie.setActor("이선균");
+		movie.setOpenMovieDate(20200120);
+		movie.setAge(19);
+		tb_movie.add(movie);
 	}
 }

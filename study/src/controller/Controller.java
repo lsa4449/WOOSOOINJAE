@@ -3,10 +3,12 @@ package controller;
 import java.util.Scanner;
 
 import dao.UserDao;
+import data.Database;
 import data.MovieList;
 import data.Session;
 import service.AdminService;
 import service.UserService;
+import vo.MovieVO;
 import vo.UserVO;
 
 public class Controller {
@@ -117,7 +119,7 @@ public class Controller {
 					break;
 				case 2 : //회원 정보 수정
 //					adminService.userList(); 중복되서 필요 없음 UserEdit()메소드에서 userList()호출하면 됨
-					adminService.UserEdit();
+					adminService.userEdit();
 					break;
 				case 3 : //영화 등록/수정
 					
@@ -201,6 +203,9 @@ public class Controller {
 		
 		MovieList movieList = new MovieList();
 		
+		Database database = Database.getInstance();
+		
+		
 		int menu;
 		
 		do{
@@ -208,6 +213,7 @@ public class Controller {
 			System.out.println("1. 전체 이용가 영화");
 			System.out.println("2. 청소년 관람불가 영화");
 			System.out.println("0. 뒤로 가기");
+			System.out.println("3. 데이터베이스 연결을 위해서 확인 작업");
 			System.out.println("---------------------------------");
 			System.out.print  ("메뉴에 해당하는 번호 입력>");
 			
@@ -219,6 +225,14 @@ public class Controller {
 					break;
 				case 2 : //청소년 관람불가 영화
 					movieList.MovieList_adult();
+					break;
+				case 3 :
+					for (int i = 0; i < database.tb_movie.size(); i++) {
+						MovieVO movieVO = database.tb_movie.get(i);
+						System.out.println(movieVO.toString());
+						
+					}
+
 					break;
 				case 0 : //뒤로 가기
 					AfterLogin();

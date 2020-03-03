@@ -38,7 +38,7 @@ public class AdminService {
 	}
 	
 	//회원 정보 수정하는 메소드
-	public void UserEdit() {
+	public void userEdit() {
 		Scanner s = new Scanner(System.in);
 		Database database = Database.getInstance();
 		//먼저 회원 리스트를 보여줌
