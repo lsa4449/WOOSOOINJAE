@@ -95,9 +95,18 @@ public class UserService {
 //				
 //			}
 		}
-			
-		
 	}
+	
+	//회원 정보 조회
+	public void userInfoView() {
+		
+		UserVO user = null;
+		
+		System.out.println(user.getName() + "회원님의 아이디는 \t" + user.getId() +" 입니다.\n");
+	    System.out.println(user.getName() +"회원님의 생년월일은 \t"+ user.getBirthdate()+" 입니다.\n");
+	    System.out.println("───────────────────────────────────────────────────────");
+   }
+	
 	
 //	//테스트테스트
 //	public void SortUser(String id) {
@@ -109,4 +118,5 @@ public class UserService {
 //		}
 //	}
 	
+
 }

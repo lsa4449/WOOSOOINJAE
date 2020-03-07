@@ -46,9 +46,6 @@ public class Controller {
 	
 	UserService userService = UserService.getInstance();
 	AdminService adminService = new AdminService();
-	
-
-	
 
 	private void start() {
 		Enter(50);
@@ -96,6 +93,10 @@ public class Controller {
 		}while(menu != 0);
 	}
 	
+	
+	//----------------------------------- 관리자 --------------------------------------------
+	
+	//관리자 로그인 후 첫 화면
 	public void AfterAdminLogin() {
 		Enter(50);
 		Scanner s = new Scanner(System.in);
@@ -147,6 +148,10 @@ public class Controller {
 		}while(menu != 0);
 	}
 	
+	
+	//----------------------------------- 사용자 --------------------------------------------
+	
+	//사용자 로그인 후 첫 화면
 	private void AfterLogin() {
 		Enter(50);
 		Scanner s = new Scanner(System.in);
@@ -197,6 +202,7 @@ public class Controller {
 		}while(menu != 0);
 	}
 	
+	//연령 별 영화 선택
 	private void MovieAgeSelect() {
 		Enter(50);
 		Scanner s = new Scanner(System.in);
