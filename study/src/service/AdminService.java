@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import dao.AdminDao;
+import dao.MovieDao;
 import dao.UserDao;
 import data.Database;
 import vo.MovieVO;
@@ -71,7 +72,7 @@ public class AdminService {
 				System.out.println("현재 아이디 : " + tb_id.getId());
 				System.out.print  ("바꿀 아이디를 입력해주세요 > ");
 				String input = s.nextLine();
-				tb_id.setId(input);
+				tb_id.setId(input);// 왜 데이터베이스가 영향을 주어 변경이 되는지 모르겠음 // UserVO tb_id = database.tb_user.get(IndexNo);
 			}else if(menu == 2) {
 				System.out.println("현재 비밀번호 : " + tb_id.getPassword());
 				System.out.println("바꿀 비밀번호를 입력해주세요 > ");
@@ -88,33 +89,67 @@ public class AdminService {
 		}
 	}
 	
+	//영화 등록하는 메소드(미완성 -- 영화 번호 어떻게 할지 몰라서 아직 안했음) //번호  추가함(영현).확인은 안해봄 ;뒤에// 바꾼 부분 표시해 놓겠음
+			public void Enrollment() {
+				MovieVO movieVO = new MovieVO();
+				
+				MovieDao movieDao = MovieDao.getInstance();//여기
+				ArrayList<MovieVO> movieList = movieDao.selectMovieList();//여기
+				
+				Scanner s = new Scanner(System.in);
+				
+				
+				System.out.println("[영화 등록]");
+				System.out.println("영화 번호" + movieList.size()+1);//여기
+				System.out.print  ("제목 : ");
+				String movieName = s.nextLine();
+				System.out.print  ("감독 : ");
+				String director = s.nextLine();
+				System.out.print  ("줄거리 : ");
+				String plot = s.nextLine();
+				System.out.print  ("배우 : ");
+				String actor = s.nextLine();
+				System.out.print  ("영화 개봉일 : ");
+				int openMovieDate = Integer.parseInt(s.nextLine());
+				System.out.println("영화 관람 나이");
+				int age = Integer.parseInt(s.nextLine());
+				
+				movieVO.setMovieNum(movieList.size()+1);//여기
+				movieVO.setMovieName(movieName);
+				movieVO.setDirector(director);
+				movieVO.setPlot(plot);
+				movieVO.setActor(actor);
+				movieVO.setOpenMovieDate(openMovieDate);
+				movieVO.setAge(age);
+			}
 	
-	//영화 등록하는 메소드(미완성 -- 영화 번호 어떻게 할지 몰라서 아직 안했음)
-	public void Enrollment() {
-		MovieVO movieVO = new MovieVO();
-		
+	//영화 수정 // 영현 // 삭제만 만듬 // 이것도 만들기만 함 확인은 안해봄
+	public void movieEdit() {
 		Scanner s = new Scanner(System.in);
+		MovieVO movieVO = new MovieVO();
+		Database database = Database.getInstance();
+		MovieService movieService = new MovieService();
 		
-		System.out.println("[영화 등록]");
-		System.out.print  ("제목 : ");
-		String movieName = s.nextLine();
-		System.out.print  ("감독 : ");
-		String director = s.nextLine();
-		System.out.print  ("줄거리 : ");
-		String plot = s.nextLine();
-		System.out.print  ("배우 : ");
-		String actor = s.nextLine();
-		System.out.print  ("영화 개봉일 : ");
-		int openMovieDate = Integer.parseInt(s.nextLine());
-		System.out.println("영화 관람 나이");
-		int age = Integer.parseInt(s.nextLine());
 		
-		movieVO.setMovieName(movieName);
-		movieVO.setDirector(director);
-		movieVO.setPlot(plot);
-		movieVO.setActor(actor);
-		movieVO.setOpenMovieDate(openMovieDate);
-		movieVO.setAge(age);
+		
+		movieService.movieList();// 영화리스트를 보여주고 삭제할 번호 입력
+		// 삭제
+		System.out.print("삭제할 인덱스 번호를 입력하세요 >> ");
+		int movieIndex = Integer.parseInt(s.nextLine());
+		--movieIndex;// 1번부터 시작하게 할려고 해놨기 때문에 실제 인덱스 값은 -1임
+		database.tb_movie.remove(movieIndex);// 아마 삭제 될듯 
+		for (int i = movieIndex; i < database.tb_movie.size(); i++) { // 영화번호  자동으로 앞으로 당기기
+			movieVO = database.tb_movie.get(movieIndex);
+			movieVO.setMovieNum(movieVO.getMovieNum()-1);
+		}
+		
+		
+		
+		movieService.movieList();// 삭제되었는지 보여주기
+		
+		
+		
+		
 	}
 	
 	
@@ -133,4 +168,6 @@ public class AdminService {
 		}
 		return indexno;
 	}
+
+	
 }

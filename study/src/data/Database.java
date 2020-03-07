@@ -52,7 +52,11 @@ public class Database {
 		private int openMovieDate; // 개봉일
 		private int age; // 영화 관람 나이
 	*/
+		
+		int indexno = 1; // 이렇게 줘서 값을 인덱스 값을 커지게 하자
+		
 		MovieVO movie = new MovieVO();
+		movie.setMovieNum(indexno++); // 영화번호
 		movie.setMovieName("히트맨");
 		movie.setDirector("코미디, 액션");
 		movie.setPlot("최원섭");
@@ -62,6 +66,7 @@ public class Database {
 		tb_movie.add(movie);
 		
 		movie = new MovieVO();
+		movie.setMovieNum(indexno++); // 영화번호 1
 		movie.setMovieName("조선 명탐정 어쩌구");
 		movie.setDirector("코미디, 사극");
 		movie.setPlot("이선균 아는 배우");

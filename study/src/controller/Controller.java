@@ -122,8 +122,8 @@ public class Controller {
 //					adminService.userList(); 중복되서 필요 없음 UserEdit()메소드에서 userList()호출하면 됨
 					adminService.userEdit();
 					break;
-				case 3 : //영화 등록/수정
-					
+				case 3 : //영화 등록/수정 // 수정에서 삭제 까지 하도록
+					adminService.movieEdit();
 					break;
 				case 0 : //로그 아웃
 					System.out.println("로그아웃 되었습니다.");

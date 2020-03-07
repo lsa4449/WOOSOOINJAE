@@ -22,10 +22,12 @@ public class MovieVO {
 		this.age = age;
 	}
 	// 영화 번호 때문에 생성자를 만들어서 자동으로 늘어나도록
-	public MovieVO() {
+	/*public MovieVO() {
 		staticmovieNum++;
 		movieNum = staticmovieNum;
 	}
+	// 지웠을때 영화번호를 땡겨지게 하고 싶다. -> 다른 방법
+	*/
 	public int getMovieNum() {
 		return movieNum;
 	}
