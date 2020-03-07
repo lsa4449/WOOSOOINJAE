@@ -3,8 +3,10 @@ package service;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import dao.AdminDao;
 import dao.UserDao;
 import data.Database;
+import vo.MovieVO;
 import vo.UserVO;
 
 public class AdminService {
@@ -20,6 +22,7 @@ public class AdminService {
 		return instance;
 	}
 	
+	AdminDao adminDao = AdminDao.getInstance();
 	UserDao userDao = UserDao.getInstance();
 	
 	
@@ -82,12 +85,38 @@ public class AdminService {
 			}else {
 				System.out.println("잘못된 번호를 입력하셨습니다.");
 			}
-			
 		}
-		
-
-		
 	}
+	
+	
+	//영화 등록하는 메소드(미완성 -- 영화 번호 어떻게 할지 몰라서 아직 안했음)
+	public void Enrollment() {
+		MovieVO movieVO = new MovieVO();
+		
+		Scanner s = new Scanner(System.in);
+		
+		System.out.println("[영화 등록]");
+		System.out.print  ("제목 : ");
+		String movieName = s.nextLine();
+		System.out.print  ("감독 : ");
+		String director = s.nextLine();
+		System.out.print  ("줄거리 : ");
+		String plot = s.nextLine();
+		System.out.print  ("배우 : ");
+		String actor = s.nextLine();
+		System.out.print  ("영화 개봉일 : ");
+		int openMovieDate = Integer.parseInt(s.nextLine());
+		System.out.println("영화 관람 나이");
+		int age = Integer.parseInt(s.nextLine());
+		
+		movieVO.setMovieName(movieName);
+		movieVO.setDirector(director);
+		movieVO.setPlot(plot);
+		movieVO.setActor(actor);
+		movieVO.setOpenMovieDate(openMovieDate);
+		movieVO.setAge(age);
+	}
+	
 	
 	//입력받은 아이디로 테이블 인덱스 번호를 리턴해주는 메소드
 	public int tb_Index(String id) {

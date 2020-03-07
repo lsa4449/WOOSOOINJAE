@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import data.Database;
+import vo.MovieVO;
 import vo.UserVO;
 
 public class AdminDao {
@@ -47,6 +48,11 @@ public class AdminDao {
 	
 	public ArrayList<UserVO> selectUserList() {
 		return database.tb_user;
+	}
+	
+	//Database 클래스의 tb_movie ArrayList에 영화 정보를 저장(미완성 -- 영화 번호 어떻게 할지 몰라서 아직 안했음)
+	public void insertMovie(MovieVO movieVO) {
+		database.tb_movie.add(movieVO);
 	}
 
 }
