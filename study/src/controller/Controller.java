@@ -59,7 +59,7 @@ public class Controller {
 			System.out.println("2. 로그인");
 			System.out.println("0. 프로그램 종료");
 			System.out.println("---------------------------------");
-			System.out.print  ("메뉴에 해당하는 번호 입력>");
+			System.out.print  ("입력 : ");
 			
 			menu = Integer.parseInt(s.nextLine());
 			
@@ -67,11 +67,16 @@ public class Controller {
 				userService.join();
 			}
 			if(menu == 2) {
-				userService.login();
-				if(Session.loginUser.getAuth()) {
+				int result = userService.login();
+				
+				if(result == 1) {
 					AfterAdminLogin();
-				}else {
+				}
+				if(result == 2) {
 					AfterLogin();
+				}
+				if(result == 3) {
+					userService.login();
 				}
 			}
 		}while(menu != 0);
@@ -95,9 +100,8 @@ public class Controller {
 		
 		do{
 			System.out.println("-------------- 메뉴 -------------- ");
-			System.out.println("1. 회원 목록 조회");
-			System.out.println("2. 회원 정보 수정");
-			System.out.println("3. 영화 등록/수정");
+			System.out.println("1. 회원 관리");
+			System.out.println("2. 영화 관리");
 			System.out.println("0. 로그 아웃");
 			System.out.println("---------------------------------");
 			System.out.print  ("메뉴에 해당하는 번호 입력>");
@@ -105,13 +109,10 @@ public class Controller {
 			menu = Integer.parseInt(s.nextLine());
 			
 			if(menu == 1) {
-				adminService.userList();
+				user_management();
 			}
 			if(menu == 2) {
-				adminService.userEdit();
-			}
-			if(menu == 3) {
-				adminService.movieEdit();
+				movie_management();
 			}
 		}while(menu != 0);
 		
@@ -122,6 +123,82 @@ public class Controller {
 			e.printStackTrace();
 		}
 		System.out.println("잠시 후 로그인 화면으로 이동합니다.");
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void user_management() { //회원 관리 (재석)
+		Scanner s = new Scanner(System.in);
+		
+		int input = 0;
+		
+		do {
+			
+			System.out.println("-------------- 메뉴 -------------- ");
+			System.out.println("1. 회원 등록");
+			System.out.println("2. 회원 삭제");
+			System.out.println("3. 회원 권한 부여");
+			System.out.println("4. 회원 목록 조회");
+			System.out.println("0. 뒤로 가기");
+			System.out.println("---------------------------------");
+			System.out.print  ("입력 : ");
+			
+			input = Integer.parseInt(s.nextLine());
+			
+			if(input == 1) { //회원 등록 (일반 회원가입과는 다르게 등록 시에 권한 부여도 가능)
+				adminService.adduser();
+			}
+			if(input == 2) { //회원 삭제
+				adminService.delete_user();
+			}
+			if(input == 3) {
+				adminService.authorization();
+			}
+			if(input == 4) {
+				adminService.lookup_user();
+			}
+			
+		}while(input != 0);
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void movie_management() { //영화 관리 (재석)
+		Scanner s = new Scanner(System.in);
+		
+		int input = 0;
+		
+		do {
+			
+			System.out.println("-------------- 메뉴 -------------- ");
+			System.out.println("1. 영화 등록");
+			System.out.println("2. 영화 삭제");
+			System.out.println("3. 영화 목록 조회");
+			System.out.println("0. 뒤로 가기");
+			System.out.println("---------------------------------");
+			System.out.print  ("입력 : ");
+			input = Integer.parseInt(s.nextLine());
+			
+			if(input == 1) {
+				
+			}
+			if(input == 2) {
+				
+			}
+			if(input == 3) {
+				
+			}
+			
+		}while(input != 0);
+		
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {

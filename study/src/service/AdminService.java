@@ -25,20 +25,224 @@ public class AdminService {
 	
 	AdminDao adminDao = AdminDao.getInstance();
 	UserDao userDao = UserDao.getInstance();
+	Database database = Database.getInstance();
 	
 	
-	//회원목록
-	public void userList(){
-		ArrayList<UserVO> userList = userDao.selectUserList();
+	//관리자가 회원 직접 등록 - 일반 회원가입과는 다르게 등록할 때 권한도 설정 가능(재석)
+	public void adduser() {
+		Scanner s = new Scanner(System.in);
 		
+		System.out.println("[회원 등록]");
+		System.out.print  ("아이디 : ");
+		String id = s.nextLine();
+		System.out.print  ("비밀번호 : ");
+		String password = s.nextLine();
+		System.out.print  ("이름 : ");
+		String name = s.nextLine();
+		System.out.print  ("생일 : ");
+		int birthdate = Integer.parseInt(s.nextLine());
+		int auth_input = 0;
+		boolean auth = false;
+		do {
+			
+			System.out.println("[권한]");
+			System.out.println("1. 일반");
+			System.out.println("2. 관리자");
+			System.out.print  ("입력 : ");
+			auth_input = Integer.parseInt(s.nextLine());
+			
+			if(auth_input == 1) {
+				auth = false;
+			}
+			if(auth_input == 2) {
+				auth = true;
+			}
+			
+		}while(auth_input != 1 && auth_input != 2);
+		
+		UserVO user = new UserVO();
+		
+		user.setId(id);
+		user.setPassword(password);
+		user.setName(name);
+		user.setBirthdate(birthdate);
+		user.setAuth(auth);
+		
+		userDao.insertUser(user);
+		
+		System.out.println("새로운 회원이 등록되었습니다.");
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		System.out.println("잠시 후 메뉴로 이동합니다.");
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	//회원 삭제 (재석)
+	public void delete_user() {
+		Scanner s = new Scanner(System.in);
+		
+		System.out.println("[회원 삭제]");
 		System.out.println("---------------------------------");
-		System.out.println("번호\t아이디\t이름");
-		System.out.println("---------------------------------");
-		for(int i = userList.size() - 1; 0 <= i; i--) {
-			UserVO user = userList.get(i);
-			System.out.println(i + 1 + "\t" + user.getId() + "\t" + user.getName());
+		System.out.println("회원 번호\t아이디\t이름\t권한");
+		for(int i = 0; i < database.tb_user.size(); i++) {
+			UserVO user = database.tb_user.get(i);
+			String user_auth = null;
+			
+			if(user.getAuth() == true) {
+				user_auth = "관리자";
+			}
+			if(user.getAuth() == false) {
+				user_auth = "일반";
+			}
+			System.out.println(i + 1 + "\t" + user.getId() + "\t" + user.getName() + "\t" + user_auth);
 		}
 		System.out.println("---------------------------------");
+		
+		int input = 0;
+		UserVO user = null;
+		
+		do {
+			System.out.print  ("삭제하고자 하는 회원의 번호를 입력 : ");
+			
+			input = Integer.parseInt(s.nextLine());
+			
+			try {
+				user = database.tb_user.get(input - 1);
+			} catch(IndexOutOfBoundsException e) {
+				
+			}
+			
+			if(user == null) {
+				System.out.println("잘못된 번호를 입력하였습니다.");
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				System.out.println("다시 입력해주세요.");
+			}
+			if(user != null) {
+				database.tb_user.remove(input - 1);
+				System.out.println("선택하신 회원이 삭제되었습니다.");
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		}while(user == null);
+		
+		System.out.println("잠시 후 메뉴로 돌아갑니다.");
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	//회원 권한 부여 (재석)
+	public void authorization() {
+		Scanner s = new Scanner(System.in);
+		
+		System.out.println("[회원 권한 부여]");
+		System.out.println("---------------------------------");
+		System.out.println("회원 번호\t아이디\t이름\t권한");
+		for(int i = 0; i < database.tb_user.size(); i++) {
+			UserVO user = database.tb_user.get(i);
+			String user_auth = null;
+			
+			if(user.getAuth() == true) {
+				user_auth = "관리자";
+			}
+			if(user.getAuth() == false) {
+				user_auth = "일반";
+			}
+			System.out.println(i + 1 + "\t" + user.getId() + "\t" + user.getName() + "\t" + user_auth);
+		}
+		System.out.println("---------------------------------");
+		
+		int input = 0;
+		UserVO user = null;
+		
+		do {
+			System.out.print  ("권한을 부여하고자 하는 회원의 번호를 입력 : ");
+			
+			input = Integer.parseInt(s.nextLine());
+			
+			try {
+				user = database.tb_user.get(input - 1);
+			} catch(IndexOutOfBoundsException e) {
+				
+			}
+			
+			if(user == null) {
+				System.out.println("잘못된 번호를 입력하였습니다.");
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				System.out.println("다시 입력해주세요.");
+			}
+			if(user != null) {
+				user = database.tb_user.get(input - 1);
+				user.setAuth(true);
+				System.out.println("선택하신 회원에게 권한이 부여되었습니다.");
+			}
+		}while(user == null);
+		
+		System.out.println("잠시 후 메뉴로 돌아갑니다.");
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	//회원 목록 (재석)
+	public void lookup_user() {
+		Scanner s = new Scanner(System.in);
+		
+		System.out.println("[회원 목록]");
+		System.out.println("---------------------------------");
+		System.out.println("회원 번호\t아이디\t이름\t권한");
+		for(int i = 0; i < database.tb_user.size(); i++) {
+			UserVO user = database.tb_user.get(i);
+			String user_auth = null;
+			
+			if(user.getAuth() == true) {
+				user_auth = "관리자";
+			}
+			if(user.getAuth() == false) {
+				user_auth = "일반";
+			}
+			System.out.println(i + 1 + "\t" + user.getId() + "\t" + user.getName() + "\t" + user_auth);
+		}
+		System.out.println("---------------------------------");
+		System.out.println("0. 뒤로 가기");
+		System.out.println("---------------------------------");
+		System.out.println("입력 : ");
+		int input = 0;
+		
+		do {
+			
+			input = Integer.parseInt(s.nextLine());
+			
+			if(input != 0) {
+				System.out.println("메뉴에 있는 번호를 입력해주세요.");
+			}
+			
+		}while(input != 0);
+		
 	}
 	
 	//회원 정보 수정하는 메소드
@@ -46,7 +250,7 @@ public class AdminService {
 		Scanner s = new Scanner(System.in);
 		Database database = Database.getInstance();
 		//먼저 회원 리스트를 보여줌
-		userList();
+		lookup_user();
 		
 		System.out.print("수정하고 싶은 회원 아이디를 입력해주세요.");
 		String id = s.nextLine();
@@ -88,6 +292,8 @@ public class AdminService {
 			}
 		}
 	}
+	
+	
 	
 	//영화 등록하는 메소드(미완성 -- 영화 번호 어떻게 할지 몰라서 아직 안했음) //번호  추가함(영현).확인은 안해봄 ;뒤에// 바꾼 부분 표시해 놓겠음
 			public void Enrollment() {
