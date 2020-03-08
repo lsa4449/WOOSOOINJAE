@@ -231,7 +231,7 @@ public class AdminService {
 		System.out.println("---------------------------------");
 		System.out.println("0. 뒤로 가기");
 		System.out.println("---------------------------------");
-		System.out.println("입력 : ");
+		System.out.print  ("입력 : ");
 		int input = 0;
 		
 		do {
@@ -321,7 +321,7 @@ public class AdminService {
 				age = "청소년 관람 불가";
 			}
 			
-			if(ageinput != 1 || ageinput != 2) {
+			if(ageinput != 1 && ageinput != 2) {
 				System.out.println("잘못된 번호를 입력하였습니다.");
 				try {
 					Thread.sleep(1000);
@@ -330,7 +330,7 @@ public class AdminService {
 				}
 				System.out.println("다시 입력해주세요.");
 			}
-		}while(ageinput != 1 || ageinput != 2);
+		}while(ageinput != 1 && ageinput != 2);
 		
 		System.out.print  ("감독 : ");
 		String director = s.nextLine();
@@ -338,7 +338,7 @@ public class AdminService {
 		String actor = s.nextLine();
 		System.out.print  ("개봉일(200301) : ");
 		int openMovieDate = Integer.parseInt(s.nextLine());
-		System.out.println("줄거리 : ");
+		System.out.print  ("줄거리 : ");
 		String plot = s.nextLine();
 		
 		MovieVO movie = new MovieVO();
@@ -392,13 +392,40 @@ public class AdminService {
 		
 		movieService.movieList();// 삭제되었는지 보여주기
 		
+	}
+	
+	public void lookup_moive() { //영화 목록 (재석)
 		
+		Scanner s = new Scanner(System.in);
 		
+		System.out.println("[영화 목록]");
+		System.out.println("---------------------------------");
+		System.out.println("영화 번호\t감독\t배우\t관람 나이");
+		for(int i = 0; i < database.tb_movie.size(); i++) {
+			MovieVO movie = database.tb_movie.get(i);
+			
+			System.out.println(i + 1 + "\t" + movie.getDirector() + "\t" + movie.getActor() + "\t" + movie.getAge());
+		}
+		System.out.println("---------------------------------");
+		System.out.println("0. 뒤로 가기");
+		System.out.println("---------------------------------");
+		System.out.print  ("입력 : ");
+		int input = 0;
+		
+		do {
+			
+			input = Integer.parseInt(s.nextLine());
+			
+			if(input != 0) {
+				System.out.println("메뉴에 있는 번호를 입력해주세요.");
+			}
+			
+		}while(input != 0);
 		
 	}
 	
 	
-	//입력받은 아이디로 테이블 인덱스 번호를 리턴해주는 메소드
+	//입력받은 아이디로 테이블 인덱스 번호를 리턴해주는 메소드 (재석)
 	public int tb_Index(String id) {
 		int indexno = 0;
 		

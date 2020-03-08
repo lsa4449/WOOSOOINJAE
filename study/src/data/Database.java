@@ -58,9 +58,9 @@ public class Database {
 		MovieVO movie = new MovieVO();
 		movie.setMovieNum(indexno++); // 영화번호
 		movie.setMovieName("히트맨");
-		movie.setDirector("코미디, 액션");
-		movie.setPlot("최원섭");
-		movie.setActor("누구지?");
+		movie.setDirector("감독");
+		movie.setPlot("줄거리");
+		movie.setActor("배우");
 		movie.setOpenMovieDate(20200120);
 		movie.setAge("청소년 관람 불가");
 		tb_movie.add(movie);
@@ -68,8 +68,8 @@ public class Database {
 		movie = new MovieVO();
 		movie.setMovieNum(indexno++); // 영화번호 1
 		movie.setMovieName("조선 명탐정 어쩌구");
-		movie.setDirector("코미디, 사극");
-		movie.setPlot("이선균 아는 배우");
+		movie.setDirector("감독");
+		movie.setPlot("줄거리");
 		movie.setActor("이선균");
 		movie.setOpenMovieDate(20200120);
 		movie.setAge("청소년 관람 불가");

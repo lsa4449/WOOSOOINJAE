@@ -1,10 +1,13 @@
 package dao;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Set;
 
 import data.Database;
+import data.Session;
+import vo.MovieVO;
 import vo.UserVO;
    
 public class UserDao {
@@ -50,5 +53,48 @@ public class UserDao {
 			return database.tb_user;
 		}
 		
+		//영화 조회(성인) (재석)
+		public void lookup_adult_movie() {
+			
+			int movie_no = 1;
+			
+			System.out.println("[영화 목록]");
+			System.out.println("---------------------------------");
+			for(int i = 0; i < database.tb_movie.size(); i++) {
+				MovieVO movie = database.tb_movie.get(i);
+				System.out.println("[ " + movie_no + " ]");
+				System.out.println("제목 : " + movie.getMovieName() + "( " + movie.getAge() + " )");
+				System.out.println("감독 : " + movie.getDirector());
+				System.out.println("배우 : " + movie.getActor());
+				System.out.println("개봉일 : " + movie.getOpenMovieDate());
+				System.out.println("줄거리 : " + movie.getPlot());
+				
+				movie_no++;
+			}
+			System.out.println("---------------------------------");
+		}
 		
+		//영화 조회(미성년자) (재석)
+		public void lookup_minor_movie() {
+
+			int movie_no = 1;
+			
+			System.out.println("[영화 목록]");
+			System.out.println("---------------------------------");
+			for(int i = 0; i < database.tb_movie.size(); i++) {
+				MovieVO movie = database.tb_movie.get(i);
+				
+				if(movie.getAge().equals("전체 이용가")) {
+					System.out.println("[ " + movie_no + " ]");
+					System.out.println("제목 : " + movie.getMovieName() + "( " + movie.getAge() + " )");
+					System.out.println("감독 : " + movie.getDirector());
+					System.out.println("배우 : " + movie.getActor());
+					System.out.println("개봉일 : " + movie.getOpenMovieDate());
+					System.out.println("줄거리 : " + movie.getPlot());
+					
+					movie_no++;
+				}
+			}
+			System.out.println("---------------------------------");
+		}
 }

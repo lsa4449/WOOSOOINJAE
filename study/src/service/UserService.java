@@ -1,11 +1,10 @@
 package service;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import controller.Controller;
 import dao.UserDao;
-import data.Database;
 import data.Session;
 import vo.UserVO;
 
@@ -49,7 +48,7 @@ public class UserService {
 		System.out.print("이름 : ");
 		String name = s.nextLine();
 		
-		System.out.print("생년원일(ex)202002) : ");
+		System.out.print("생년원일(ex)20202002) : ");
 		int birthdate = Integer.parseInt(s.nextLine());
 		
 		UserVO user = new UserVO();
@@ -84,7 +83,7 @@ public class UserService {
 		int Check = 0;
 		//관리자 : 1, 일반 : 2, 실패 : 3
 		
-		if(user == null){
+		if(user == null){ //수정 (재석)
 			Check = 3;
 			System.out.println("아이디 혹은 비밀번호를 잘못 입력하셨습니다.");
 			try {
@@ -136,15 +135,78 @@ public class UserService {
    }
 	
 	
-//	//테스트테스트
-//	public void SortUser(String id) {
-//		
-//		Controller controller = new Controller();
-//		
-//		if(id.equals("admin")) {
-//			controller.AfterAdminLogin();
-//		}
-//	}
+	//영화 목록 조회 - 나이에 맞는 것만 조회(재석)
+	public void lookup_movie() {
+		Scanner s = new Scanner(System.in);
+		
+		UserVO user = Session.loginUser;
+
+		int user_year = user.getBirthdate() / 10000;
+		int year = Calendar.getInstance().get(Calendar.YEAR); //현재 날짜의 연도 가져오기
+		
+		int input = 0;
+		
+		if(year - user_year >= 19) {
+			userDao.lookup_adult_movie();
+			
+			System.out.println("0. 뒤로 가기");
+			System.out.println("---------------------------------");
+			
+			do {
+				
+				System.out.print  ("입력 : ");
+				input = Integer.parseInt(s.nextLine());
+				
+				if(input != 0) {
+					System.out.println("잘못된 번호를 입력하였습니다.");
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					System.out.println("---------------------------------");
+				}
+				
+			}while(input != 0);
+			System.out.println("잠시 후 이동됩니다.");
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
+		}else {
+			userDao.lookup_minor_movie();
+			
+			System.out.println("0. 뒤로 가기");
+			System.out.println("---------------------------------");
+			
+			do {
+				
+				System.out.print  ("입력 : ");
+				input = Integer.parseInt(s.nextLine());
+				
+				if(input != 0) {
+					System.out.println("잘못된 번호를 입력하였습니다.");
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					System.out.println("---------------------------------");
+				}
+				
+			}while(input != 0);
+			System.out.println("잠시 후 이동됩니다.");
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
+	
 	
 
 }

@@ -69,13 +69,13 @@ public class Controller {
 			if(menu == 2) {
 				int result = userService.login();
 				
-				if(result == 1) {
+				if(result == 1) { //관리자 메뉴 (재석)
 					AfterAdminLogin();
 				}
-				if(result == 2) {
+				if(result == 2) { //일반 메뉴 (재석)
 					AfterLogin();
 				}
-				if(result == 3) {
+				if(result == 3) { //실패했을 때 반복 (재석)
 					userService.login();
 				}
 			}
@@ -104,7 +104,7 @@ public class Controller {
 			System.out.println("2. 영화 관리");
 			System.out.println("0. 로그 아웃");
 			System.out.println("---------------------------------");
-			System.out.print  ("메뉴에 해당하는 번호 입력>");
+			System.out.print  ("입력 : ");
 			
 			menu = Integer.parseInt(s.nextLine());
 			
@@ -191,14 +191,14 @@ public class Controller {
 			System.out.print  ("입력 : ");
 			input = Integer.parseInt(s.nextLine());
 			
-			if(input == 1) { //영화 등록 (재석) - 작업 중
+			if(input == 1) { //영화 등록 (재석)
 				adminService.addmovie();
 			}
-			if(input == 2) {
+			if(input == 2) { //영화 삭제인데 영현이가 만든거 넣으면 될듯!
 				
 			}
-			if(input == 3) {
-				
+			if(input == 3) { //영화 목록 조회 (재석)
+				adminService.lookup_moive();
 			}
 			
 		}while(input != 0);
@@ -228,12 +228,12 @@ public class Controller {
 			System.out.println("3. MY Page");
 			System.out.println("0. 로그 아웃");
 			System.out.println("---------------------------------");
-			System.out.print  ("메뉴에 해당하는 번호 입력>");
+			System.out.print  ("입력 : ");
 			
 			menu = Integer.parseInt(s.nextLine());
 			
-			if(menu == 1) {
-				MovieAgeSelect();
+			if(menu == 1) { //영화 목록 조회 - 자신의 나이에 맞는 영화만 조회되게 함 (재석)
+				userService.lookup_movie();
 			}
 			if(menu == 2) {
 				
@@ -257,49 +257,5 @@ public class Controller {
 		}
 	}
 	
-	//연령 별 영화 선택
-	private void MovieAgeSelect() {
-		Enter(50);
-		Scanner s = new Scanner(System.in);
-		
-		MovieList movieList = new MovieList();
-		
-		Database database = Database.getInstance();
-		
-		
-		int menu;
-		
-		do{
-			System.out.println("-------------- 메뉴 -------------- ");
-			System.out.println("1. 전체 이용가 영화");
-			System.out.println("2. 청소년 관람불가 영화");
-			System.out.println("0. 뒤로 가기");
-			System.out.println("3. 데이터베이스 연결을 위해서 확인 작업");
-			System.out.println("---------------------------------");
-			System.out.print  ("메뉴에 해당하는 번호 입력>");
-			
-			menu = Integer.parseInt(s.nextLine());
-			
-			if(menu == 1) {
-				movieList.MovieList_All();
-			}
-			if(menu == 2) {
-				movieList.MovieList_adult();
-			}
-			if(menu == 3) {
-				for (int i = 0; i < database.tb_movie.size(); i++) {
-					MovieVO movieVO = database.tb_movie.get(i);
-					System.out.println(movieVO.toString());
-				}
-			}
-		}while(menu != 0);
-		
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
-
 	
 }
