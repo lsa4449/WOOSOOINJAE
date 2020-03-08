@@ -63,34 +63,24 @@ public class Controller {
 			
 			menu = Integer.parseInt(s.nextLine());
 			
-			switch(menu){
-				case 1 : //회원가입
-					userService.join();
-					break;
-				case 2 : //로그인
-					userService.login();
-					if (Session.loginUser.getAuth()) {// admin 페이지
-						AfterAdminLogin();
-					}else {
-						AfterLogin();
-					}
-					
-				//쓰레드	
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
+			if(menu == 1) {
+				userService.join();
+			}
+			if(menu == 2) {
+				userService.login();
+				if(Session.loginUser.getAuth()) {
+					AfterAdminLogin();
+				}else {
 					AfterLogin();
-					break;
-//				case 3 : //회원목록
-//					userService.userList();
-//					break;
-				case 0 : //프로그램 종료
-					System.out.println("프로그램 종료");
-					break;
+				}
 			}
 		}while(menu != 0);
+		System.out.println("잠시 후 프로그램이 종료됩니다.");
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	
@@ -114,38 +104,30 @@ public class Controller {
 			
 			menu = Integer.parseInt(s.nextLine());
 			
-			switch(menu){
-				case 1 : //회원 목록 조회
-					adminService.userList();
-					break;
-				case 2 : //회원 정보 수정
-//					adminService.userList(); 중복되서 필요 없음 UserEdit()메소드에서 userList()호출하면 됨
-					adminService.userEdit();
-					break;
-				case 3 : //영화 등록/수정 // 수정에서 삭제 까지 하도록
-					adminService.movieEdit();
-					break;
-				case 0 : //로그 아웃
-					System.out.println("로그아웃 되었습니다.");
-					//쓰레드	
-					try {
-						Thread.sleep(1000);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-					
-					System.out.println("잠시 후 로그인 화면으로 돌아갑니다.");
-					//쓰레드	
-					try {
-						Thread.sleep(1000);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-					
-					start();
-					break;
+			if(menu == 1) {
+				adminService.userList();
+			}
+			if(menu == 2) {
+				adminService.userEdit();
+			}
+			if(menu == 3) {
+				adminService.movieEdit();
 			}
 		}while(menu != 0);
+		
+		System.out.println("로그 아웃 되었습니다.");
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		System.out.println("잠시 후 로그인 화면으로 이동합니다.");
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	
@@ -169,37 +151,29 @@ public class Controller {
 			
 			menu = Integer.parseInt(s.nextLine());
 			
-			switch(menu){
-				case 1 : //영화 목록 조회
-					MovieAgeSelect();
-					break;
-				case 2 : //예매 영화 조회
-					
-					break;
-				case 3 : //MY Page
-					
-					break;
-				case 0 : //뒤로 가기
-					System.out.println("로그아웃 되었습니다.");
-					//쓰레드	
-					try {
-						Thread.sleep(1000);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-					
-					System.out.println("잠시 후 로그인 화면으로 돌아갑니다.");
-					//쓰레드	
-					try {
-						Thread.sleep(1000);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-					
-					start();
-					break;
+			if(menu == 1) {
+				MovieAgeSelect();
+			}
+			if(menu == 2) {
+				
+			}
+			if(menu == 3) {
+				
 			}
 		}while(menu != 0);
+		
+		System.out.println("로그 아웃 되었습니다.");
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		System.out.println("잠시 후 로그인 화면으로 이동합니다.");
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	//연령 별 영화 선택
@@ -225,26 +199,25 @@ public class Controller {
 			
 			menu = Integer.parseInt(s.nextLine());
 			
-			switch(menu){
-				case 1 : //전체 이용가 영화
-					movieList.MovieList_All();
-					break;
-				case 2 : //청소년 관람불가 영화
-					movieList.MovieList_adult();
-					break;
-				case 3 :
-					for (int i = 0; i < database.tb_movie.size(); i++) {
-						MovieVO movieVO = database.tb_movie.get(i);
-						System.out.println(movieVO.toString());
-						
-					}
-
-					break;
-				case 0 : //뒤로 가기
-					AfterLogin();
-					break;
+			if(menu == 1) {
+				movieList.MovieList_All();
+			}
+			if(menu == 2) {
+				movieList.MovieList_adult();
+			}
+			if(menu == 3) {
+				for (int i = 0; i < database.tb_movie.size(); i++) {
+					MovieVO movieVO = database.tb_movie.get(i);
+					System.out.println(movieVO.toString());
+				}
 			}
 		}while(menu != 0);
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 	
