@@ -91,7 +91,7 @@ public class Controller {
 	
 	//----------------------------------- 관리자 --------------------------------------------
 	
-	//관리자 로그인 후 첫 화면
+	//관리자 로그인 메뉴 (재석)
 	public void AfterAdminLogin() {
 		Enter(50);
 		Scanner s = new Scanner(System.in);
@@ -108,10 +108,10 @@ public class Controller {
 			
 			menu = Integer.parseInt(s.nextLine());
 			
-			if(menu == 1) {
+			if(menu == 1) { //회원 관리 (재석)
 				user_management();
 			}
-			if(menu == 2) {
+			if(menu == 2) { //영화 관리 (재석)
 				movie_management();
 			}
 		}while(menu != 0);
@@ -142,23 +142,27 @@ public class Controller {
 			System.out.println("2. 회원 삭제");
 			System.out.println("3. 회원 권한 부여");
 			System.out.println("4. 회원 목록 조회");
+			System.out.println("5. 회원 정보 수정");
 			System.out.println("0. 뒤로 가기");
 			System.out.println("---------------------------------");
 			System.out.print  ("입력 : ");
 			
 			input = Integer.parseInt(s.nextLine());
 			
-			if(input == 1) { //회원 등록 (일반 회원가입과는 다르게 등록 시에 권한 부여도 가능)
+			if(input == 1) { //회원 등록 (일반 회원가입과는 다르게 등록 시에 권한 부여도 가능) (재석)
 				adminService.adduser();
 			}
-			if(input == 2) { //회원 삭제
+			if(input == 2) { //회원 삭제 (재석)
 				adminService.delete_user();
 			}
-			if(input == 3) {
+			if(input == 3) { //회원 권한 부여 (재석)
 				adminService.authorization();
 			}
-			if(input == 4) {
+			if(input == 4) { //회원 목록 조회 (재석)
 				adminService.lookup_user();
+			}
+			if(input == 5) { //회원 정보 수정 (재석)
+				adminService.userEdit();
 			}
 			
 		}while(input != 0);
@@ -187,8 +191,8 @@ public class Controller {
 			System.out.print  ("입력 : ");
 			input = Integer.parseInt(s.nextLine());
 			
-			if(input == 1) {
-				
+			if(input == 1) { //영화 등록 (재석) - 작업 중
+				adminService.addmovie();
 			}
 			if(input == 2) {
 				

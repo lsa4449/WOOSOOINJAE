@@ -28,6 +28,7 @@ public class AdminService {
 	Database database = Database.getInstance();
 	
 	
+	//------------------------ 회원 관리 메뉴 ------------------------
 	//관리자가 회원 직접 등록 - 일반 회원가입과는 다르게 등록할 때 권한도 설정 가능(재석)
 	public void adduser() {
 		Scanner s = new Scanner(System.in);
@@ -294,40 +295,78 @@ public class AdminService {
 	}
 	
 	
-	
-	//영화 등록하는 메소드(미완성 -- 영화 번호 어떻게 할지 몰라서 아직 안했음) //번호  추가함(영현).확인은 안해봄 ;뒤에// 바꾼 부분 표시해 놓겠음
-			public void Enrollment() {
-				MovieVO movieVO = new MovieVO();
-				
-				MovieDao movieDao = MovieDao.getInstance();//여기
-				ArrayList<MovieVO> movieList = movieDao.selectMovieList();//여기
-				
-				Scanner s = new Scanner(System.in);
-				
-				
-				System.out.println("[영화 등록]");
-				System.out.println("영화 번호" + movieList.size()+1);//여기
-				System.out.print  ("제목 : ");
-				String movieName = s.nextLine();
-				System.out.print  ("감독 : ");
-				String director = s.nextLine();
-				System.out.print  ("줄거리 : ");
-				String plot = s.nextLine();
-				System.out.print  ("배우 : ");
-				String actor = s.nextLine();
-				System.out.print  ("영화 개봉일 : ");
-				int openMovieDate = Integer.parseInt(s.nextLine());
-				System.out.println("영화 관람 나이");
-				int age = Integer.parseInt(s.nextLine());
-				
-				movieVO.setMovieNum(movieList.size()+1);//여기
-				movieVO.setMovieName(movieName);
-				movieVO.setDirector(director);
-				movieVO.setPlot(plot);
-				movieVO.setActor(actor);
-				movieVO.setOpenMovieDate(openMovieDate);
-				movieVO.setAge(age);
+	//------------------------ 영화 관리 메뉴 ------------------------
+	public void addmovie() { //영화 등록 (재석)
+		
+		Scanner s = new Scanner(System.in);
+		
+		System.out.println("[영화 등록]");
+		System.out.print  ("제목 : ");
+		String movieName = s.nextLine();
+		
+		int ageinput = 0;
+		String age = null;
+		
+		System.out.println("[관람 가능 나이]");
+		System.out.println("1. 전체 이용가");
+		System.out.println("2. 청소년 관람 불가");
+		
+		do {
+			ageinput = Integer.parseInt(s.nextLine());
+			
+			if(ageinput == 1) {
+				age = "전체 이용가";
 			}
+			if(ageinput == 2) {
+				age = "청소년 관람 불가";
+			}
+			
+			if(ageinput != 1 || ageinput != 2) {
+				System.out.println("잘못된 번호를 입력하였습니다.");
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				System.out.println("다시 입력해주세요.");
+			}
+		}while(ageinput != 1 || ageinput != 2);
+		
+		System.out.print  ("감독 : ");
+		String director = s.nextLine();
+		System.out.print  ("배우 : ");
+		String actor = s.nextLine();
+		System.out.print  ("개봉일(200301) : ");
+		int openMovieDate = Integer.parseInt(s.nextLine());
+		System.out.println("줄거리 : ");
+		String plot = s.nextLine();
+		
+		MovieVO movie = new MovieVO();
+		
+		movie.setMovieName(movieName);
+		movie.setAge(age);
+		movie.setDirector(director);
+		movie.setActor(actor);
+		movie.setOpenMovieDate(openMovieDate);
+		movie.setPlot(plot);
+		
+		adminDao.insertMovie(movie);
+		
+		System.out.println("영화가 등록되었습니다.");
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		System.out.println("잠시 후 메뉴로 돌아갑니다.");
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
 	
 	//영화 수정 // 영현 // 삭제만 만듬 // 이것도 만들기만 함 확인은 안해봄
 	public void movieEdit() {

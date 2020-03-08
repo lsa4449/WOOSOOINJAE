@@ -64,7 +64,7 @@ public class UserService {
 	}
 	
 	//로그인
-	public void login(){
+	public int login(){
 		Scanner s = new Scanner(System.in);
 		
 		
@@ -81,13 +81,40 @@ public class UserService {
 		
 		//SortUser(id);
 		
+		int Check = 0;
+		//관리자 : 1, 일반 : 2, 실패 : 3
 		
 		if(user == null){
+			Check = 3;
 			System.out.println("아이디 혹은 비밀번호를 잘못 입력하셨습니다.");
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}else {
-			System.out.println("로그인 성공!");
-			System.out.println(user.getName() + "님 환영합니다.");
+			if(user.getAuth() == true) {
+				Check = 1;
+				System.out.println("관리자 계정으로 로그인하였습니다.");
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+			if(user.getAuth() == false) {
+				Check = 2;
+				System.out.println("로그인에 성공하였습니다.");
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				System.out.println(user.getName() + "님 환영합니다.");
+			}
+			
 			Session.loginUser = user;
+			
 //			if (user.getAuth()) { // admin
 //				
 //				AfterAdminLogin();
@@ -95,6 +122,7 @@ public class UserService {
 //				
 //			}
 		}
+		return Check;
 	}
 	
 	//회원 정보 조회

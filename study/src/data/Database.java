@@ -62,7 +62,7 @@ public class Database {
 		movie.setPlot("최원섭");
 		movie.setActor("누구지?");
 		movie.setOpenMovieDate(20200120);
-		movie.setAge(19);
+		movie.setAge("청소년 관람 불가");
 		tb_movie.add(movie);
 		
 		movie = new MovieVO();
@@ -72,7 +72,7 @@ public class Database {
 		movie.setPlot("이선균 아는 배우");
 		movie.setActor("이선균");
 		movie.setOpenMovieDate(20200120);
-		movie.setAge(19);
+		movie.setAge("청소년 관람 불가");
 		tb_movie.add(movie);
 	}
 }

@@ -11,14 +11,14 @@ public class MovieVO {
 	private String plot; // 줄거리
 	private String actor; // 출연진
 	private int openMovieDate; // 개봉일
-	private int age; // 영화 관람 나이
+	private String age; // 영화 관람 나이
 	
 	private static int staticmovieNum = 0; // 생성자 만들어서 생성자에서 ++ 되도록?
 
-	public int getAge() {
+	public String getAge() {
 		return age;
 	}
-	public void setAge(int age) {
+	public void setAge(String age) {
 		this.age = age;
 	}
 	// 영화 번호 때문에 생성자를 만들어서 자동으로 늘어나도록
