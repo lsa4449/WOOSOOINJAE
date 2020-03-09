@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 import dao.UserDao;
+import data.Database;
 import data.Session;
 import vo.UserVO;
 
@@ -23,7 +24,7 @@ public class UserService {
 	}
 	
 	UserDao userDao = UserDao.getInstance();
-	UserVO user = null;
+	Database db = Database.getInstance();
 	
 	
 	//회원가입
@@ -129,20 +130,86 @@ public class UserService {
 	//회원 정보 조회 
 	public void userInfoView() {
 		
-		System.out.println(user.getName() + "회원님의 아이디 : " + user.getId());
-		System.out.println(user.getName() + "회원님의 비밀번호 : " + user.getPassword());		
-	    System.out.println(user.getName() +"회원님의 생년월일 : " + user.getBirthdate());
-	    System.out.println("───────────────────────────────────────────────────────");
+		UserVO userVo  = Session.loginUser;
+		
+		System.out.println(userVo.getName() + "회원님의 아이디 : " + userVo.getId());
+		System.out.println(userVo.getName() + "회원님의 비밀번호 : " + userVo.getPassword());		
+	    System.out.println(userVo.getName() +"회원님의 생년월일 : " + userVo.getBirthdate());
    }
 	
 	//비밀 번호 수정
 	public void userPwModify() {
+		UserVO userVo  = Session.loginUser;
+		Scanner in = new Scanner(System.in);
+	    String input = "";
+	    String pwd = "";
+	    
+	    input = in.nextLine();
+	  
 		UserVO params = new UserVO();
-		params.setId(user.getId());
-		params.setPassword(user.getPassword());
+		params.setId(userVo.getId());
+		params.setPassword(pwd);
 		
+		if(db.userPwChange(params)) {
+			 System.out.println("──────────────────");
+	         System.out.println("변경에 성공하였습니다.");
+	         System.out.println("──────────────────");
+	      } else {
+	         System.out.println("──────────────────");
+	         System.out.println("변경에 실패하였습니다.");
+	         System.out.println("──────────────────");
+	      }
 	}
 	
+	
+	
+	//이름 수정
+	public void userNameModify() {
+		UserVO userVo  = Session.loginUser;
+		Scanner in = new Scanner(System.in);
+	    String input = "";
+	    
+	    input = in.nextLine();
+	    
+		UserVO params = new UserVO();
+		params.setId(userVo.getId());
+		params.setName(userVo.getName());
+		
+		if(db.userNameChange(params)) {
+			 System.out.println("──────────────────");
+	         System.out.println("변경에 성공하였습니다.");
+	         System.out.println("──────────────────");
+	      } else {
+	         System.out.println("──────────────────");
+	         System.out.println("변경에 실패하였습니다.");
+	         System.out.println("──────────────────");
+	      }
+	}
+		
+	//생년월일 수정
+	public void userBirthModify() {
+		UserVO userVo  = Session.loginUser;
+		Scanner in = new Scanner(System.in);
+	    String input = "";
+	    
+	    input = in.nextLine();
+	    
+		UserVO params = new UserVO();
+		params.setId(userVo.getId());
+		params.setBirthdate(userVo.getBirthdate());
+		
+		if(db.userBirthChange(params)) {
+			 System.out.println("──────────────────");
+	         System.out.println("변경에 성공하였습니다.");
+	         System.out.println("──────────────────");
+	      } else {
+	         System.out.println("──────────────────");
+	         System.out.println("변경에 실패하였습니다.");
+	         System.out.println("──────────────────");
+	      }
+	}
+		
+				
 	//영화 목록 조회 - 나이에 맞는 것만 조회(재석)
 	public void lookup_movie() {
 		Scanner s = new Scanner(System.in);
@@ -214,6 +281,7 @@ public class UserService {
 		}
 		
 	}
+
 	
 	
 

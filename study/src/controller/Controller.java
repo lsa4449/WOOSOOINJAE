@@ -258,7 +258,7 @@ public class Controller {
 	}
 	
 	//My page 이동
-	public void MypageView() { //회원 관리 (재석)
+	public void MypageView() { //회원 관리
 		Scanner s = new Scanner(System.in);
 		
 		int input = 0;
@@ -317,10 +317,10 @@ public class Controller {
 					userService.userPwModify();
 				}
 				if(input == 2) { //이름 수정
-					
+					userService.userNameModify();
 				}
 				if(input == 3) { //생년월일 수정
-					
+					userService.userBirthModify();
 				}
 							
 			}while(input != 0);
