@@ -54,11 +54,21 @@ public class Controller {
 		int menu;
 		
 		do{
-			System.out.println("-------------- 메뉴 -------------- ");
+			System.out.println("      　　☆ *　. 　☆ \r\n" + "　　☆　.   ∧＿∧　∩　* ☆ \r\n"
+					+ "         안 ━━━( .∀.)/ . ━━━ 녕!!\r\n" + "　　　. ⊂　　 ノ* ☆ \r\n"
+					+ "　　☆ * (つ ノ .☆ \r\n" + "　　　　 (ノ");
+			
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			System.out.println("---------------대덕 시네마--------------");
+			System.out.println("-------------사용할 메뉴 선택▼------------");
 			System.out.println("1. 회원가입");
 			System.out.println("2. 로그인");
 			System.out.println("0. 프로그램 종료");
-			System.out.println("---------------------------------");
+			System.out.println("--------------------------------------");
 			System.out.print  ("입력 : ");
 			
 			menu = Integer.parseInt(s.nextLine());
@@ -77,6 +87,9 @@ public class Controller {
 				}
 				if(result == 3) { //실패했을 때 반복 (재석)
 					userService.login();
+				
+				}else {
+					System.out.println("잘못 입력하셨습니다! 번호를 다시 확인하세요!");
 				}
 			}
 		}while(menu != 0);
@@ -113,7 +126,11 @@ public class Controller {
 			}
 			if(menu == 2) { //영화 관리 (재석)
 				movie_management();
+			
+			}else {
+				System.out.println("잘못 입력하셨습니다! 번호를 다시 확인하세요!");
 			}
+			
 		}while(menu != 0);
 		
 		System.out.println("로그 아웃 되었습니다.");
@@ -163,6 +180,9 @@ public class Controller {
 			}
 			if(input == 5) { //회원 정보 수정 (재석)
 				adminService.userEdit();
+			
+			}else {
+				System.out.println("잘못 입력하셨습니다! 번호를 다시 확인하세요!");
 			}
 			
 		}while(input != 0);
@@ -199,6 +219,9 @@ public class Controller {
 			}
 			if(input == 3) { //영화 목록 조회 (재석)
 				adminService.lookup_moive();
+			
+			}else {
+				System.out.println("잘못 입력하셨습니다! 번호를 다시 확인하세요!");
 			}
 			
 		}while(input != 0);
@@ -240,7 +263,11 @@ public class Controller {
 			}
 			if(menu == 3) {
 				MypageView();
+			
+			}else {
+				System.out.println("잘못 입력하셨습니다! 번호를 다시 확인하세요!");
 			}
+			
 		}while(menu != 0);
 		
 		System.out.println("로그 아웃 되었습니다.");
@@ -284,6 +311,8 @@ public class Controller {
 			if(input == 3) { //회원 탈퇴
 				userRemove();
 				
+			}else {
+				System.out.println("잘못 입력하셨습니다! 번호를 다시 확인하세요!");
 			}
 						
 		}while(input != 0);
@@ -322,6 +351,9 @@ public class Controller {
 				}
 				if(input == 3) { //생년월일 수정
 					userService.userBirthModify();
+			
+				}else {
+					System.out.println("잘못 입력하셨습니다! 번호를 다시 확인하세요!");
 				}
 							
 			}while(input != 0);
@@ -346,6 +378,10 @@ public class Controller {
 				
 				if(input == 1) { //진짜 탈퇴
 					userService.userInfoRemove();
+					start();
+				
+				}else {
+					System.out.println("잘못 입력하셨습니다! 번호를 다시 확인하세요!");
 				}
 							
 			}while(input != 2);
