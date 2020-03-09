@@ -283,7 +283,7 @@ public class Controller {
 				MypageModify();
 			}
 			if(input == 3) { //회원 탈퇴
-				
+				userRemove();
 			}
 			if(input == 4) { //현금 충전
 				userService.cash();
@@ -334,7 +334,35 @@ public class Controller {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			
 		}
-	
+
+		public void userRemove() { //회원 탈퇴
+			Scanner s = new Scanner(System.in);
+			
+			int input = 0;
+			 
+			do {
+				
+				System.out.println("-------------- 메뉴 -------------- ");
+				System.out.println("1. 진짜 탈퇴 하시겠습니까..?(철회 불가능)");
+				System.out.println("2. 뒤로 가기");
+				System.out.println("---------------------------------");
+				System.out.print  ("입력 : ");
+				
+				input = Integer.parseInt(s.nextLine());
+				
+				if(input == 1) { //진짜 탈퇴
+					userService.userInfoRemove();
+					start();
+				}
+							
+			}while(input != 2);
+			
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+
 }
