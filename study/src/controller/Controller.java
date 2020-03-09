@@ -76,6 +76,9 @@ public class Controller {
 					AfterLogin();
 				}
 			}
+			if(menu != 1 && menu != 2){
+				System.out.println("잘못 입력하였습니다! 다시 입력해주세요!");
+			}
 		}while(menu != 0);
 		System.out.println("잠시 후 프로그램이 종료됩니다.");
 		try {
@@ -110,6 +113,9 @@ public class Controller {
 			}
 			if(menu == 2) { //영화 관리 (재석)
 				movie_management();
+			}
+			else {
+				System.out.println("잘못 입력하였습니다! 다시 입력해주세요!");
 			}
 		}while(menu != 0);
 		
@@ -161,6 +167,9 @@ public class Controller {
 			if(input == 5) { //회원 정보 수정 (재석)
 				adminService.userEdit();
 			}
+			else {
+				System.out.println("잘못 입력하였습니다! 다시 입력해주세요!");
+			}
 			
 		}while(input != 0);
 		
@@ -196,6 +205,9 @@ public class Controller {
 			}
 			if(input == 3) { //영화 목록 조회 (재석)
 				adminService.lookup_moive();
+			}
+			else {
+				System.out.println("잘못 입력하였습니다! 다시 입력해주세요!");
 			}
 			
 		}while(input != 0);
@@ -238,6 +250,10 @@ public class Controller {
 			if(menu == 3) {
 				MypageView();
 			}
+			else {
+				System.out.println("잘못 입력하였습니다! 다시 입력해주세요!");
+			}
+			
 		}while(menu != 0);
 		
 		System.out.println("로그 아웃 되었습니다.");
@@ -285,6 +301,9 @@ public class Controller {
 			if(input == 4) { //현금 충전
 				userService.cash();
 			}
+			else {
+				System.out.println("잘못 입력하였습니다! 다시 입력해주세요!");
+			}
 						
 		}while(input != 0);
 		
@@ -323,6 +342,10 @@ public class Controller {
 				if(input == 3) { //생년월일 수정
 					userService.userBirthModify();
 				}
+				else {
+					System.out.println("잘못 입력하였습니다! 다시 입력해주세요!");
+				}
+				
 							
 			}while(input != 0);
 			
@@ -351,6 +374,9 @@ public class Controller {
 				if(input == 1) { //진짜 탈퇴
 					userService.userInfoRemove();
 					start();
+					
+				} else {	
+					System.out.println("잘못 입력하였습니다! 다시 입력해주세요!");
 				}
 							
 			}while(input != 2);
