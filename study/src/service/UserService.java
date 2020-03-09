@@ -23,6 +23,8 @@ public class UserService {
 	}
 	
 	UserDao userDao = UserDao.getInstance();
+	UserVO user = null;
+	
 	
 	//회원가입
 	public void join(){
@@ -127,8 +129,6 @@ public class UserService {
 	//회원 정보 조회 
 	public void userInfoView() {
 		
-		UserVO user = null;
-		
 		System.out.println(user.getName() + "회원님의 아이디 : " + user.getId());
 		System.out.println(user.getName() + "회원님의 비밀번호 : " + user.getPassword());		
 	    System.out.println(user.getName() +"회원님의 생년월일 : " + user.getBirthdate());
@@ -137,7 +137,9 @@ public class UserService {
 	
 	//비밀 번호 수정
 	public void userPwModify() {
-		UserVO param = new UserVO();
+		UserVO params = new UserVO();
+		params.setId(user.getId());
+		params.setPassword(user.getPassword());
 		
 	}
 	
