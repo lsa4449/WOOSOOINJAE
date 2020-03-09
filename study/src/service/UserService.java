@@ -212,6 +212,7 @@ public class UserService {
 		
 	//회원 탈퇴
 	public void userInfoRemove() {
+		
 		UserVO userVo  = Session.loginUser;
 		String id = userVo.getId();
 		as.tb_Index(id);

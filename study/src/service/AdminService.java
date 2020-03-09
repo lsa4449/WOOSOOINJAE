@@ -296,7 +296,7 @@ public class AdminService {
 	
 	
 	//------------------------ 영화 관리 메뉴 ------------------------
-	public void addmovie() { //영화 등록 (재석)
+	public void addmovie() { //영화 등록 (재석) -- 수정해야함
 		
 		Scanner s = new Scanner(System.in);
 		
@@ -340,6 +340,9 @@ public class AdminService {
 		int openMovieDate = Integer.parseInt(s.nextLine());
 		System.out.print  ("줄거리 : ");
 		String plot = s.nextLine();
+		System.out.print  ("상영관(1 ~ 3) : ");
+		int theaterNum = Integer.parseInt(s.nextLine());
+		System.out.print  ("상영 기간 : ");
 		
 		MovieVO movie = new MovieVO();
 		

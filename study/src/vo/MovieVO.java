@@ -12,6 +12,10 @@ public class MovieVO {
 	private String actor; // 출연진
 	private int openMovieDate; // 개봉일
 	private String age; // 영화 관람 나이
+	private int theaterNum; // 상영관 번호
+	private String movieDate; // 상영 날짜
+	private int startMovieTime; // 상영 시작 시간
+	private int endMovieTime; // 상영 종료 시간 
 	
 	private static int staticmovieNum = 0; // 생성자 만들어서 생성자에서 ++ 되도록?
 
@@ -80,6 +84,30 @@ public class MovieVO {
 	public String toString() {
 		return "MovieVO [movieNum=" + movieNum + ", movieName=" + movieName + ", director=" + director + ", plot="
 				+ plot + ", actor=" + actor + ", openMovieDate=" + openMovieDate + ", age=" + age + "]";
+	}
+	public int getTheaterNum() {
+		return theaterNum;
+	}
+	public void setTheaterNum(int theaterNum) {
+		this.theaterNum = theaterNum;
+	}
+	public String getMovieDate() {
+		return movieDate;
+	}
+	public void setMovieDate(String movieDate) {
+		this.movieDate = movieDate;
+	}
+	public int getStartMovieTime() {
+		return startMovieTime;
+	}
+	public void setStartMovieTime(int startMovieTime) {
+		this.startMovieTime = startMovieTime;
+	}
+	public int getEndMovieTime() {
+		return endMovieTime;
+	}
+	public void setEndMovieTime(int endMovieTime) {
+		this.endMovieTime = endMovieTime;
 	}
 
 
