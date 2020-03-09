@@ -87,4 +87,29 @@ public class Database {
 	      }
 	      return false;
 	   }
+	  
+	//이름 수정
+	  public boolean userNameChange(UserVO params){
+	      String id = params.getId();
+	      for(UserVO uVo : tb_user){
+	         if(uVo.getId().equals(id)){
+	        	 uVo.setName(params.getName());
+	            return true;
+	         }
+	      }
+	      return false;
+	   }
+	  
+	  //생년월일 수정
+	  public boolean userBirthChange(UserVO params){
+	      String id = params.getId();
+	      for(UserVO uVo : tb_user){
+	         if(uVo.getId().equals(id)){
+	        	 uVo.setBirthdate(params.getBirthdate());
+	            return true;
+	         }
+	      }
+	      return false;
+	   }
+	  
 }
