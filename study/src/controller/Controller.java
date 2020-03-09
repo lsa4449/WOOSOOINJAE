@@ -75,9 +75,6 @@ public class Controller {
 				if(result == 2) { //일반 메뉴 (재석)
 					AfterLogin();
 				}
-				if(result == 3) { //실패했을 때 반복 (재석)
-					userService.login();
-				}
 			}
 		}while(menu != 0);
 		System.out.println("잠시 후 프로그램이 종료됩니다.");
