@@ -378,7 +378,7 @@ public class Controller {
 				
 				if(input == 1) { //진짜 탈퇴
 					userService.userInfoRemove();
-					start();
+		 			start();
 				
 				}else {
 					System.out.println("잘못 입력하셨습니다! 번호를 다시 확인하세요!");
