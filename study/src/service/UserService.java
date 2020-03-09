@@ -129,11 +129,17 @@ public class UserService {
 		
 		UserVO user = null;
 		
-		System.out.println(user.getName() + "회원님의 아이디는 \t" + user.getId() +" 입니다.\n");
-	    System.out.println(user.getName() +"회원님의 생년월일은 \t"+ user.getBirthdate()+" 입니다.\n");
+		System.out.println(user.getName() + "회원님의 아이디 : " + user.getId());
+		System.out.println(user.getName() + "회원님의 비밀번호 : " + user.getPassword());		
+	    System.out.println(user.getName() +"회원님의 생년월일 : " + user.getBirthdate());
 	    System.out.println("───────────────────────────────────────────────────────");
    }
 	
+	//비밀 번호 수정
+	public void userPwModify() {
+		UserVO param = new UserVO();
+		
+	}
 	
 	//영화 목록 조회 - 나이에 맞는 것만 조회(재석)
 	public void lookup_movie() {

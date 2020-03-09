@@ -242,7 +242,7 @@ public class Controller {
 				
 			}
 			if(menu == 3) {
-				
+				MypageView();
 			}
 		}while(menu != 0);
 		
@@ -260,5 +260,80 @@ public class Controller {
 		}
 	}
 	
+	//My page 이동
+	public void MypageView() { //회원 관리 (재석)
+		Scanner s = new Scanner(System.in);
+		
+		int input = 0;
+		
+		do {
+			
+			System.out.println("-------------- 메뉴 -------------- ");
+			System.out.println("1. 회원 조회");
+			System.out.println("2. 회원 수정");
+			System.out.println("3. 회원 탈퇴");
+			System.out.println("0. 뒤로 가기");
+			System.out.println("---------------------------------");
+			System.out.print  ("입력 : ");
+			
+			input = Integer.parseInt(s.nextLine());
+			
+			if(input == 1) { //회원 조회
+				userService.userInfoView();
+			}
+			if(input == 2) { //회원 수정
+				MypageModify();
+			}
+			if(input == 3) { //회원 탈퇴
+				
+			}
+						
+		}while(input != 0);
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	//My page 이동
+		public void MypageModify() { //회원 수정
+			Scanner s = new Scanner(System.in);
+			
+			int input = 0;
+			
+			do {
+				
+				System.out.println("-------------- 메뉴 -------------- ");
+				System.out.println("1. 비밀번호 수정");
+				System.out.println("2. 이름 수정");
+				System.out.println("3. 생년월일 수정");
+				System.out.println("0. 뒤로 가기");
+				System.out.println("---------------------------------");
+				System.out.print  ("입력 : ");
+				
+				input = Integer.parseInt(s.nextLine());
+				
+				if(input == 1) { //비밀번호 수정
+					userService.userPwModify();
+				}
+				if(input == 2) { //이름 수정
+					
+				}
+				if(input == 3) { //생년월일 수정
+					
+				}
+							
+			}while(input != 0);
+			
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
+		}
 	
 }
