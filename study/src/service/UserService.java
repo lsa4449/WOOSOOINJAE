@@ -142,13 +142,13 @@ public class UserService {
 		UserVO userVo  = Session.loginUser;
 		Scanner in = new Scanner(System.in);
 	    String input = "";
-	    String pwd = "";
 	    
+	    System.out.print("변경할 비밀번호를 입력하세요 >>");
 	    input = in.nextLine();
 	  
 		UserVO params = new UserVO();
 		params.setId(userVo.getId());
-		params.setPassword(pwd);
+		params.setPassword(input);
 		
 		if(db.userPwChange(params)) {
 			 System.out.println("──────────────────");
@@ -162,18 +162,18 @@ public class UserService {
 	}
 	
 	
-	
 	//이름 수정
 	public void userNameModify() {
 		UserVO userVo  = Session.loginUser;
 		Scanner in = new Scanner(System.in);
 	    String input = "";
 	    
+	    System.out.print("변경할 이름을 입력하세요 >>");
 	    input = in.nextLine();
 	    
 		UserVO params = new UserVO();
 		params.setId(userVo.getId());
-		params.setName(userVo.getName());
+		params.setName(input);
 		
 		if(db.userNameChange(params)) {
 			 System.out.println("──────────────────");
@@ -190,13 +190,14 @@ public class UserService {
 	public void userBirthModify() {
 		UserVO userVo  = Session.loginUser;
 		Scanner in = new Scanner(System.in);
-	    String input = "";
+	    int input;
 	    
-	    input = in.nextLine();
+	    System.out.print("변경할 생년월일을 입력하세요 >>");
+	    input = Integer.parseInt(in.nextLine());
 	    
 		UserVO params = new UserVO();
 		params.setId(userVo.getId());
-		params.setBirthdate(userVo.getBirthdate());
+		params.setBirthdate(input);
 		
 		if(db.userBirthChange(params)) {
 			 System.out.println("──────────────────");
