@@ -7,6 +7,7 @@ public class SeatVO {
 	private int theaterNum; // 상영관 번호
 	private String realSeatNum; // 좌석 세부 번호
 	private int seatPrice; // 좌석별 가격
+	
 
 	public int getSeatNum() {
 		return seatNum;

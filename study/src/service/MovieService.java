@@ -9,6 +9,14 @@ import vo.MovieVO;
 
 public class MovieService {
 	
+	private static MovieService instance;
+	
+	private MovieService() {};
+	
+	static {
+		instance = new MovieService();
+	}
+	
 		
 		//영화 목록 //영현
 		public void movieList(){
@@ -26,6 +34,60 @@ public class MovieService {
 			System.out.println("---------------------------------");
 		}
 		
-		// 영화 삭제
+		// 영화 예약(영현)
+/*		public class ReserveVO {
+			// 예매VO
+
+			private int reserveNum; // 예매 번호
+			private int timeRound; // 회차
+			private String id;// 회원 아이디
+			private String reserveDate; // 예매 일자
+			private int price; // 예매 가격
+		*/
+		
+/*		public class TheaterVO {
+			//상영관VO
+			
+			private int theaterNum; //상영관 번호
+			private String theaterName; //상영관 이름	
+		*/
+		
+/*		public class SeatVO {
+			//좌석VO
+			
+			private int seatNum; // 좌석 번호
+			private int theaterNum; // 상영관 번호
+			private String realSeatNum; // 좌석 세부 번호
+			private int seatPrice; // 좌석별 가격
+		*/
+
+/*		public class MovieVO {
+			// 영화VO
+
+			private int movieNum; // 영화 번호  
+			private String movieName; // 영화 이름
+			private String director; // 감독
+			private String plot; // 줄거리
+			private String actor; // 출연진
+			private int openMovieDate; // 개봉일
+			private String age; // 영화 관람 나이
+			private int theaterNum; // 상영관 번호
+			private String movieDate; // 상영 날짜
+			private int startMovieTime; // 상영 시작 시간
+			private int endMovieTime; // 상영 종료 시간 
+			*/
+		
+/*		public class TimeVO {
+			// 시간VO
+
+			private int timeRound; // 회차
+			private int movieNum; // 영화 번호
+			private int theaterNum; // 상영관 번호
+			private String movieDate; // 상영 날짜
+			private int startMovieTime; // 상영 시작 시간
+			private int endMovieTime; // 상영 종료 시간
+ 			*/
+		
+
 		
 }

@@ -295,6 +295,17 @@ public class UserService {
 		
 	}
 
+	public void reserveMovie() {
+		
+		//Session.loginUser;// 회원의 현재 로그인 계정
+		
+		// 관 고르기
+		// 좌석 고르기(좌석별 금액), 영화 금액
+		// 관람자의 보유 금액
+		// 예약
+		// 예약 취소
+		
+	}
 	
 	
 

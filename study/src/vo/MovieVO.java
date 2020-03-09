@@ -17,7 +17,7 @@ public class MovieVO {
 	private int startMovieTime; // 상영 시작 시간
 	private int endMovieTime; // 상영 종료 시간 
 	
-	private static int staticmovieNum = 0; // 생성자 만들어서 생성자에서 ++ 되도록?
+//	private static int staticmovieNum = 0; // 생성자 만들어서 생성자에서 ++ 되도록?// 필요없어서 지움
 
 	public String getAge() {
 		return age;
