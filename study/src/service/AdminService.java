@@ -400,11 +400,11 @@ public class AdminService {
 		
 		System.out.println("[영화 목록]");
 		System.out.println("---------------------------------");
-		System.out.println("영화 번호\t감독\t배우\t관람 나이");
+		System.out.println("영화 번호\t제목\t감독\t배우\t관람 나이");
 		for(int i = 0; i < database.tb_movie.size(); i++) {
 			MovieVO movie = database.tb_movie.get(i);
 			
-			System.out.println(i + 1 + "\t" + movie.getDirector() + "\t" + movie.getActor() + "\t" + movie.getAge());
+			System.out.println(i + 1 + "\t" + movie.getMovieName() + "\t" + movie.getDirector() + "\t" + movie.getActor() + "\t" + movie.getAge());
 		}
 		System.out.println("---------------------------------");
 		System.out.println("0. 뒤로 가기");
