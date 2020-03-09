@@ -300,7 +300,7 @@ public class Controller {
 			Scanner s = new Scanner(System.in);
 			
 			int input = 0;
-			
+			 
 			do {
 				
 				System.out.println("-------------- 메뉴 -------------- ");

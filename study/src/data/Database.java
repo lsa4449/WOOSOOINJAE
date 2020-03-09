@@ -64,7 +64,7 @@ public class Database {
 		movie.setOpenMovieDate(20200120);
 		movie.setAge("청소년 관람 불가");
 		tb_movie.add(movie);
-		
+		 
 		movie = new MovieVO();
 		movie.setMovieNum(indexno++); // 영화번호 1
 		movie.setMovieName("조선 명탐정 어쩌구");

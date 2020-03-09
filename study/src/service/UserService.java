@@ -124,7 +124,7 @@ public class UserService {
 		return Check;
 	}
 	
-	//회원 정보 조회
+	//회원 정보 조회 
 	public void userInfoView() {
 		
 		UserVO user = null;
