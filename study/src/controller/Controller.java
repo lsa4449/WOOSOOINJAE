@@ -269,6 +269,7 @@ public class Controller {
 			System.out.println("1. 회원 조회");
 			System.out.println("2. 회원 수정");
 			System.out.println("3. 회원 탈퇴");
+			System.out.println("4. 현금 충전");
 			System.out.println("0. 뒤로 가기");
 			System.out.println("---------------------------------");
 			System.out.print  ("입력 : ");
@@ -283,6 +284,9 @@ public class Controller {
 			}
 			if(input == 3) { //회원 탈퇴
 				
+			}
+			if(input == 4) { //현금 충전
+				userService.cash();
 			}
 						
 		}while(input != 0);

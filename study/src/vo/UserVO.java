@@ -3,10 +3,12 @@ package vo;
 public class UserVO {
 	// 회원VO
   
+
 	private String id; // 회원 아이디
 	private String password; // 회원 비밀번호
 	private String name; // 회원 이름
 	private int birthdate; // 회원 생년월일
+	private int cash; // 현금
 	private boolean auth; // 권한
 
 	public String getId() {
@@ -49,10 +51,18 @@ public class UserVO {
 		this.auth = auth;
 	}
 
-	@Override
-	public String toString() {
-		return "UserVO [id=" + id + ", password=" + password + ", name=" + name + ", birthdate=" + birthdate + ", auth="
-				+ auth + "]";
+	public int getCash() {
+		return cash;
+	}
+	
+	public void setCash(int cash) {
+		this.cash = cash;
 	}
 
+	@Override
+	public String toString() {
+		return "UserVO [id=" + id + ", password=" + password + ", name=" + name + ", birthdate=" + birthdate
+				+ ", cash=" + cash + ", auth=" + auth + "]";
+	}
+	
 }
