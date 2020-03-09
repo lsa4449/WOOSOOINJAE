@@ -131,10 +131,14 @@ public class UserService {
 	public void userInfoView() {
 		
 		UserVO userVo  = Session.loginUser;
+		Database database = Database.getInstance();
+		UserVO uVo = database.tb_user.get(as.tb_Index(userVo.getId()));
 		
-		System.out.println(userVo.getName() + "회원님의 아이디 : " + userVo.getId());
-		System.out.println(userVo.getName() + "회원님의 비밀번호 : " + userVo.getPassword());		
-	    System.out.println(userVo.getName() +"회원님의 생년월일 : " + userVo.getBirthdate());
+		System.out.println(userVo.getName() + "님의 아이디 : " + userVo.getId());
+		System.out.println(userVo.getName() + "님의 비밀번호 : " + userVo.getPassword());		
+	    System.out.println(userVo.getName() +"님의 생년월일 : " + userVo.getBirthdate());
+	    System.out.println(userVo.getName() +"님의 소지 현금 : " + uVo.getCash());
+	    
    }
 	
 	//비밀 번호 수정
@@ -319,47 +323,48 @@ public class UserService {
 				System.out.println("충전 실패!");
 
 			}
-			
+			else if(userCash == false){
 			System.out.println("충전이 완료 되었습니다!");
 			System.out.println("현재 잔액은 : " + uVo.getCash() + "입니다.");
-		}
-
-		//현금 충전
-		public boolean cashAdd() {
 			
-			boolean cashCheck = false;
-			UserVO user = Session.loginUser;
-			Database database = Database.getInstance();
-			UserVO uVo = database.tb_user.get(as.tb_Index(user.getId()));
-			
-		      while(true){
-		    	 Scanner s = new Scanner(System.in);
-		         try{
-		        	System.out.print("충전할 현금을 입력하세요 >>");
-	      		int input = s.nextInt();
-	      		if(input < 0){
-	      			System.out.print("범위를 벗어났습니다. 다시 입력하세요! >>");
-	      			cashCheck = true;
-	 
-	      		} else if(input > 1000000) {
-	      			System.out.println("최대 100만원 까지 입니다.");
-	     			cashCheck = true;
-	     			      		
-	      		} else {
-	      			uVo.setCash(uVo.getCash() + input);
-	      		}
-	      		
-
-		         } catch(Exception e){
-		        	s = new Scanner(System.in);
-		        	System.out.println("^^ \n그만큼의 현금이 있어보이진 않네요");
-		        	System.out.println();
-		            continue;
-		         }
-		      }
 		}
-		
+	}
 
-	
+	// 현금 충전
+	public boolean cashAdd() {
+
+		boolean cashCheck = false;
+		UserVO user = Session.loginUser;
+		Database database = Database.getInstance();
+		UserVO uVo = database.tb_user.get(as.tb_Index(user.getId()));
+
+		while (true) {
+			Scanner s = new Scanner(System.in);
+			try {
+				System.out.print("충전할 현금을 입력하세요 >>");
+				int input = Integer.parseInt(s.nextLine());
+
+				if (input < 0) {
+					System.out.print("범위를 벗어났습니다. 다시 입력하세요! >>");
+					cashCheck = true;
+
+				} else if (input > 1000000) {
+					System.out.println("최대 100만원 까지 입니다.");
+					cashCheck = true;
+
+				} else {
+					uVo.setCash(uVo.getCash() + input);
+				}
+
+			} catch (Exception e) {
+				s = new Scanner(System.in);
+				System.out.println("^^ \n그만큼의 현금이 있어보이진 않네요");
+				System.out.println();
+				continue;
+			}
+		break;	
+		}
+		return cashCheck;
+	}
 
 }

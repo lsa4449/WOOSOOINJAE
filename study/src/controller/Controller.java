@@ -301,10 +301,7 @@ public class Controller {
 			if(input == 4) { //현금 충전
 				userService.cash();
 			}
-			else {
-				System.out.println("잘못 입력하였습니다! 다시 입력해주세요!");
-			}
-						
+			
 		}while(input != 0);
 		
 		try {

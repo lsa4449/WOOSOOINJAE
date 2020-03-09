@@ -27,6 +27,7 @@ public class Database {
 		admin.setPassword("admin");
 		admin.setName("관리자");
 		admin.setBirthdate(20200101);
+		admin.setCash(9999999);
 		admin.setAuth(true);
 		tb_user.add(admin);
 	}
@@ -38,6 +39,7 @@ public class Database {
 		user.setPassword("1234");
 		user.setName("이수아");
 		user.setBirthdate(19960714);
+		user.setCash(0);
 		user.setAuth(false);
 		tb_user.add(user);
 
