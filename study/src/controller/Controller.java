@@ -282,6 +282,7 @@ public class Controller {
 				MypageModify();
 			}
 			if(input == 3) { //회원 탈퇴
+				userRemove();
 				
 			}
 						
@@ -295,7 +296,7 @@ public class Controller {
 		
 	}
 	
-	//My page 이동
+	//My page 이동 - 회원 수정
 		public void MypageModify() { //회원 수정
 			Scanner s = new Scanner(System.in);
 			
@@ -325,6 +326,30 @@ public class Controller {
 							
 			}while(input != 0);
 			
+		}
+		
+		//My page - 회원 탈퇴
+		public void userRemove() { //회원 탈퇴
+			Scanner s = new Scanner(System.in);
+			
+			int input = 0;
+			
+			do {
+
+				System.out.println("---------------------------------");
+				System.out.println("1. 정말 탈퇴하시겠습니까?(철회 불가능)");
+				System.out.println("2. 뒤로 가기");
+				System.out.println("---------------------------------");
+				System.out.print  ("입력 : ");
+				
+				input = Integer.parseInt(s.nextLine());
+				
+				if(input == 1) { //진짜 탈퇴
+					userService.userInfoRemove();
+				}
+							
+			}while(input != 2);
+			
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
@@ -332,5 +357,4 @@ public class Controller {
 			}
 			
 		}
-	
 }

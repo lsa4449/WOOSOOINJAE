@@ -25,7 +25,7 @@ public class UserService {
 	
 	UserDao userDao = UserDao.getInstance();
 	Database db = Database.getInstance();
-	
+	AdminService as = AdminService.getInstance();
 	
 	//회원가입
 	public void join(){
@@ -210,7 +210,18 @@ public class UserService {
 	      }
 	}
 		
-				
+	//회원 탈퇴
+	public void userInfoRemove() {
+		UserVO userVo  = Session.loginUser;
+		String id = userVo.getId();
+		as.tb_Index(id);
+		db.tb_user.remove(as.tb_Index(id));
+		
+		System.out.println("탈퇴 하였습니다....");
+		
+		
+	}
+	
 	//영화 목록 조회 - 나이에 맞는 것만 조회(재석)
 	public void lookup_movie() {
 		Scanner s = new Scanner(System.in);
