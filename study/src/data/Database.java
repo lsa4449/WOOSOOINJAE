@@ -69,7 +69,7 @@ public class Database {
 		 
 		movie = new MovieVO();
 		movie.setMovieNum(indexno++); // 영화번호 1
-		movie.setMovieName("조선 명탐정 어쩌구");
+		movie.setMovieName("조선_명탐정_어쩌구");
 		movie.setDirector("감독");
 		movie.setPlot("줄거리");
 		movie.setActor("이선균");

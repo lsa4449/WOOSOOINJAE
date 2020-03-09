@@ -342,7 +342,12 @@ public class AdminService {
 		String plot = s.nextLine();
 		System.out.print  ("상영관(1 ~ 3) : ");
 		int theaterNum = Integer.parseInt(s.nextLine());
-		System.out.print  ("상영 기간 : ");
+		System.out.print  ("상영 날짜(YYMMDD) : ");
+		String movieDate = s.nextLine();
+		System.out.print  ("상영 시작 시간(HH시 mm분) : ");
+		String startMovieTime = s.nextLine();
+		System.out.print  ("상영 종료 시간(HH시 mm분) : ");
+		String endMovieTime = s.nextLine();
 		
 		MovieVO movie = new MovieVO();
 		
@@ -352,6 +357,10 @@ public class AdminService {
 		movie.setActor(actor);
 		movie.setOpenMovieDate(openMovieDate);
 		movie.setPlot(plot);
+		movie.setTheaterNum(theaterNum);
+		movie.setMovieDate(movieDate);
+		movie.setStartMovieTime(startMovieTime);
+		movie.setEndMovieTime(endMovieTime);
 		
 		adminDao.insertMovie(movie);
 		
@@ -401,13 +410,21 @@ public class AdminService {
 		
 		Scanner s = new Scanner(System.in);
 		
+		int movie_no = 1;
+		
 		System.out.println("[영화 목록]");
 		System.out.println("---------------------------------");
-		System.out.println("영화 번호\t제목\t감독\t배우\t관람 나이");
 		for(int i = 0; i < database.tb_movie.size(); i++) {
 			MovieVO movie = database.tb_movie.get(i);
 			
-			System.out.println(i + 1 + "\t" + movie.getMovieName() + "\t" + movie.getDirector() + "\t" + movie.getActor() + "\t" + movie.getAge());
+			System.out.println("[ " + movie_no + " ]");
+			System.out.println("제목 : " + movie.getMovieName());
+			System.out.println("관람 나이 : " + movie.getAge());
+			System.out.println("상영 날짜 : " + movie.getOpenMovieDate());
+			System.out.println("상영 시간 : " + movie.getStartMovieTime());
+			System.out.println("상영 종료 : " + movie.getEndMovieTime());
+			
+			movie_no++;
 		}
 		System.out.println("---------------------------------");
 		System.out.println("0. 뒤로 가기");

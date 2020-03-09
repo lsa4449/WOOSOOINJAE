@@ -14,8 +14,8 @@ public class MovieVO {
 	private String age; // 영화 관람 나이
 	private int theaterNum; // 상영관 번호
 	private String movieDate; // 상영 날짜
-	private int startMovieTime; // 상영 시작 시간
-	private int endMovieTime; // 상영 종료 시간 
+	private String startMovieTime; // 상영 시작 시간
+	private String endMovieTime; // 상영 종료 시간 
 	
 //	private static int staticmovieNum = 0; // 생성자 만들어서 생성자에서 ++ 되도록?// 필요없어서 지움
 
@@ -97,16 +97,16 @@ public class MovieVO {
 	public void setMovieDate(String movieDate) {
 		this.movieDate = movieDate;
 	}
-	public int getStartMovieTime() {
+	public String getStartMovieTime() {
 		return startMovieTime;
 	}
-	public void setStartMovieTime(int startMovieTime) {
+	public void setStartMovieTime(String startMovieTime) {
 		this.startMovieTime = startMovieTime;
 	}
-	public int getEndMovieTime() {
+	public String getEndMovieTime() {
 		return endMovieTime;
 	}
-	public void setEndMovieTime(int endMovieTime) {
+	public void setEndMovieTime(String endMovieTime) {
 		this.endMovieTime = endMovieTime;
 	}
 
