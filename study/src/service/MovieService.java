@@ -11,7 +11,7 @@ public class MovieService {
 	
 	private static MovieService instance;
 	
-	private MovieService() {};
+	MovieService() {};
 	
 	static {
 		instance = new MovieService();
