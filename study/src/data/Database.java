@@ -88,6 +88,11 @@ public class Database {
 	//예약 정보
 	public ArrayList<ReserveVO> tb_reserve = new ArrayList<ReserveVO>();
 	
+	
+		
+	
+	
+	
 	// 1. 영화관VO
 	public TheaterVO[] tb_theator = new TheaterVO[3];
 	{

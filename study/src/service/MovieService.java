@@ -1,11 +1,18 @@
 package service;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Scanner;
 
 import dao.MovieDao;
+import dao.SeatDao;
+import dao.UserDao;
 import data.Database;
+import data.Session;
 import vo.MovieVO;
+import vo.ReserveSeatVO;
+import vo.ReserveVO;
+import vo.UserVO;
 
 public class MovieService {
 	
@@ -21,6 +28,9 @@ public class MovieService {
 	}
 	
 		
+	Database database = Database.getInstance();
+	UserDao userDao = UserDao.getInstance();
+	
 		//영화 목록 //영현
 		public void movieList(){
 			MovieDao movieDao = MovieDao.getInstance();
@@ -109,8 +119,78 @@ public class MovieService {
 			private int price; // 예매 가격
 		*/		
 		
+		
 		public void reserveMovie() {
 			
+			ReserveVO rVO = new ReserveVO();
+			SeatDao seatDao = SeatDao.getInstance();
+			Scanner s = new Scanner(System.in);
+			
+			UserVO user = Session.loginUser;
+			
+			System.out.print("영화 제목을 입력해주세요 >> ");
+			rVO.setMovieName(s.nextLine());
+			
+			
+			int user_year = user.getBirthdate() / 10000;
+			int year = Calendar.getInstance().get(Calendar.YEAR); //현재 날짜의 연도 가져오기
+			int month = Calendar.getInstance().get(Calendar.MONTH); //현재 날짜의 월 가져오기
+			int date = Calendar.getInstance().get(Calendar.DATE); //현재 날짜의 일 가져오기
+			
+			int input = 0;
+
+			if(year - user_year >= 19) {
+				userDao.lookup_adult_movie();
+				System.out.print  ("예매할 영화의 제목을 입력 : ");
+				String movieName = s.nextLine();
+				System.out.print  ("예매할 영화의 상영 날짜(YY/MM/DD)를 입력 : ");
+				String movieDate = s.nextLine();
+				System.out.print  ("예매할 영화의 시작 시간(HH시 mm분)을 입력 : ");
+				String startMovieTime = s.nextLine();
+				
+				seatDao.theaterList_seat(); // 상영관 좌석 예약 배치도
+				System.out.print  ("원하시는 상영관을 입력 : ");
+				String theaterPosition = s.nextLine();
+				System.out.print  ("원하시는 좌석을 선택 : ");
+				
+				String seatPosition = s.nextLine();
+				
+				
+				
+				int result = find_indexno_tb_movie(movieName, movieDate, startMovieTime);
+				
+				ReserveVO reserve = new ReserveVO();
+				
+				reserve.setId(Session.loginUser.getId());
+				reserve.setReserveDate(year + "년 " + month + "월 " + date + "");
+				
+				reserve.setPrice();
+				
+				database.tb_reserve.add(e);
+				
+			}else {
+				userDao.lookup_minor_movie();
+				
+				
+			}
+			
+			
+		}
+		
+		// 재석
+		public int find_indexno_tb_movie(String movieName, String movieDate, String startMovieTime) {
+			
+			int indexno = -1;
+			
+			for(int i = 0; i < database.tb_movie.size(); i++) {
+				MovieVO movie_info = database.tb_movie.get(i);
+				
+				if(movieName.equals(movie_info.getMovieName()) && movieDate.equals(movie_info.getMovieDate()) && startMovieTime.equals(movie_info.getStartMovieTime())) {
+					indexno = i;
+				}
+			}
+			
+			return indexno;
 		}
 	
 	

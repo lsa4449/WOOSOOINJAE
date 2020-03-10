@@ -3,11 +3,29 @@ package vo;
 public class ReserveVO {
 	// 예매VO
 
-	private int reserveNum; // 예매 번호
+	private int reserveNum; // 예매 번호 // 안쓸거야
 	private int timeRound; // 회차
 	private String id;// 회원 아이디
 	private String reserveDate; // 예매 일자
 	private int price; // 예매 가격
+	private String movieName;
+	private String seatPosition;
+
+	public String getSeatPosition() {
+		return seatPosition;
+	}
+
+	public void setSeatPosition(String seatPosition) {
+		this.seatPosition = seatPosition;
+	}
+
+	public String getMovieName() {
+		return movieName;
+	}
+
+	public void setMovieName(String movieName) {
+		this.movieName = movieName;
+	}
 
 	public int getReserveNum() {
 		return reserveNum;
@@ -52,7 +70,8 @@ public class ReserveVO {
 	@Override
 	public String toString() {
 		return "ReserveVO [reserveNum=" + reserveNum + ", timeRound=" + timeRound + ", id=" + id + ", reserveDate="
-				+ reserveDate + ", price=" + price + "]";
+				+ reserveDate + ", price=" + price + ", movieName=" + movieName + ", seatPosition=" + seatPosition
+				+ "]";
 	}
 
 }
