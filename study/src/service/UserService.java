@@ -323,12 +323,11 @@ public class UserService {
 				System.out.println("충전 실패!");
 
 			}
-			else if(userCash == false){
 			System.out.println("충전이 완료 되었습니다!");
 			System.out.println("현재 잔액은 : " + uVo.getCash() + "입니다.");
 			
 		}
-	}
+	
 
 	// 현금 충전
 	public boolean cashAdd() {
