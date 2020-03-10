@@ -48,7 +48,6 @@ public class Controller {
 	AdminService adminService = new AdminService();
 
 	private void start() {
-		Enter(50);
 		Scanner s = new Scanner(System.in);
 		
 		int menu;
@@ -167,7 +166,7 @@ public class Controller {
 			if(input == 5) { //회원 정보 수정 (재석)
 				adminService.userEdit();
 			}
-			else {
+			else if(input != 0 && input > 5 && input < 0){
 				System.out.println("잘못 입력하였습니다! 다시 입력해주세요!");
 			}
 			
@@ -206,7 +205,7 @@ public class Controller {
 			if(input == 3) { //영화 목록 조회 (재석)
 				adminService.lookup_moive();
 			}
-			else {
+			else if(input != 0 && input > 3 && input < 0){
 				System.out.println("잘못 입력하였습니다! 다시 입력해주세요!");
 			}
 			
@@ -250,7 +249,7 @@ public class Controller {
 			if(menu == 3) {
 				MypageView();
 			}
-			else {
+			else if(menu != 0 && menu > 3 && menu < 0){
 				System.out.println("잘못 입력하였습니다! 다시 입력해주세요!");
 			}
 			
@@ -301,6 +300,9 @@ public class Controller {
 			if(input == 4) { //현금 충전
 				userService.cash();
 			}
+			else if(input != 0 && input > 4 && input < 0){
+				System.out.println("잘못 입력하였습니다! 다시 입력해주세요!");
+			}
 			
 		}while(input != 0);
 		
@@ -339,7 +341,7 @@ public class Controller {
 				if(input == 3) { //생년월일 수정
 					userService.userBirthModify();
 				}
-				else {
+				else if(input != 0 && input > 3 && input < 0){
 					System.out.println("잘못 입력하였습니다! 다시 입력해주세요!");
 				}
 				
@@ -372,7 +374,8 @@ public class Controller {
 					userService.userInfoRemove();
 					start();
 					
-				} else {	
+				} 
+				else if(input != 1 && input != 2){
 					System.out.println("잘못 입력하였습니다! 다시 입력해주세요!");
 				}
 							
