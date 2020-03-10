@@ -53,6 +53,7 @@ public class SeatVO {
 	public String toString() {
 		return "SeatVO [seatNum=" + seatNum + ", theaterNum=" + theaterNum + ", realSeatNum=" + realSeatNum
 				+ ", seatPrice=" + seatPrice + ", seatUse=" + seatUse + "]";
+		
 	}
 
 
