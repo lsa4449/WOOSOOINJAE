@@ -352,7 +352,7 @@ public class AdminService {
 		String plot = s.nextLine();
 		System.out.print  ("상영관(1 ~ 3) : ");
 		int theaterNum = Integer.parseInt(s.nextLine());
-		System.out.print  ("상영 날짜(YYMMDD) : ");
+		System.out.print  ("상영 날짜(YY/MM/DD) : ");
 		String movieDate = s.nextLine();
 		System.out.print  ("상영 시작 시간(HH시 mm분) : ");
 		String startMovieTime = s.nextLine();

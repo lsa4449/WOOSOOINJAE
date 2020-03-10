@@ -120,7 +120,7 @@ public class UserService {
 //			if (user.getAuth()) { // admin
 //				
 //				AfterAdminLogin();
-//			}else { // 일반 유저
+//			}else { // 일반 유저 dnksnflskdjwidjsnqlskwocncdkfndjwidnckdlsm
 //				
 //			}
 		}
@@ -131,14 +131,10 @@ public class UserService {
 	public void userInfoView() {
 		
 		UserVO userVo  = Session.loginUser;
-		Database database = Database.getInstance();
-		UserVO uVo = database.tb_user.get(as.tb_Index(userVo.getId()));
 		
-		System.out.println(userVo.getName() + "님의 아이디 : " + userVo.getId());
-		System.out.println(userVo.getName() + "님의 비밀번호 : " + userVo.getPassword());		
-	    System.out.println(userVo.getName() +"님의 생년월일 : " + userVo.getBirthdate());
-	    System.out.println(userVo.getName() +"님의 소지 현금 : " + uVo.getCash());
-	    
+		System.out.println(userVo.getName() + "회원님의 아이디 : " + userVo.getId());
+		System.out.println(userVo.getName() + "회원님의 비밀번호 : " + userVo.getPassword());		
+	    System.out.println(userVo.getName() +"회원님의 생년월일 : " + userVo.getBirthdate());
    }
 	
 	//비밀 번호 수정
@@ -154,7 +150,7 @@ public class UserService {
 		params.setId(userVo.getId());
 		params.setPassword(input);
 		
-		if(db.userPwChange(params)) {
+		if(userDao.userPwChange(params)) {
 			 System.out.println("──────────────────");
 	         System.out.println("변경에 성공하였습니다.");
 	         System.out.println("──────────────────");
@@ -179,7 +175,7 @@ public class UserService {
 		params.setId(userVo.getId());
 		params.setName(input);
 		
-		if(db.userNameChange(params)) {
+		if(userDao.userNameChange(params)) {
 			 System.out.println("──────────────────");
 	         System.out.println("변경에 성공하였습니다.");
 	         System.out.println("──────────────────");
@@ -203,7 +199,7 @@ public class UserService {
 		params.setId(userVo.getId());
 		params.setBirthdate(input);
 		
-		if(db.userBirthChange(params)) {
+		if(userDao.userBirthChange(params)) {
 			 System.out.println("──────────────────");
 	         System.out.println("변경에 성공하였습니다.");
 	         System.out.println("──────────────────");
@@ -298,7 +294,34 @@ public class UserService {
 		}
 		
 	}
+	
+	public void reservation_movie() {
+		Scanner s = new Scanner(System.in);
+		
+		UserVO user = Session.loginUser;
 
+		int user_year = user.getBirthdate() / 10000;
+		int year = Calendar.getInstance().get(Calendar.YEAR); //현재 날짜의 연도 가져오기
+		
+		int input = 0;
+
+		if(year - user_year >= 19) {
+			userDao.lookup_adult_movie();
+			System.out.print  ("예매할 영화의 제목을 입력 : ");
+			String moiveName = s.nextLine();
+			System.out.print  ("예매할 영화의 상영 날짜(YY/MM/DD)를 입력 : ");
+			String movieDate = s.nextLine();
+			System.out.print  ("예매할 영화의 시작 시간(HH시 mm분)을 입력 : ");
+			String startMovieTime = s.nextLine();
+		}else {
+			userDao.lookup_minor_movie();
+			
+			
+			
+		}
+		
+	}
+	
 	public void reserveMovie() {
 		
 		//Session.loginUser;// 회원의 현재 로그인 계정
@@ -323,47 +346,47 @@ public class UserService {
 				System.out.println("충전 실패!");
 
 			}
+			
 			System.out.println("충전이 완료 되었습니다!");
 			System.out.println("현재 잔액은 : " + uVo.getCash() + "입니다.");
+		}
+
+		//현금 충전
+		public boolean cashAdd() {
 			
+			boolean cashCheck = false;
+			UserVO user = Session.loginUser;
+			Database database = Database.getInstance();
+			UserVO uVo = database.tb_user.get(as.tb_Index(user.getId()));
+			
+		      while(true){
+		    	 Scanner s = new Scanner(System.in);
+		         try{
+		        	System.out.print("충전할 현금을 입력하세요 >>");
+	      		int input = s.nextInt();
+	      		if(input < 0){
+	      			System.out.print("범위를 벗어났습니다. 다시 입력하세요! >>");
+	      			cashCheck = true;
+	 
+	      		} else if(input > 1000000) {
+	      			System.out.println("최대 100만원 까지 입니다.");
+	     			cashCheck = true;
+	     			      		
+	      		} else {
+	      			uVo.setCash(uVo.getCash() + input);
+	      		}
+	      		
+
+		         } catch(Exception e){
+		        	s = new Scanner(System.in);
+		        	System.out.println("^^ \n그만큼의 현금이 있어보이진 않네요");
+		        	System.out.println();
+		            continue;
+		         }
+		      }
 		}
+		
+
 	
-
-	// 현금 충전
-	public boolean cashAdd() {
-
-		boolean cashCheck = false;
-		UserVO user = Session.loginUser;
-		Database database = Database.getInstance();
-		UserVO uVo = database.tb_user.get(as.tb_Index(user.getId()));
-
-		while (true) {
-			Scanner s = new Scanner(System.in);
-			try {
-				System.out.print("충전할 현금을 입력하세요 >>");
-				int input = Integer.parseInt(s.nextLine());
-
-				if (input < 0) {
-					System.out.print("범위를 벗어났습니다. 다시 입력하세요! >>");
-					cashCheck = true;
-
-				} else if (input > 1000000) {
-					System.out.println("최대 100만원 까지 입니다.");
-					cashCheck = true;
-
-				} else {
-					uVo.setCash(uVo.getCash() + input);
-				}
-
-			} catch (Exception e) {
-				s = new Scanner(System.in);
-				System.out.println("^^ \n그만큼의 현금이 있어보이진 않네요");
-				System.out.println();
-				continue;
-			}
-		break;	
-		}
-		return cashCheck;
-	}
 
 }
