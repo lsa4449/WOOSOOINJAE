@@ -236,10 +236,13 @@ public class UserService {
 			System.out.println("0. 뒤로 가기");
 			System.out.println("---------------------------------");
 			
+			
 			do {
 				
 				System.out.print  ("입력 : ");
 				input = Integer.parseInt(s.nextLine());
+				
+				
 				
 				if(input != 0) {
 					System.out.println("잘못된 번호를 입력하였습니다.");

@@ -8,6 +8,15 @@ public class SeatVO {
 	private String realSeatNum; // 좌석 세부 번호
 	private int seatPrice; // 좌석별 가격
 	private boolean seatUse; // 좌석 예매여부
+	private String lookInfo; // 빈네모, 꽉찬 네모
+
+	public String getLookInfo() {
+		return lookInfo;
+	}
+
+	public void setLookInfo(String lookInfo) {
+		this.lookInfo = lookInfo;
+	}
 
 	public int getSeatNum() {
 		return seatNum;

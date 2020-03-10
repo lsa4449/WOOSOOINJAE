@@ -96,10 +96,7 @@ public class Controller {
 			if(menu != 0 && menu > 2){
 				System.out.println("잘못 입력하였습니다! 다시 입력해주세요!");
 			}
-			if(menu == 10) {
-				SeatDao seat = SeatDao.getInstance();
-				seat.theaterList_seat();
-			}
+			
 		}while(menu != 0);
 		showBanner("잠시후 프로그램이 종료됩니다.");
 		try {
@@ -253,7 +250,7 @@ public class Controller {
 		
 		do{
 			System.out.println("-------------- 메뉴 -------------- ");
-			System.out.println("1. 영화 목록 조회");
+			System.out.println("1. 영화 목록 조회 및 예매");
 			System.out.println("2. 예매 영화 조회");
 			System.out.println("3. MY Page");
 			System.out.println("0. 로그 아웃");
@@ -263,7 +260,9 @@ public class Controller {
 			menu = Integer.parseInt(s.nextLine());
 			
 			if(menu == 1) { //영화 목록 조회 - 자신의 나이에 맞는 영화만 조회되게 함 (재석)
-				userService.lookup_movie();
+//				userService.lookup_movie();
+				MovieService movieService = MovieService.getInstance();
+				movieService.reserveMovie();
 			}
 			if(menu == 2) {
 				

@@ -12,6 +12,7 @@ import data.Session;
 import vo.MovieVO;
 import vo.ReserveSeatVO;
 import vo.ReserveVO;
+import vo.SeatVO;
 import vo.UserVO;
 
 public class MovieService {
@@ -96,19 +97,9 @@ public class MovieService {
 			private int seatPrice; // 좌석별 가격
 		*/
 
-		// 5. 시간
-/*		public class TimeVO {
-			// 시간VO
 
-			private int timeRound; // 회차
-			private int movieNum; // 영화 번호
-			private int theaterNum; // 상영관 번호
-			private String movieDate; // 상영 날짜
-			private int startMovieTime; // 상영 시작 시간
-			private int endMovieTime; // 상영 종료 시간
- 			*/
 
-		// 6. 예매
+		// 5. 예매
 /*		public class ReserveVO {
 			// 예매VO
 
@@ -128,14 +119,22 @@ public class MovieService {
 			
 			UserVO user = Session.loginUser;
 			
-			System.out.print("영화 제목을 입력해주세요 >> ");
-			rVO.setMovieName(s.nextLine());
-			
-			
 			int user_year = user.getBirthdate() / 10000;
 			int year = Calendar.getInstance().get(Calendar.YEAR); //현재 날짜의 연도 가져오기
 			int month = Calendar.getInstance().get(Calendar.MONTH); //현재 날짜의 월 가져오기
 			int date = Calendar.getInstance().get(Calendar.DATE); //현재 날짜의 일 가져오기
+			
+			if(year - user_year >= 19) {
+				userDao.lookup_adult_movie();
+			}else {
+				userDao.lookup_minor_movie();
+			}
+			
+			System.out.print("영화 제목을 입력해주세요 >> ");
+			rVO.setMovieName(s.nextLine());
+			
+			
+
 			
 			int input = 0;
 
@@ -152,28 +151,54 @@ public class MovieService {
 				System.out.print  ("원하시는 상영관을 입력 : ");
 				String theaterPosition = s.nextLine();
 				System.out.print  ("원하시는 좌석을 선택 : ");
-				
 				String seatPosition = s.nextLine();
+				char seatPos_1;
+				String seatPos_2;
+				seatPos_1 = seatPosition.charAt(0);
+				seatPos_2 = seatPosition.substring(1);
+				
+				int num = 0;
+
+				if (seatPos_1 == 'A') {
+					num = 0;
+				}else if(seatPos_1 == 'B') {
+					num = 10;
+				}else if(seatPos_1 == 'C') {
+					num = 20;
+				}else if(seatPos_1 == 'D') {
+					num = 30;
+				}
+				
+				int num2 = num + Integer.parseInt(seatPos_2) - 1;
+				
+				if(database.tb_seat[seatPos_1][num2].getSeatUse() == false) {
+					database.tb_seat[seatPos_1][num2].setSeatUse(true);
+					
+					System.out.println("예매되었습니다.");
+					
+					ReserveVO reserve = new ReserveVO();
+					
+					if(year - user_year >= 19) {
+						reserve.setPrice(database.tb_seat[seatPos_1][num2].getSeatPrice());
+					}else if(9 <= year - user_year  && year - user_year<=18) {
+						reserve.setPrice(database.tb_seat[seatPos_1][num2].getSeatPrice() * 0.7);
+					}
+					
+					reserve.setId(Session.loginUser.getId());
+					reserve.setMovieName(movieName);
+					reserve.setReserveDate(year + "년 " + month + "월 " + date + "일");
+					reserve.setSeatPosition(seatPosition);
+					
+					database.tb_reserve.add(reserve);
+					
+				}else {
+					System.out.println("이미 예매된 좌석입니다.");
+				}
 				
 				
-				
-				int result = find_indexno_tb_movie(movieName, movieDate, startMovieTime);
-				
-				ReserveVO reserve = new ReserveVO();
-				
-				reserve.setId(Session.loginUser.getId());
-				reserve.setReserveDate(year + "년 " + month + "월 " + date + "");
-				
-				reserve.setPrice();
-				
-				database.tb_reserve.add(e);
-				
-			}else {
-				userDao.lookup_minor_movie();
-				
-				
+//				database.tb_seat[Integer.parseInt(theaterPosition)][num2] = database.tb_seat[Integer.parseInt(theaterPosition)][num2];
+
 			}
-			
 			
 		}
 		

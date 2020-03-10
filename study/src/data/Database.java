@@ -68,8 +68,12 @@ public class Database {
 		movie.setDirector("감독");
 		movie.setPlot("줄거리");
 		movie.setActor("배우");
-		movie.setOpenMovieDate(20200120);
+		movie.setOpenMovieDate(200301);
+		movie.setTheaterNum(1);
+		movie.setStartMovieTime("02시 30분");
+		movie.setEndMovieTime("04시 50분");
 		movie.setAge("청소년 관람 불가");
+		movie.setMovieDate("20/02/29");
 		tb_movie.add(movie);
 		 
 		movie = new MovieVO();
@@ -128,7 +132,7 @@ public class Database {
 					seat.setSeatPrice(9000); // 좌석 가격 // 성인 기준 가격
 				} else {
 					seat.setSeatNum(j);// 좌석 번호 // 10 ~ 30 // 좋은 좌석
-					seat.setSeatPrice(11000); // 좌석 가격 // 성인 기준 가격
+					seat.setSeatPrice(12000); // 좌석 가격 // 성인 기준 가격
 				}
 				seat.setSeatUse(false);
 				tb_seat[i][j] = seat;
