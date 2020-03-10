@@ -79,41 +79,5 @@ public class Database {
 		movie.setAge("청소년 관람 불가");
 		tb_movie.add(movie);
 	}
-	
-	//비밀번호 수정
-	  public boolean userPwChange(UserVO params){
-	      String id = params.getId();
-	      for(UserVO uVo : tb_user){
-	         if(uVo.getId().equals(id)){
-	        	 uVo.setPassword(params.getPassword());
-	            return true;
-	         }
-	      }
-	      return false;
-	   }
-	  
-	//이름 수정
-	  public boolean userNameChange(UserVO params){
-	      String id = params.getId();
-	      for(UserVO uVo : tb_user){
-	         if(uVo.getId().equals(id)){
-	        	 uVo.setName(params.getName());
-	            return true;
-	         }
-	      }
-	      return false;
-	   }
-	  
-	  //생년월일 수정
-	  public boolean userBirthChange(UserVO params){
-	      String id = params.getId();
-	      for(UserVO uVo : tb_user){
-	         if(uVo.getId().equals(id)){
-	        	 uVo.setBirthdate(params.getBirthdate());
-	            return true;
-	         }
-	      }
-	      return false;
-	   }
 	  
 }
