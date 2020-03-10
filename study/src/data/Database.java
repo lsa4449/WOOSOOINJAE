@@ -3,11 +3,8 @@ package data;
 import java.util.ArrayList;
 
 import vo.MovieVO;
-<<<<<<< Updated upstream
 import vo.SeatVO;
-=======
 import vo.ReserveVO;
->>>>>>> Stashed changes
 import vo.TheaterVO;
 import vo.UserVO;
 
