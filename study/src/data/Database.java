@@ -115,6 +115,7 @@ public class Database {
 				} else {
 					seat.setSeatNum(j);// 좌석 번호 // 10 ~ 30 // 좋은 좌석
 					seat.setSeatPrice(11000); // 좌석 가격 // 성인 기준 가격
+					
 				}
 			}
 
