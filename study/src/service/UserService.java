@@ -294,6 +294,63 @@ public class UserService {
 		
 	}
 	
+	public void reservation_movie() {
+		Scanner s = new Scanner(System.in);
+		
+		UserVO user = Session.loginUser;
+		
+		int user_year = user.getBirthdate() / 10000;
+		int year = Calendar.getInstance().get(Calendar.YEAR); //현재 날짜의 연도 가져오기
+		int month = Calendar.getInstance().get(Calendar.MONTH); //현재 날짜의 월 가져오기
+		int date = Calendar.getInstance().get(Calendar.DATE); //현재 날짜의 일 가져오기
+		
+		int input = 0;
+
+		if(year - user_year >= 19) {
+			userDao.lookup_adult_movie();
+			System.out.print  ("예매할 영화의 제목을 입력 : ");
+			String movieName = s.nextLine();
+			System.out.print  ("예매할 영화의 상영 날짜(YY/MM/DD)를 입력 : ");
+			String movieDate = s.nextLine();
+			System.out.print  ("예매할 영화의 시작 시간(HH시 mm분)을 입력 : ");
+			String startMovieTime = s.nextLine();
+			System.out.print  ("원하시는 좌석을 선택 : ");
+			
+			
+			int result = find_indexno_tb_movie(movieName, movieDate, startMovieTime);
+			
+			ReserveVO reserve = new ReserveVO();
+			
+			reserve.setId(Session.loginUser.getId());
+			reserve.setReserveDate(year + "년 " + month + "월 " + date + "");
+			reserve.setPrice(price);
+			
+			database.tb_reserve.add(e);
+			
+		}else {
+			userDao.lookup_minor_movie();
+			
+			
+		}
+		
+	}
+	
+	// 재석
+	public int find_indexno_tb_movie(String movieName, String movieDate, String startMovieTime) {
+		
+		int indexno = -1;
+		
+		for(int i = 0; i < database.tb_movie.size(); i++) {
+			MovieVO movie_info = database.tb_movie.get(i);
+			
+			if(movieName.equals(movie_info.getMovieName()) && movieDate.equals(movie_info.getMovieDate()) && startMovieTime.equals(movie_info.getStartMovieTime())) {
+				indexno = i;
+			}
+		}
+		
+		return indexno;
+	}
+	
 	public void reserveMovie() {
 		
 		//Session.loginUser;// 회원의 현재 로그인 계정
