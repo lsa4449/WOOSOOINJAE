@@ -47,17 +47,31 @@ public class Controller {
 	UserService userService = UserService.getInstance();
 	AdminService adminService = new AdminService();
 
+	private void showBanner(String str) { 
+		System.out.println();
+		System.out.println("─────────────────────────────────────");
+		System.out.println("      　　☆ *　. 　☆ \r\n" + "　　☆　.   ∧＿∧　∩　* ☆ \r\n"
+				+ "     안 ━━━( .∀.)/ . ━━━ 녕!!\r\n" + "　　　. ⊂　　 ノ* ☆ \r\n"
+				+ "　　☆ * (つ ノ .☆ \r\n" + "　　　　 (ノ");
+		System.out.println("\t 영화가 보고 싶은 날엔 ――― ♪ \t\t\t");
+		System.out.println("\t       대덕 시네마 ――♪ \t\t\t");
+		System.out.println();
+		System.out.println("─────────────────────────────────────");
+		System.out.println("\t" + str + "\t" );
+		System.out.println("─────────────────────────────────────");
+	}
+	
 	private void start() {
 		Scanner s = new Scanner(System.in);
 		
 		int menu;
 		
 		do{
-			System.out.println("-------------- 메뉴 -------------- ");
+			showBanner("사용할 메뉴를 선택해주세요 ▼");
 			System.out.println("1. 회원가입");
 			System.out.println("2. 로그인");
 			System.out.println("0. 프로그램 종료");
-			System.out.println("---------------------------------");
+			System.out.println("─────────────────────────────────────");
 			System.out.print  ("입력 : ");
 			
 			menu = Integer.parseInt(s.nextLine());
@@ -65,7 +79,7 @@ public class Controller {
 			if(menu == 1) {
 				userService.join();
 			}
-			if(menu == 2) {
+			if(menu == 2) { 
 				int result = userService.login();
 				
 				if(result == 1) { //관리자 메뉴 (재석)
@@ -75,11 +89,11 @@ public class Controller {
 					AfterLogin();
 				}
 			}
-			if(menu != 1 && menu != 2){
+			if(menu != 0 && menu > 2){
 				System.out.println("잘못 입력하였습니다! 다시 입력해주세요!");
 			}
 		}while(menu != 0);
-		System.out.println("잠시 후 프로그램이 종료됩니다.");
+		showBanner("잠시후 프로그램이 종료됩니다.");
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
@@ -98,11 +112,11 @@ public class Controller {
 		int menu;
 		
 		do{
-			System.out.println("-------------- 메뉴 -------------- ");
+			showBanner("사용할 메뉴를 선택해주세요 ▼");
 			System.out.println("1. 회원 관리");
 			System.out.println("2. 영화 관리");
 			System.out.println("0. 로그 아웃");
-			System.out.println("---------------------------------");
+			System.out.println("─────────────────────────────────────");
 			System.out.print  ("입력 : ");
 			
 			menu = Integer.parseInt(s.nextLine());
@@ -113,7 +127,7 @@ public class Controller {
 			if(menu == 2) { //영화 관리 (재석)
 				movie_management();
 			}
-			else {
+			else if(menu != 0 && menu > 2 && menu < 0){
 				System.out.println("잘못 입력하였습니다! 다시 입력해주세요!");
 			}
 		}while(menu != 0);
