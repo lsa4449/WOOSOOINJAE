@@ -1,13 +1,13 @@
 package vo;
 
 public class SeatVO {
-	//좌석VO
-	
+	// 좌석VO
+
 	private int seatNum; // 좌석 번호
 	private int theaterNum; // 상영관 번호
 	private String realSeatNum; // 좌석 세부 번호
 	private int seatPrice; // 좌석별 가격
-	
+	private int seatUse; // 좌석 예매여부
 
 	public int getSeatNum() {
 		return seatNum;
@@ -41,10 +41,18 @@ public class SeatVO {
 		this.seatPrice = seatPrice;
 	}
 
+	public int getSeatUse() {
+		return seatUse;
+	}
+
+	public void setSeatUse(int seatUse) {
+		this.seatUse = seatUse;
+	}
+
 	@Override
 	public String toString() {
 		return "SeatVO [seatNum=" + seatNum + ", theaterNum=" + theaterNum + ", realSeatNum=" + realSeatNum
-				+ ", seatPrice=" + seatPrice + "]";
+				+ ", seatPrice=" + seatPrice + ", seatUse=" + seatUse + "]";
 	}
 
 }
