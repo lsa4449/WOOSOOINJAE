@@ -7,7 +7,7 @@ public class SeatVO {
 	private int theaterNum; // 상영관 번호
 	private String realSeatNum; // 좌석 세부 번호
 	private int seatPrice; // 좌석별 가격
-	private int seatUse; // 좌석 예매여부
+	private boolean seatUse; // 좌석 예매여부
 
 	public int getSeatNum() {
 		return seatNum;
@@ -41,11 +41,11 @@ public class SeatVO {
 		this.seatPrice = seatPrice;
 	}
 
-	public int getSeatUse() {
+	public boolean getSeatUse() {
 		return seatUse;
 	}
 
-	public void setSeatUse(int seatUse) {
+	public void setSeatUse(boolean seatUse) {
 		this.seatUse = seatUse;
 	}
 
@@ -53,6 +53,9 @@ public class SeatVO {
 	public String toString() {
 		return "SeatVO [seatNum=" + seatNum + ", theaterNum=" + theaterNum + ", realSeatNum=" + realSeatNum
 				+ ", seatPrice=" + seatPrice + ", seatUse=" + seatUse + "]";
+		
 	}
+
+
 
 }
