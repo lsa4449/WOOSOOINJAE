@@ -105,6 +105,13 @@ public class MovieService {
 			private String reserveDate; // 예매 일자
 			private int price; // 예매 가격
 		*/		
+		
+		public void theaterList() {
+			for (int i = 0; i < ; i++) {
+				
+			}
+		}
+		
 
 		
 }

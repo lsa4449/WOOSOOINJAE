@@ -3,6 +3,7 @@ package data;
 import java.util.ArrayList;
 
 import vo.MovieVO;
+import vo.SeatVO;
 import vo.TheaterVO;
 import vo.UserVO;
 
@@ -98,7 +99,28 @@ public class Database {
 		tb_theator[2] = theator;
 	}
 	
-	// 4. 
+	// 4. 좌석
+	public SeatVO[][] tb_seat = new SeatVO[3][40];
+
+	{
+		SeatVO seat = new SeatVO();
+		for (int i = 0; i < tb_seat.length; i++) {// 상화관 번호
+			for (int j = 0; j < tb_seat[i].length; j++) {// 좌석
+				
+				seat.setTheaterNum(i);// 상영관 번호 
+
+				if (j < 10 || j > 30) {
+					seat.setSeatNum(j);// 좌석 번호 // 좀 별루인 좌석
+					seat.setSeatPrice(9000); // 좌석 가격 // 성인 기준 가격
+				} else {
+					seat.setSeatNum(j);// 좌석 번호 // 10 ~ 30 // 좋은 좌석
+					seat.setSeatPrice(11000); // 좌석 가격 // 성인 기준 가격
+				}
+			}
+
+		}
+
+	}
 	
 	
 	
