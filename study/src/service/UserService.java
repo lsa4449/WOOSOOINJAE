@@ -7,6 +7,7 @@ import java.util.Scanner;
 import dao.UserDao;
 import data.Database;
 import data.Session;
+import vo.MovieVO;
 import vo.UserVO;
 
 public class UserService {
@@ -24,8 +25,8 @@ public class UserService {
 	}
 	
 	UserDao userDao = UserDao.getInstance();
-	Database db = Database.getInstance();
-	AdminService as = AdminService.getInstance();
+	Database database = Database.getInstance();
+	AdminService adminService = AdminService.getInstance();
 	
 	//회원가입
 	public void join(){
@@ -215,8 +216,8 @@ public class UserService {
 		
 		UserVO userVo  = Session.loginUser;
 		String id = userVo.getId();
-		as.tb_Index(id);
-		db.tb_user.remove(as.tb_Index(id));
+		adminService.tb_Index(id);
+		database.tb_user.remove(adminService.tb_Index(id));
 		
 		System.out.println("탈퇴 하였습니다....");
 		
@@ -308,11 +309,13 @@ public class UserService {
 		if(year - user_year >= 19) {
 			userDao.lookup_adult_movie();
 			System.out.print  ("예매할 영화의 제목을 입력 : ");
-			String moiveName = s.nextLine();
+			String movieName = s.nextLine();
 			System.out.print  ("예매할 영화의 상영 날짜(YY/MM/DD)를 입력 : ");
 			String movieDate = s.nextLine();
 			System.out.print  ("예매할 영화의 시작 시간(HH시 mm분)을 입력 : ");
 			String startMovieTime = s.nextLine();
+			
+			find_indexno_tb_movie(movieName, movieDate, startMovieTime);
 		}else {
 			userDao.lookup_minor_movie();
 			
@@ -320,6 +323,19 @@ public class UserService {
 			
 		}
 		
+	}
+	
+	public int find_indexno_tb_movie(String movieName, String movieDate, String startMovieTime) {
+		
+		int indexno = 0;
+		
+		for(int i = 0; i < database.tb_movie.size(); i++) {
+			MovieVO movie_info = database.tb_movie.get(i);
+			
+			
+		}
+		
+		return indexno;
 	}
 	
 	public void reserveMovie() {
@@ -339,7 +355,7 @@ public class UserService {
 			
 			UserVO user = Session.loginUser;
 			Database database = Database.getInstance();
-			UserVO uVo = database.tb_user.get(as.tb_Index(user.getId()));
+			UserVO uVo = database.tb_user.get(adminService.tb_Index(user.getId()));
 			
 			boolean userCash = cashAdd();
 			if(userCash == true) {
@@ -357,7 +373,7 @@ public class UserService {
 			boolean cashCheck = false;
 			UserVO user = Session.loginUser;
 			Database database = Database.getInstance();
-			UserVO uVo = database.tb_user.get(as.tb_Index(user.getId()));
+			UserVO uVo = database.tb_user.get(adminService.tb_Index(user.getId()));
 			
 		      while(true){
 		    	 Scanner s = new Scanner(System.in);
@@ -386,7 +402,6 @@ public class UserService {
 		      }
 		}
 		
-
 	
 
 }
