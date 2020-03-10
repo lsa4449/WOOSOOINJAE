@@ -323,9 +323,11 @@ public class UserService {
 			
 			reserve.setId(Session.loginUser.getId());
 			reserve.setReserveDate(year + "년 " + month + "월 " + date + "");
-			reserve.setPrice(price);
-			
-			database.tb_reserve.add(e);
+			/*
+			 * reserve.setPrice(price);
+			 * 
+			 * database.tb_reserve.add(e);
+			 */
 			
 		}else {
 			userDao.lookup_minor_movie();
