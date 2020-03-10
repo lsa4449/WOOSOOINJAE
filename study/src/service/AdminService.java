@@ -395,7 +395,7 @@ public class AdminService {
 		Scanner s = new Scanner(System.in);
 		MovieVO movieVO = new MovieVO();
 		Database database = Database.getInstance();
-		MovieService movieService = new MovieService();
+		MovieService movieService = MovieService.getInstance();
 		
 		
 		

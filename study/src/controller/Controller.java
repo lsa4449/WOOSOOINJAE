@@ -2,11 +2,13 @@ package controller;
 
 import java.util.Scanner;
 
+import dao.SeatDao;
 import dao.UserDao;
 import data.Database;
 import data.MovieList;
 import data.Session;
 import service.AdminService;
+import service.MovieService;
 import service.UserService;
 import vo.MovieVO;
 import vo.UserVO;
@@ -72,7 +74,9 @@ public class Controller {
 			System.out.println("2. 로그인");
 			System.out.println("0. 프로그램 종료");
 			System.out.println("─────────────────────────────────────");
+			System.out.println("10.테스트");
 			System.out.print  ("입력 : ");
+			
 			
 			menu = Integer.parseInt(s.nextLine());
 			
@@ -91,6 +95,10 @@ public class Controller {
 			}
 			if(menu != 0 && menu > 2){
 				System.out.println("잘못 입력하였습니다! 다시 입력해주세요!");
+			}
+			if(menu == 10) {
+				SeatDao seat = SeatDao.getInstance();
+				seat.theaterList_seat();
 			}
 		}while(menu != 0);
 		showBanner("잠시후 프로그램이 종료됩니다.");

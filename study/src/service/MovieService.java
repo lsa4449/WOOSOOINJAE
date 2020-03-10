@@ -11,10 +11,13 @@ public class MovieService {
 	
 	private static MovieService instance;
 	
-	MovieService() {};
+	private MovieService(){}
 	
-	static {
-		instance = new MovieService();
+	public static MovieService getInstance(){
+		if(instance == null){
+			instance = new MovieService();
+		}
+		return instance;
 	}
 	
 		
@@ -106,13 +109,7 @@ public class MovieService {
 			private int price; // 예매 가격
 		*/		
 		
-		public void theaterList() {
-			for (int i = 0; i < ; i++) {
-				
-				
-			}
-		}
-		
+	
+	
 
-		
 }

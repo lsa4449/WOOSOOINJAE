@@ -24,4 +24,6 @@ public class MovieDao {
 	public ArrayList<MovieVO> selectMovieList() {
 		return database.tb_movie;
 	}
+	
+	
 }

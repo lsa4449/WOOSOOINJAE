@@ -92,37 +92,43 @@ public class Database {
 	public TheaterVO[] tb_theator = new TheaterVO[3];
 	{
 		TheaterVO theator = new TheaterVO();
+		
 		theator.setTheaterNum(0); // 0번 관
 		theator.setTheaterName("대덕");
 		tb_theator[0] = theator;
 		
+		theator = new TheaterVO();
 		theator.setTheaterNum(1);
 		theator.setTheaterName("인재");
 		tb_theator[1] = theator;
 		
+		theator = new TheaterVO();
 		theator.setTheaterNum(2);
 		theator.setTheaterName("개발원");
 		tb_theator[2] = theator;
 	}
 	
 	// 4. 좌석
-	public SeatVO[][] tb_seat = new SeatVO[3][40];
+	public SeatVO[][] tb_seat = new SeatVO[tb_theator.length][40];// 앞에 상영관, 
 
 	{
 		SeatVO seat = new SeatVO();
-		for (int i = 0; i < tb_seat.length; i++) {// 상화관 번호
+		for (int i = 0; i < tb_theator.length; i++) {// 상화관 번호
+			
+			seat.setTheaterNum(i);
 			for (int j = 0; j < tb_seat[i].length; j++) {// 좌석
-				
-				seat.setTheaterNum(i);// 상영관 번호 
-
+				seat = new SeatVO();
 				if (j < 10 || j > 30) {
 					seat.setSeatNum(j);// 좌석 번호 // 좀 별루인 좌석
 					seat.setSeatPrice(9000); // 좌석 가격 // 성인 기준 가격
+					seat.setSeatUse(false);
 				} else {
 					seat.setSeatNum(j);// 좌석 번호 // 10 ~ 30 // 좋은 좌석
 					seat.setSeatPrice(11000); // 좌석 가격 // 성인 기준 가격
+					seat.setSeatUse(false);
 					
 				}
+				tb_seat[i][j] = seat;
 			}
 
 		}
