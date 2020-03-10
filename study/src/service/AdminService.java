@@ -150,7 +150,7 @@ public class AdminService {
 		
 	}
 	
-	//회원 권한 부여 (재석)
+	//회원 권한 부여/제거 (재석)
 	public void authorization() {
 		Scanner s = new Scanner(System.in);
 		
@@ -195,9 +195,19 @@ public class AdminService {
 				System.out.println("다시 입력해주세요.");
 			}
 			if(user != null) {
+				
 				user = database.tb_user.get(input - 1);
-				user.setAuth(true);
-				System.out.println("선택하신 회원에게 권한이 부여되었습니다.");
+				boolean userAuth = user.getAuth();
+				
+				if(userAuth == true) {
+					user.setAuth(false);
+				}
+				if(userAuth == false) {
+					user.setAuth(true);
+				}
+				
+				System.out.println("선택하신 회원의 권한이 변경되었습니다.");
+				
 			}
 		}while(user == null);
 		

@@ -142,7 +142,7 @@ public class Controller {
 			System.out.println("-------------- 메뉴 -------------- ");
 			System.out.println("1. 회원 등록");
 			System.out.println("2. 회원 삭제");
-			System.out.println("3. 회원 권한 부여");
+			System.out.println("3. 회원 권한 부여/제거");
 			System.out.println("4. 회원 목록 조회");
 			System.out.println("5. 회원 정보 수정");
 			System.out.println("0. 뒤로 가기");
@@ -157,7 +157,7 @@ public class Controller {
 			if(input == 2) { //회원 삭제 (재석)
 				adminService.delete_user();
 			}
-			if(input == 3) { //회원 권한 부여 (재석)
+			if(input == 3) { //회원 권한 부여/제거 (재석)
 				adminService.authorization();
 			}
 			if(input == 4) { //회원 목록 조회 (재석)
