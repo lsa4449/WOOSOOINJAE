@@ -3,6 +3,7 @@ package data;
 import java.util.ArrayList;
 
 import vo.MovieVO;
+import vo.TheaterVO;
 import vo.UserVO;
 
 public class Database {
@@ -79,5 +80,26 @@ public class Database {
 		movie.setAge("청소년 관람 불가");
 		tb_movie.add(movie);
 	}
+	
+	// 1. 영화관VO
+	public TheaterVO[] tb_theator = new TheaterVO[3];
+	{
+		TheaterVO theator = new TheaterVO();
+		theator.setTheaterNum(0); // 0번 관
+		theator.setTheaterName("대덕");
+		tb_theator[0] = theator;
+		
+		theator.setTheaterNum(1);
+		theator.setTheaterName("인재");
+		tb_theator[1] = theator;
+		
+		theator.setTheaterNum(2);
+		theator.setTheaterName("개발원");
+		tb_theator[2] = theator;
+	}
+	
+	// 4. 
+	
+	
 	  
 }
