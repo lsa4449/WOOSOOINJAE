@@ -121,13 +121,11 @@ public class Database {
 				if (j < 10 || j > 30) {
 					seat.setSeatNum(j);// 좌석 번호 // 좀 별루인 좌석
 					seat.setSeatPrice(9000); // 좌석 가격 // 성인 기준 가격
-					seat.setSeatUse(false);
 				} else {
 					seat.setSeatNum(j);// 좌석 번호 // 10 ~ 30 // 좋은 좌석
 					seat.setSeatPrice(11000); // 좌석 가격 // 성인 기준 가격
-					seat.setSeatUse(false);
-					
 				}
+				seat.setSeatUse(false);
 				tb_seat[i][j] = seat;
 			}
 
