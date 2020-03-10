@@ -459,7 +459,7 @@ public class AdminService {
 	public int tb_Index(String id) {
 		int indexno = 0;
 		
-		Database database = new Database();
+		Database database = Database.getInstance();
 		
 		for(int i = 0; i < database.tb_user.size(); i++) {
 			UserVO tb_id = database.tb_user.get(i);

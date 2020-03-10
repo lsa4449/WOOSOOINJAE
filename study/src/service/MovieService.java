@@ -109,6 +109,9 @@ public class MovieService {
 			private int price; // 예매 가격
 		*/		
 		
+		public void reserveMovie() {
+			
+		}
 	
 	
 
