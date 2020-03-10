@@ -3,7 +3,11 @@ package data;
 import java.util.ArrayList;
 
 import vo.MovieVO;
+<<<<<<< Updated upstream
 import vo.SeatVO;
+=======
+import vo.ReserveVO;
+>>>>>>> Stashed changes
 import vo.TheaterVO;
 import vo.UserVO;
 
@@ -81,6 +85,11 @@ public class Database {
 		movie.setAge("청소년 관람 불가");
 		tb_movie.add(movie);
 	}
+	
+	String[][] seat = new String[4][10];
+	
+	//예약 정보
+	public ArrayList<ReserveVO> tb_reserve = new ArrayList<ReserveVO>();
 	
 	// 1. 영화관VO
 	public TheaterVO[] tb_theator = new TheaterVO[3];
