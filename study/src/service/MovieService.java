@@ -150,6 +150,21 @@ public class MovieService {
 				num = 30;
 			}
 
+			int menu;
+			System.out.println("----------------------------");
+			System.out.println("1. 결제하기");
+			System.out.println("2. 취소하기");
+			System.out.println("----------------------------");
+			System.out.print  ("입력 : ");
+			menu = Integer.parseInt(s.nextLine());
+
+			if (menu == 1) {
+				buy();
+			}
+			if (menu == 2) {
+
+			}
+
 			int num2 = num + Integer.parseInt(seatPos_2) - 1;
 
 			if (database.tb_seat[seatPos_1][num2].getSeatUse() == false) {
@@ -202,6 +217,7 @@ public class MovieService {
 	// 영화 예매 구입
 	public void buy() {
 		AdminService adminService = AdminService.getInstance();
+		UserService userService = UserService.getInstance();
 		UserVO user = Session.loginUser;
 		UserVO uVo = database.tb_user.get(adminService.tb_Index(user.getId()));
 
@@ -215,18 +231,25 @@ public class MovieService {
 		if (year - user_year >= 19) {
 			if (uVo.getCash() < adult_seat) {
 				System.out.println("돈이 부족합니다. 현금을 충전 해주세요!");
-
+				userService.cash();
+				return;
+ 
 			} else if (9 <= year - user_year && year - user_year <= 18) {
 				if (uVo.getCash() < child_seat) {
 					System.out.println("돈이 부족합니다. 현금을 충전 해주세요!");
+					userService.cash();
+					return;
 				}
 			}
 		}
-		System.out.println("결제 되었습니다.");
+		if (year - user_year >= 19) {
+			uVo.getCash() -= adult_seat;
+			System.out.println("결제 되었습니다.");
+		} else if (9 <= year - user_year && year - user_year <= 18) {
+			uVo.getCash() -= child_seat;
+			System.out.println("결제 되었습니다.");
+
+		}
 	}
 
-	
-	
-	
-	
 }
