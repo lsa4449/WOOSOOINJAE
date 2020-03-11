@@ -1,6 +1,8 @@
 package dao;
 
 import data.Database;
+import data.Session;
+import vo.ReserveVO;
 
 public class SeatDao {
 	
@@ -47,5 +49,48 @@ public class SeatDao {
 			System.out.println();
 
 		}
+	}
+	
+	public void reserveTheater_seat_look() { // 로그인 유저가 선택한 것만 보여주기
+		Database database = Database.getInstance();
+		String id = Session.loginUser.getId();
+		ReserveVO reserveVO = new ReserveVO();
+		
+		for (int i = 0; i < database.tb_reserve.size(); i++) {
+			 reserveVO = new ReserveVO();
+			reserveVO = database.tb_reserve.get(i);
+			if(Session.loginUser.getId().equals(reserveVO.getId())) {
+				break;
+			}
+		}
+		
+		reserveVO.getTheaterPosition();
+		
+
+//		for (int i = 0; i < database.tb_theator.length; i++) 
+
+			System.out.println(database.tb_theator[reserveVO.getTheaterPosition()].getTheaterName());
+			System.out.print("  ");
+			for (int t = 0; t < 10; t++) {
+				System.out.print((t + 1) + " ");
+			}
+
+			char ch = 'A';
+			for (int j = 0; j < database.tb_seat[reserveVO.getTheaterPosition()].length; j++) {
+				if (j % 10 == 0) {
+					System.out.println();
+					System.out.print(ch++ + " ");
+				}
+
+				if (database.tb_seat[reserveVO.getTheaterPosition()][j].getSeatUse()) {
+					System.out.print("■" + " ");
+				} else {
+					System.out.print("□" + " ");
+				}
+
+			}
+			System.out.println();
+			System.out.println();
+
 	}
 }

@@ -252,6 +252,7 @@ public class Controller {
 			System.out.println("1. 영화 목록 조회 및 예매");
 			System.out.println("2. 예매 영화 조회");
 			System.out.println("3. MY Page");
+			System.out.println("4. 예매 취소");
 			System.out.println("0. 로그 아웃");
 			System.out.println("---------------------------------");
 			System.out.print  ("입력 : ");
@@ -269,7 +270,11 @@ public class Controller {
 			if(menu == 3) {
 				MypageView();
 			}
-			else if(menu != 0 && menu > 3 && menu < 0){
+			if(menu == 4) {
+				MovieService movieService = MovieService.getInstance();
+				movieService.reserveCancel();
+			}
+			else if(menu != 0 && menu > 4 && menu < 0){
 				System.out.println("잘못 입력하였습니다! 다시 입력해주세요!");
 			}
 			
