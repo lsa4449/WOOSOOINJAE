@@ -68,11 +68,11 @@ public class ReserveVO {
 		this.price = (int) d;
 	}
 
-	public String getTheaterPosition() {
+	public int getTheaterPosition() {
 		return theaterPosition;
 	}
 
-	public void setTheaterPosition(String theaterPosition) {
+	public void setTheaterPosition(int theaterPosition) {
 		this.theaterPosition = theaterPosition;
 	}
 
