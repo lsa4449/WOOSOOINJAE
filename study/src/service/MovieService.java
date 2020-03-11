@@ -251,5 +251,54 @@ public class MovieService {
 
 		}
 	}
+	
+	//예매 취소(영현)
+	public void reserveCancel() {
+		ReserveVO rVO = new ReserveVO();
+		SeatDao seatDao = SeatDao.getInstance();
+		
+		Scanner s = new Scanner(System.in);
+
+		UserVO user = Session.loginUser;
+		
+		System.out.println("취소할 영화 제목을 입력해주세요");
+		String name = s.nextLine();
+		
+		for (int i = 0; i < database.tb_reserve.size(); i++) {
+			rVO = new ReserveVO();
+			rVO = database.tb_reserve.get(i);
+			
+			if(rVO.getId().equals(user.getId())) {
+				break;
+			}
+			
+		}
+		
+		String seatPosition = rVO.getSeatPosition();
+		//String으로 받은 영화 좌석
+		char seatPos_1;
+		String seatPos_2;
+		seatPos_1 = seatPosition.charAt(0);
+		seatPos_2 = seatPosition.substring(1);
+
+		int num = 0;
+
+		if (seatPos_1 == 'A') {
+			num = 0;
+		} else if (seatPos_1 == 'B') {
+			num = 10;
+		} else if (seatPos_1 == 'C') {
+			num = 20;
+		} else if (seatPos_1 == 'D') {
+			num = 30;
+		}
+		//좌석 숫자로 변환
+		int num2 = num + Integer.parseInt(seatPos_2) - 1;
+		
+		
+		
+//		database.tb_seat[][]
+
+	}
 
 }
