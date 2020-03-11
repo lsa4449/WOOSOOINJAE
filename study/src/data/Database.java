@@ -68,7 +68,7 @@ public class Database {
 		movie.setPlot("줄거리");
 		movie.setActor("배우");
 		movie.setOpenMovieDate(200301);
-		movie.setTheaterNum(1);
+		movie.setTheaterNum(0);
 		movie.setStartMovieTime("02시 30분");
 		movie.setEndMovieTime("04시 50분");
 		movie.setAge("청소년 관람 불가");
@@ -81,7 +81,7 @@ public class Database {
 		movie.setPlot("줄거리");
 		movie.setActor("이선균");
 		movie.setOpenMovieDate(20200120);
-		movie.setTheaterNum(2);
+		movie.setTheaterNum(1);
 		movie.setStartMovieTime("03시 00분");
 		movie.setEndMovieTime("05시 00분");
 		movie.setAge("청소년 관람 불가");
@@ -94,7 +94,7 @@ public class Database {
 		movie.setPlot("몸이 바뀜");
 		movie.setActor("배우배우");
 		movie.setOpenMovieDate(20200121);
-		movie.setTheaterNum(3);
+		movie.setTheaterNum(2);
 		movie.setStartMovieTime("14시 20분");
 		movie.setEndMovieTime("17시 50분");
 		movie.setAge("전체 이용가");

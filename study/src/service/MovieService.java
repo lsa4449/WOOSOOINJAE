@@ -200,18 +200,18 @@ public class MovieService {
 
 			int num2 = num + Integer.parseInt(seatPos_2) - 1;
 
-			if (database.tb_seat[theaterPosition - 1][num2].getSeatUse() == false) {
-				database.tb_seat[theaterPosition - 1][num2].setSeatUse(true);
-				database.tb_seat[theaterPosition - 1][num2].setLookInfo("■");
+			if (database.tb_seat[theaterPosition][num2].getSeatUse() == false) {
+				database.tb_seat[theaterPosition][num2].setSeatUse(true);
+				database.tb_seat[theaterPosition][num2].setLookInfo("■");
 
 				System.out.println("예매되었습니다.");
 
 				ReserveVO reserve = new ReserveVO();
 
 				if (year - user_year >= 19) {
-					reserve.setPrice(database.tb_seat[theaterPosition - 1][num2].getSeatPrice());
+					reserve.setPrice(database.tb_seat[theaterPosition][num2].getSeatPrice());
 				} else if (9 <= year - user_year && year - user_year <= 18) {
-					reserve.setPrice(database.tb_seat[theaterPosition - 1][num2].getSeatPrice() * 0.7);
+					reserve.setPrice(database.tb_seat[theaterPosition][num2].getSeatPrice() * 0.7);
 				}
 
 				reserve.setId(Session.loginUser.getId());
@@ -323,8 +323,26 @@ public class MovieService {
 			}
 		}
 		//예매 취소(영현)
-		public void reserveCancel() {
-			
+	public void reserveCancel() {
+		int no = 1;
+
+		System.out.println("—————————————————");
+		for (int i = 0; i < database.tb_reserve.size(); i++) {
+
+			ReserveVO tb_reserve = database.tb_reserve.get(i);
+
+			System.out.println("[ " + no + " ]");
+			System.out.println("예매 아이디 : " + tb_reserve.getId());
+			System.out.println("예매 날짜 : " + tb_reserve.getReserveDate());
+			System.out.println("예매 영화 이름 : " + tb_reserve.getMovieName());
+			System.out.println("상영 시작 시간 : " + tb_reserve.getStartMovieTime());
+			System.out.println("가격 : " + tb_reserve.getPrice());
+			System.out.println("상영관 : " + tb_reserve.getTheaterPosition());
+			System.out.println("좌석 위치 : " + tb_reserve.getSeatPosition());
+			System.out.println("—————————————————");
+
+			no++;
+		}
 			ReserveVO rVO = new ReserveVO();
 			SeatDao seatDao = SeatDao.getInstance();
 			
@@ -354,6 +372,7 @@ public class MovieService {
 				}
 				
 			}
+
 			
 			int theaterPosition = rVO.getTheaterPosition(); // 영화관 번호
 			String seatPosition = rVO.getSeatPosition(); // 좌석 번호
@@ -385,8 +404,10 @@ public class MovieService {
 			sVO.setSeatUse(false);// 빈네모로 바꿔줌
 			sVO.setLookInfo("□");
 			
-			database.tb_seat[theaterPosition - 1][num2] = sVO;
-			database.tb_reserve.remove(i);
+
+			
+			database.tb_seat[theaterPosition][num2] = sVO;
+			database.tb_reserve.remove(i-1);
 
 			seatDao.reserveTheater_seat_look();
 
