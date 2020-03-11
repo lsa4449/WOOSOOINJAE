@@ -55,8 +55,8 @@ public class UserVO {
 		return cash;
 	}
 	
-	public void setCash(int cash) {
-		this.cash = cash;
+	public void setCash(double d) {
+		this.cash = (int) d;
 	}
 
 	@Override
