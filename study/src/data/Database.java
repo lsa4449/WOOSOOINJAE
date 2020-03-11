@@ -63,7 +63,6 @@ public class Database {
 		int indexno = 1; // 이렇게 줘서 값을 인덱스 값을 커지게 하자
 		
 		MovieVO movie = new MovieVO();
-		movie.setMovieNum(indexno++); // 영화번호
 		movie.setMovieName("히트맨");
 		movie.setDirector("감독");
 		movie.setPlot("줄거리");
@@ -77,13 +76,29 @@ public class Database {
 		tb_movie.add(movie);
 		 
 		movie = new MovieVO();
-		movie.setMovieNum(indexno++); // 영화번호 1
 		movie.setMovieName("조선_명탐정_어쩌구");
 		movie.setDirector("감독");
 		movie.setPlot("줄거리");
 		movie.setActor("이선균");
 		movie.setOpenMovieDate(20200120);
+		movie.setTheaterNum(2);
+		movie.setStartMovieTime("03시 00분");
+		movie.setEndMovieTime("05시 00분");
 		movie.setAge("청소년 관람 불가");
+		movie.setMovieDate("20/02/29");
+		tb_movie.add(movie);
+		
+		movie = new MovieVO();
+		movie.setMovieName("너의 이름은");
+		movie.setDirector("일본인");
+		movie.setPlot("몸이 바뀜");
+		movie.setActor("배우배우");
+		movie.setOpenMovieDate(20200121);
+		movie.setTheaterNum(3);
+		movie.setStartMovieTime("14시 20분");
+		movie.setEndMovieTime("17시 50분");
+		movie.setAge("전체 이용가");
+		movie.setMovieDate("20/03/01");
 		tb_movie.add(movie);
 	}
 	
