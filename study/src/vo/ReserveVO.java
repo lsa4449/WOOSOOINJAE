@@ -11,6 +11,7 @@ public class ReserveVO {
 	private String movieName;
 	private String seatPosition;// String으로 받은 좌석
 	private int theaterPosition;
+	private String startMovieTime;
 
 	public String getSeatPosition() {
 		return seatPosition;
