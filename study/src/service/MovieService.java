@@ -20,7 +20,7 @@ public class MovieService {
 
 	private static MovieService instance;
 
-	private MovieService() {
+	public MovieService() {
 	}
 
 	public static MovieService getInstance() {
@@ -32,7 +32,6 @@ public class MovieService {
 
 	Database database = Database.getInstance();
 	UserDao userDao = UserDao.getInstance();
-	Controller con = new Controller();
 
 	// 영화 목록 //영현
 	public void movieList() {
@@ -299,14 +298,10 @@ public class MovieService {
 			if (year - user_year >= 19) {
 				if (uVo.getCash() < adult_seat) {
 					System.out.println("돈이 부족합니다. 현금을 충전 해주세요!");
-					con.MypageView();
-					return;
 	 
 				} else if (9 <= year - user_year && year - user_year <= 18) {
 					if (uVo.getCash() < child_seat) {
 						System.out.println("돈이 부족합니다. 현금을 충전 해주세요!");
-						con.MypageView();
-						return;
 					}
 				}
 			}

@@ -47,7 +47,7 @@ public class Controller {
 	}
 	
 	UserService userService = UserService.getInstance();
-	AdminService adminService = new AdminService();
+	AdminService adminService = AdminService.getInstance();
 	MovieService movieService = MovieService.getInstance();
 
 
@@ -262,7 +262,6 @@ public class Controller {
 			menu = Integer.parseInt(s.nextLine());
 			
 			if(menu == 1) { //영화 목록 조회 - 자신의 나이에 맞는 영화만 조회되게 함 (재석)
-//				userService.lookup_movie();
 				movieService.reserveMovie();
 			}
 			if(menu == 2) {
@@ -272,7 +271,6 @@ public class Controller {
 				MypageView();
 			}
 			if(menu == 4) {
-				MovieService movieService = MovieService.getInstance();
 				movieService.reserveCancel();
 			}
 			else if(menu != 0 && menu > 4 && menu < 0){
