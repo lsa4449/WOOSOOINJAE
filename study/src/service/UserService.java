@@ -127,10 +127,12 @@ public class UserService {
 	public void userInfoView() {
 		
 		UserVO userVo  = Session.loginUser;
+		UserVO uVo = database.tb_user.get(adminService.tb_Index(userVo.getId()));
 		
 		System.out.println(userVo.getName() + "회원님의 아이디 : " + userVo.getId());
 		System.out.println(userVo.getName() + "회원님의 비밀번호 : " + userVo.getPassword());		
-	    System.out.println(userVo.getName() +"회원님의 생년월일 : " + userVo.getBirthdate());
+	    System.out.println(userVo.getName() + "회원님의 생년월일 : " + userVo.getBirthdate());
+	    System.out.println(userVo.getName() + "회원님의 소지 현금 : " + uVo.getCash());
    }
 	
 	//비밀 번호 수정
@@ -371,7 +373,9 @@ public class UserService {
 		        	System.out.println();
 		            continue;
 		         }
+		         break;
 		      }
+			return cashCheck;
 		}
 		
 	
