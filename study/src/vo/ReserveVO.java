@@ -10,7 +10,7 @@ public class ReserveVO {
 	private int price; // 예매 가격
 	private String movieName;
 	private String seatPosition;// String으로 받은 좌석
-	private String theaterPosition;
+	private int theaterPosition;
 
 	public String getSeatPosition() {
 		return seatPosition;
