@@ -357,9 +357,10 @@ public class MovieService {
 			}
 			
 		}
-		
+		int theaterPosition = rVO.getTheaterPosition();
 		String seatPosition = rVO.getSeatPosition();
 		//String으로 받은 영화 좌석
+		
 		char seatPos_1;
 		String seatPos_2;
 		seatPos_1 = seatPosition.charAt(0);
@@ -379,9 +380,11 @@ public class MovieService {
 		//좌석 숫자로 변환
 		int num2 = num + Integer.parseInt(seatPos_2) - 1;
 		
-		
-		
-//		database.tb_seat[][]
+		SeatVO sVO = new SeatVO();
+		sVO.setSeatNum(num2);
+		sVO.setTheaterNum(theaterPosition);
+		sVO.setSeatUse(false);
+		database.tb_seat[theaterPosition][num2] = sVO;
 
 	}
 
