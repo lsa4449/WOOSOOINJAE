@@ -121,16 +121,39 @@ public class MovieService {
 
 		if (year - user_year >= 19) {
 			userDao.lookup_adult_movie();
-			System.out.print("예매할 영화의 제목을 입력 : ");
-			String movieName = s.nextLine();
-			System.out.print("예매할 영화의 상영 날짜(YY/MM/DD)를 입력 : ");
-			String movieDate = s.nextLine();
-			System.out.print("예매할 영화의 시작 시간(HH시 mm분)을 입력 : ");
-			String startMovieTime = s.nextLine();
+			
+			boolean check = false;
+			
+			String movieName;
+			String movieDate;
+			String startMovieTime;
+			
+			do {
+				
+				System.out.println("-------------------------------------");
+				System.out.print  ("예매할 영화의 제목을 입력 : ");
+				movieName = s.nextLine();
+				System.out.print  ("예매할 영화의 상영 날짜(YY/MM/DD)를 입력 : ");
+				movieDate = s.nextLine();
+				System.out.print  ("예매할 영화의 시작 시간(HH시 mm분)을 입력 : ");
+				startMovieTime = s.nextLine();
+				
+				check = duplicate_check(movieName, movieDate, startMovieTime);
+				
+				if(!check) {
+					System.out.println("입력하신 정보의 영화를 찾을 수 없습니다.");
+					System.out.println("다시 입력해주세요.");
+				}
+				
+			}while(check != true);
 
 			seatDao.theaterList_seat(); // 상영관 좌석 예약 배치도
-			System.out.print("원하시는 상영관을 입력 : ");
-			String theaterPosition = s.nextLine();
+			
+			int index = get_indexno_tb_movie_by_movieName_movieDate_startMovieTime(movieName, movieDate, startMovieTime);
+			
+			//상영관 번호(자동으로 들어감)
+			int theaterPosition = database.tb_movie.get(index).getTheaterNum();
+			
 			System.out.print("원하시는 좌석을 선택 : ");
 			String seatPosition = s.nextLine();
 			char seatPos_1;
@@ -167,8 +190,9 @@ public class MovieService {
 
 			int num2 = num + Integer.parseInt(seatPos_2) - 1;
 
-			if (database.tb_seat[seatPos_1][num2].getSeatUse() == false) {
-				database.tb_seat[seatPos_1][num2].setSeatUse(true);
+			if (database.tb_seat[num][num2].getSeatUse() == false) {
+				database.tb_seat[num][num2].setSeatUse(true);
+				database.tb_seat[num][num2].setLookInfo("■");
 
 				System.out.println("예매되었습니다.");
 
@@ -184,6 +208,7 @@ public class MovieService {
 				reserve.setMovieName(movieName);
 				reserve.setReserveDate(year + "년 " + month + "월 " + date + "일");
 				reserve.setSeatPosition(seatPosition);
+				reserve.setTheaterPosition(theaterPosition);
 
 				database.tb_reserve.add(reserve);
 
@@ -195,6 +220,48 @@ public class MovieService {
 
 		}
 
+	}
+	
+	public boolean duplicate_check(String movieName, String movieDate, String startMovieTime) {
+		
+		boolean check = false;
+		
+		for(int i = 0; i < database.tb_movie.size(); i++) {
+			
+			MovieVO tb_movie = database.tb_movie.get(i);
+			
+			if(tb_movie.getMovieName().equals(movieName) && tb_movie.getMovieDate().equals(movieDate) && tb_movie.getStartMovieTime().equals(startMovieTime)) {
+				check = true;
+				break;
+			}else {
+				check = false;
+			}
+			
+		}
+		
+		return check;
+		
+	}
+	
+	public int get_indexno_tb_movie_by_movieName_movieDate_startMovieTime(String movieName, String movieDate, String startMovieTime) {
+		
+		int indexno = -1;
+		
+		for(int i = 0; i < database.tb_movie.size(); i++) {
+			
+			MovieVO tb_movie = database.tb_movie.get(i);
+			
+			if(tb_movie.getMovieName().equals(movieName) && tb_movie.getMovieDate().equals(movieDate) && tb_movie.getStartMovieTime().equals(startMovieTime)) {
+				indexno = i;
+				break;
+			}else {
+				indexno = -1;
+			}
+			
+		}
+		
+		return indexno;
+		
 	}
 
 	// 재석
