@@ -97,7 +97,7 @@ public class Database {
 	
 	
 	
-	// 1. 영화관VO
+	// 1. 영화관VO(영현)
 	public TheaterVO[] tb_theator = new TheaterVO[3];
 	{
 		TheaterVO theator = new TheaterVO();
@@ -117,7 +117,7 @@ public class Database {
 		tb_theator[2] = theator;
 	}
 	
-	// 4. 좌석
+	// 4. 좌석(영현)
 	public SeatVO[][] tb_seat = new SeatVO[tb_theator.length][40];// 앞에 상영관, 
 
 	{
@@ -142,8 +142,9 @@ public class Database {
 
 	}
 	
-	
-	
+	//4. 좌석 (이렇게 했으면 더 편했을 듯)
+//	public SeatVO[][] tb_Seat = new SeatVO[4][10];
+
 	
 	
 	
