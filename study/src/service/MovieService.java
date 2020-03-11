@@ -333,7 +333,7 @@ public class MovieService {
 			System.out.println("취소할 영화 제목을 입력해주세요");
 			String name = s.nextLine();
 			
-			for (int i = 0; i < database.tb_reserve.size(); i++) {
+			for (int i = 0; i < database.tb_reserve.size(); i++) { // 예약 테이블
 				rVO = new ReserveVO();
 				rVO = database.tb_reserve.get(i);
 				
@@ -369,7 +369,7 @@ public class MovieService {
 			sVO.setSeatNum(num2);
 			sVO.setTheaterNum(theaterPosition);
 			sVO.setSeatUse(false);
-			database.tb_seat[theaterPosition][num2] = sVO;
+			database.tb_seat[theaterPosition - 1][num2] = sVO;
 			
 			
 			seatDao.reserveTheater_seat_look();
