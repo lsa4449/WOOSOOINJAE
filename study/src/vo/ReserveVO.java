@@ -10,6 +10,7 @@ public class ReserveVO {
 	private int price; // 예매 가격
 	private String movieName;
 	private String seatPosition;// String으로 받은 좌석
+	private String theaterPosition;
 
 	public String getSeatPosition() {
 		return seatPosition;
@@ -67,11 +68,23 @@ public class ReserveVO {
 		this.price = (int) d;
 	}
 
+	public String getTheaterPosition() {
+		return theaterPosition;
+	}
+
+	public void setTheaterPosition(String theaterPosition) {
+		this.theaterPosition = theaterPosition;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
 	@Override
 	public String toString() {
 		return "ReserveVO [reserveNum=" + reserveNum + ", timeRound=" + timeRound + ", id=" + id + ", reserveDate="
 				+ reserveDate + ", price=" + price + ", movieName=" + movieName + ", seatPosition=" + seatPosition
-				+ "]";
+				+ ", theaterPosition=" + theaterPosition + "]";
 	}
 
 }
