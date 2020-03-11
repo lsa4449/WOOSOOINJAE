@@ -25,6 +25,7 @@ public class UserService {
 		return instance;
 	}
 	
+	
 	UserDao userDao = UserDao.getInstance();
 	Database database = Database.getInstance();
 	AdminService adminService = AdminService.getInstance();
