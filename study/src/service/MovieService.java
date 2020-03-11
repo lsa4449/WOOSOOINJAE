@@ -324,8 +324,11 @@ public class MovieService {
 		}
 		//예매 취소(영현)
 		public void reserveCancel() {
+			
 			ReserveVO rVO = new ReserveVO();
 			SeatDao seatDao = SeatDao.getInstance();
+			
+			seatDao.reserveTheater_seat_look();
 			
 			Scanner s = new Scanner(System.in);
 
@@ -334,17 +337,26 @@ public class MovieService {
 			System.out.println("취소할 영화 제목을 입력해주세요");
 			String name = s.nextLine();
 			
-			for (int i = 0; i < database.tb_reserve.size(); i++) { // 예약 테이블
+			System.out.println("영화 시작시간을 입력해주세요");
+			String time = s.nextLine();
+			
+			System.out.println("자리를 입력해주세요");
+			String replayseat = s.nextLine();
+			
+			int i = 0;
+			
+			for (i = 0; i < database.tb_reserve.size(); i++) { // 예약 테이블
 				rVO = new ReserveVO();
 				rVO = database.tb_reserve.get(i);
 				
-				if(name.equals(rVO.getMovieName()) && user.equals(rVO.getId())) {
+				if(name.equals(rVO.getMovieName()) && user.equals(rVO.getId()) && time.equals(rVO.getStartMovieTime()) && replayseat.equals(rVO.getSeatPosition())) {
 					break;
 				}
 				
 			}
-			int theaterPosition = rVO.getTheaterPosition();
-			String seatPosition = rVO.getSeatPosition();
+			
+			int theaterPosition = rVO.getTheaterPosition(); // 영화관 번호
+			String seatPosition = rVO.getSeatPosition(); // 좌석 번호
 			//String으로 받은 영화 좌석
 			
 			char seatPos_1;
@@ -369,10 +381,13 @@ public class MovieService {
 			SeatVO sVO = new SeatVO();
 			sVO.setSeatNum(num2);
 			sVO.setTheaterNum(theaterPosition);
-			sVO.setSeatUse(false);
+			
+			sVO.setSeatUse(false);// 빈네모로 바꿔줌
+			sVO.setLookInfo("□");
+			
 			database.tb_seat[theaterPosition - 1][num2] = sVO;
-			
-			
+			database.tb_reserve.remove(i);
+
 			seatDao.reserveTheater_seat_look();
 
 		}
