@@ -13,6 +13,14 @@ public class ReserveVO {
 	private int theaterPosition;
 	private String startMovieTime;
 
+	public String getStartMovieTime() {
+		return startMovieTime;
+	}
+
+	public void setStartMovieTime(String startMovieTime) {
+		this.startMovieTime = startMovieTime;
+	}
+
 	public String getSeatPosition() {
 		return seatPosition;
 	}

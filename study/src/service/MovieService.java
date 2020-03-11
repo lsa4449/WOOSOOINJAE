@@ -219,6 +219,7 @@ public class MovieService {
 				reserve.setReserveDate(year + "년 " + month + "월 " + date + "일");
 				reserve.setSeatPosition(seatPosition);
 				reserve.setTheaterPosition(theaterPosition);
+				reserve.setStartMovieTime(startMovieTime);
 
 				database.tb_reserve.add(reserve);
 
