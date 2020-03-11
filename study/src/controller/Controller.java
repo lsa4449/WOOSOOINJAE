@@ -52,7 +52,7 @@ public class Controller {
 	private void showBanner(String str) { 
 		System.out.println();
 		System.out.println("─────────────────────────────────────");
-		System.out.println("      　　☆ *　. 　☆ \r\n" + "　　☆　.   ∧＿∧　∩　* ☆ \r\n"
+		System.out.println("      　　☆ *　. 　☆ \r\n" + "　　☆　.        ∧＿∧　∩　* ☆ \r\n"
 				+ "     안 ━━━( .∀.)/ . ━━━ 녕!!\r\n" + "　　　. ⊂　　 ノ* ☆ \r\n"
 				+ "　　☆ * (つ ノ .☆ \r\n" + "　　　　 (ノ");
 		System.out.println("\t 영화가 보고 싶은 날엔 ――― ♪ \t\t\t");
@@ -74,7 +74,6 @@ public class Controller {
 			System.out.println("2. 로그인");
 			System.out.println("0. 프로그램 종료");
 			System.out.println("─────────────────────────────────────");
-			System.out.println("10.테스트");
 			System.out.print  ("입력 : ");
 			
 			

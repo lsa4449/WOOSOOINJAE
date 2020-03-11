@@ -462,19 +462,5 @@ public class AdminService {
 		return indexno;
 	}
 
-	//좌석별 가격 리턴
-	public int price_Index(String id) {
-		int indexno = 0;
-		Database database = Database.getInstance();
-
-		for (int i = 0; i < database.tb_seat[i].length; i++) {
-			UserVO tb_id = database.tb_user.get(i);
-			if (tb_id.getId().equals(id)) {
-				indexno = i;
-				break;
-			}
-		}
-		return indexno;
-	}
 
 }
