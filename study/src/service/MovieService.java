@@ -337,7 +337,7 @@ public class MovieService {
 				rVO = new ReserveVO();
 				rVO = database.tb_reserve.get(i);
 				
-				if(name.equals(rVO.getMovieName())) {
+				if(name.equals(rVO.getMovieName()) && user.equals(rVO.getId())) {
 					break;
 				}
 				
