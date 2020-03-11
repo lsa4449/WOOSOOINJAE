@@ -133,7 +133,6 @@ public class MovieService {
 
 		int input = 0;
 
-		if (year - user_year >= 19) {
 			boolean check = false;
 			
 			String movieName;
@@ -202,18 +201,18 @@ public class MovieService {
 
 			int num2 = num + Integer.parseInt(seatPos_2) - 1;
 
-			if (database.tb_seat[num][num2].getSeatUse() == false) {
-				database.tb_seat[num][num2].setSeatUse(true);
-				database.tb_seat[num][num2].setLookInfo("■");
+			if (database.tb_seat[theaterPosition - 1][num2].getSeatUse() == false) {
+				database.tb_seat[theaterPosition - 1][num2].setSeatUse(true);
+				database.tb_seat[theaterPosition - 1][num2].setLookInfo("■");
 
 				System.out.println("예매되었습니다.");
 
 				ReserveVO reserve = new ReserveVO();
 
 				if (year - user_year >= 19) {
-					reserve.setPrice(database.tb_seat[num][num2].getSeatPrice());
+					reserve.setPrice(database.tb_seat[theaterPosition - 1][num2].getSeatPrice());
 				} else if (9 <= year - user_year && year - user_year <= 18) {
-					reserve.setPrice(database.tb_seat[num][num2].getSeatPrice() * 0.7);
+					reserve.setPrice(database.tb_seat[theaterPosition - 1][num2].getSeatPrice() * 0.7);
 				}
 
 				reserve.setId(Session.loginUser.getId());
@@ -227,10 +226,6 @@ public class MovieService {
 			} else {
 				System.out.println("이미 예매된 좌석입니다.");
 			}
-
-//				database.tb_seat[Integer.parseInt(theaterPosition)][num2] = database.tb_seat[Integer.parseInt(theaterPosition)][num2];
-
-		}
 
 	}
 	
