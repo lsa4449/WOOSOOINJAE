@@ -133,9 +133,6 @@ public class MovieService {
 			System.out.print("영화 제목을 입력해주세요 >> ");
 			rVO.setMovieName(s.nextLine());
 			
-			
-
-			
 			int input = 0;
 
 			if(year - user_year >= 19) {
@@ -219,5 +216,9 @@ public class MovieService {
 		}
 	
 	
+		//영화 예매 구입
+		public void buy() {
+			
+		}
 
 }

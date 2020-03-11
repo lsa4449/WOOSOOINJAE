@@ -453,8 +453,7 @@ public class AdminService {
 		}while(input != 0);
 		
 	}
-	
-	
+
 	//입력받은 아이디로 테이블 인덱스 번호를 리턴해주는 메소드 (재석)
 	public int tb_Index(String id) {
 		int indexno = 0;
