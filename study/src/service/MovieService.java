@@ -131,14 +131,9 @@ public class MovieService {
 			userDao.lookup_minor_movie();
 		}
 
-		System.out.print("영화 제목을 입력해주세요 >> ");
-		rVO.setMovieName(s.nextLine());
-
 		int input = 0;
 
 		if (year - user_year >= 19) {
-			userDao.lookup_adult_movie();
-			
 			boolean check = false;
 			
 			String movieName;
@@ -216,9 +211,9 @@ public class MovieService {
 				ReserveVO reserve = new ReserveVO();
 
 				if (year - user_year >= 19) {
-					reserve.setPrice(database.tb_seat[seatPos_1][num2].getSeatPrice());
+					reserve.setPrice(database.tb_seat[num][num2].getSeatPrice());
 				} else if (9 <= year - user_year && year - user_year <= 18) {
-					reserve.setPrice(database.tb_seat[seatPos_1][num2].getSeatPrice() * 0.7);
+					reserve.setPrice(database.tb_seat[num][num2].getSeatPrice() * 0.7);
 				}
 
 				reserve.setId(Session.loginUser.getId());

@@ -67,6 +67,9 @@ public class UserDao {
 				System.out.println("감독 : " + movie.getDirector());
 				System.out.println("배우 : " + movie.getActor());
 				System.out.println("개봉일 : " + movie.getOpenMovieDate());
+				System.out.println("상영 날짜 : " + movie.getMovieDate());
+				System.out.println("상영 시작 시간 : " + movie.getStartMovieTime());
+				System.out.println("상영 종료 시간 : " + movie.getEndMovieTime());
 				System.out.println("줄거리 : " + movie.getPlot());
 				
 				movie_no++;
@@ -90,6 +93,9 @@ public class UserDao {
 					System.out.println("감독 : " + movie.getDirector());
 					System.out.println("배우 : " + movie.getActor());
 					System.out.println("개봉일 : " + movie.getOpenMovieDate());
+					System.out.println("상영 날짜 : " + movie.getMovieDate());
+					System.out.println("상영 시작 시간 : " + movie.getStartMovieTime());
+					System.out.println("상영 종료 시간 : " + movie.getEndMovieTime());
 					System.out.println("줄거리 : " + movie.getPlot());
 					
 					movie_no++;
