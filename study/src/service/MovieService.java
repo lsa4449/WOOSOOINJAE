@@ -381,4 +381,56 @@ public class MovieService {
 
 		}
 
+		public void lookup_reservation() {
+			
+			Scanner s = new Scanner(System.in);
+			
+			int no = 1;
+			
+			System.out.println("-----------------------------------");
+			for(int i = 0; i < database.tb_reserve.size(); i++) {
+				
+				ReserveVO tb_reserve = database.tb_reserve.get(i);
+				
+				System.out.println("[ " + no + " ]");
+				System.out.println("예매 아이디 : " + tb_reserve.getId());
+				System.out.println("예매 날짜 : " + tb_reserve.getReserveDate());
+				System.out.println("예매 영화 이름 : " + tb_reserve.getMovieName());
+				System.out.println("가격 : " + tb_reserve.getPrice());
+				System.out.println("상영관 : " + tb_reserve.getTheaterPosition());
+				System.out.println("좌석 위치 : " + tb_reserve.getSeatPosition());
+				System.out.println("-----------------------------------");
+				
+				no++;
+			}
+			
+			System.out.println("0. 뒤로 가기");
+			
+			int input = 0;
+			
+			do {
+				
+				System.out.print  ("입력 : ");
+				input = Integer.parseInt(s.nextLine());
+				
+				if(input != 0) {
+					System.out.println("잘못된 번호를 입력하셨습니다.");
+					try {
+						Thread.sleep(500);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					System.out.println("다시 입력해주세요.");
+				}
+				
+			}while(input != 0);
+			
+			System.out.println("잠시 후 메뉴로 이동합니다.");
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
+		}
 }

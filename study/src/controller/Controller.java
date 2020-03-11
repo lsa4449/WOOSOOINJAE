@@ -48,6 +48,8 @@ public class Controller {
 	
 	UserService userService = UserService.getInstance();
 	AdminService adminService = new AdminService();
+	MovieService movieService = MovieService.getInstance();
+
 
 	private void showBanner(String str) { 
 		System.out.println();
@@ -261,11 +263,10 @@ public class Controller {
 			
 			if(menu == 1) { //영화 목록 조회 - 자신의 나이에 맞는 영화만 조회되게 함 (재석)
 //				userService.lookup_movie();
-				MovieService movieService = MovieService.getInstance();
 				movieService.reserveMovie();
 			}
 			if(menu == 2) {
-				
+				movieService.lookup_reservation();
 			}
 			if(menu == 3) {
 				MypageView();
