@@ -337,7 +337,7 @@ public class MovieService {
 				rVO = new ReserveVO();
 				rVO = database.tb_reserve.get(i);
 				
-				if(rVO.getId().equals(user.getId())) {
+				if(name.equals(rVO.getMovieName())) {
 					break;
 				}
 				
@@ -371,10 +371,12 @@ public class MovieService {
 			sVO.setSeatUse(false);
 			database.tb_seat[theaterPosition][num2] = sVO;
 			
-			SeatDao seatDao2 = SeatDao.getInstance();
-			seatDao2.reserveTheater_seat_look();
+			
+			seatDao.reserveTheater_seat_look();
 
 		}
+
+
 
 		public void lookup_reservation() {
 			
