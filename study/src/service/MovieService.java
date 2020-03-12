@@ -404,7 +404,7 @@ public class MovieService {
 			sVO.setSeatUse(false);// 빈네모로 바꿔줌
 			sVO.setLookInfo("□");
 			
-
+			System.out.println("영화표가 취소 되었습니다.");
 			
 			database.tb_seat[theaterPosition][num2] = sVO;
 			database.tb_reserve.remove(i-1);
@@ -413,8 +413,7 @@ public class MovieService {
 
 		}
 
-
-
+		//영화 예매 조회
 		public void lookup_reservation() {
 			
 			Scanner s = new Scanner(System.in);
