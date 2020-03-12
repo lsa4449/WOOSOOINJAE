@@ -51,7 +51,7 @@ public class SeatDao {
 		}
 	}
 	
-	public void reserveTheater_seat_look() { // 로그인 유저가 선택한 것만 보여주기
+	public void reserveTheater_seat_look() { // 로그인 유저가 선택한 영화의 관 보여주기
 		Database database = Database.getInstance();
 		String id = Session.loginUser.getId();
 		ReserveVO reserveVO = new ReserveVO();
@@ -93,4 +93,31 @@ public class SeatDao {
 			System.out.println();
 
 	}
+	
+	
+	public void selectMovieTheater(int theaterPosition) {
+		Database database = Database.getInstance();
+		
+		System.out.println();
+		System.out.print(database.tb_theator[theaterPosition].getTheaterName());
+		char ch = 'A';
+		for (int j = 0; j < database.tb_seat[theaterPosition].length; j++) {
+			if (j % 10 == 0) {
+				System.out.println();
+				System.out.print(ch++ + " ");
+			}
+
+			if (database.tb_seat[theaterPosition][j].getSeatUse()) {
+				System.out.print("■" + " ");
+			} else {
+				System.out.print("□" + " ");
+			}
+
+		}
+			System.out.println();
+			System.out.println();
+		}
+
+	
+
 }

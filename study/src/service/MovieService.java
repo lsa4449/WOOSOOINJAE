@@ -156,13 +156,15 @@ public class MovieService {
 				}
 				
 			}while(check != true);
-			seatDao.reserveTheater_seat_look(); //영화 자리 보여주게 하려고 넣었던거
-//			seatDao.theaterList_seat(); // 상영관 좌석 예약 배치도
+
 			
 			int index = get_indexno_tb_movie_by_movieName_movieDate_startMovieTime(movieName, movieDate, startMovieTime);
 			
 			//상영관 번호(자동으로 들어감)
 			int theaterPosition = database.tb_movie.get(index).getTheaterNum();
+			
+			seatDao.selectMovieTheater(theaterPosition); //영화 자리 보여주게 하려고 넣었던거
+//			seatDao.theaterList_seat(); // 상영관 좌석 예약 배치도
 			
 			System.out.print("원하시는 좌석을 선택 : ");
 			String seatPosition = s.nextLine();
