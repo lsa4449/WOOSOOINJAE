@@ -116,6 +116,7 @@ public class Controller {
 			}
 			
 		}while(menu != 0);
+		
 		showBanner("잠시후 프로그램이 종료됩니다.");
 		try {
 			Thread.sleep(1000);
@@ -209,12 +210,6 @@ public class Controller {
 			
 		}while(input != 0);
 		
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		
 	}
 	
 	public void movie_management() { //영화 관리 (재석)
@@ -247,12 +242,6 @@ public class Controller {
 			}
 			
 		}while(input != 0);
-		
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
 		
 	}
 	
@@ -303,11 +292,6 @@ public class Controller {
 			e.printStackTrace();
 		}
 		System.out.println("잠시 후 로그인 화면으로 이동합니다.");
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
 	}
 	
 	//My page 이동
@@ -347,12 +331,6 @@ public class Controller {
 			
 		}while(input != 0);
 		
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		
 	}
 	
 	//My page 이동
@@ -388,12 +366,6 @@ public class Controller {
 				
 							
 			}while(input != 0);
-			
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
 		}
 
 		public void userRemove() { //회원 탈퇴
@@ -421,12 +393,6 @@ public class Controller {
 				}
 							
 			}while(input != 2);
-			
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
 		}
 
 }

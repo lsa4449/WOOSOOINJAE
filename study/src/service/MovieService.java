@@ -112,7 +112,7 @@ public class MovieService {
 	 */
 
 	public void reserveMovie() {
-
+		
 		ReserveVO rVO = new ReserveVO();
 		SeatDao seatDao = SeatDao.getInstance();
 		Scanner s = new Scanner(System.in);
@@ -133,6 +133,7 @@ public class MovieService {
 		int input = 0;
 
 			boolean check = false;
+			boolean result = false;
 			
 			String movieName;
 			String movieDate;
@@ -156,7 +157,6 @@ public class MovieService {
 				}
 				
 			}while(check != true);
-
 			
 			int index = get_indexno_tb_movie_by_movieName_movieDate_startMovieTime(movieName, movieDate, startMovieTime);
 			
@@ -184,25 +184,26 @@ public class MovieService {
 			} else if (seatPos_1 == 'D') {
 				num = 30;
 			}
-
-			int menu;
+			
+			int menu = 0;
+			do {
 			System.out.println("----------------------------");
 			System.out.println("1. 결제하기");
 			System.out.println("2. 취소하기");
 			System.out.println("----------------------------");
 			System.out.print  ("입력 : ");
+			
 			menu = Integer.parseInt(s.nextLine());
 
 			if (menu == 1) {
-				buy();
-			}
-			if (menu == 2) {
-
-			}
-
+				 result = buy();
+				}
+			}while(menu != 2);
+			
 			int num2 = num + Integer.parseInt(seatPos_2) - 1;
 
-			if (database.tb_seat[theaterPosition][num2].getSeatUse() == false) {
+			if (database.tb_seat[theaterPosition][num2].getSeatUse() == false && result == false) {
+				
 				database.tb_seat[theaterPosition][num2].setSeatUse(true);
 				database.tb_seat[theaterPosition][num2].setLookInfo("■");
 
@@ -225,20 +226,19 @@ public class MovieService {
 
 				database.tb_reserve.add(reserve);
 
-			} else {
+			} else if(database.tb_seat[theaterPosition][num2].getSeatUse() == true) {
 				System.out.println("이미 예매된 좌석입니다.");
 			}
 
 	}
 	
+	//영화 예매할 때 입력받는 값 중복체크
 	public boolean duplicate_check(String movieName, String movieDate, String startMovieTime) {
 		
 		boolean check = false;
 		
 		for(int i = 0; i < database.tb_movie.size(); i++) {
-			
 			MovieVO tb_movie = database.tb_movie.get(i);
-			
 			if(tb_movie.getMovieName().equals(movieName) && tb_movie.getMovieDate().equals(movieDate) && tb_movie.getStartMovieTime().equals(startMovieTime)) {
 				check = true;
 				break;
@@ -249,15 +249,15 @@ public class MovieService {
 		return check;		
 	}
 	
+	// 인덱스 가져오기
 	public int get_indexno_tb_movie_by_movieName_movieDate_startMovieTime(String movieName, String movieDate, String startMovieTime) {
 		
 		int indexno = -1;
-		
 		for(int i = 0; i < database.tb_movie.size(); i++) {
-			
 			MovieVO tb_movie = database.tb_movie.get(i);
 			
-			if(tb_movie.getMovieName().equals(movieName) && tb_movie.getMovieDate().equals(movieDate) && tb_movie.getStartMovieTime().equals(startMovieTime)) {
+			if(tb_movie.getMovieName().equals(movieName) && tb_movie.getMovieDate().equals(movieDate) 
+					&& tb_movie.getStartMovieTime().equals(startMovieTime)) {
 				indexno = i;
 				break;
 			}else {
@@ -267,7 +267,7 @@ public class MovieService {
 		return indexno;		
 	}
 
-	// 재석
+	// 사용자가 고른 영화 인덱스 가져오기 - 재석
 	public int find_indexno_tb_movie(String movieName, String movieDate, String startMovieTime) {
 
 		int indexno = -1;
@@ -285,7 +285,8 @@ public class MovieService {
 	}
 
 	// 영화 예매 구입
-		public void buy() {
+		public boolean buy() {
+			boolean check = false;
 			AdminService adminService = AdminService.getInstance();
 			UserService userService = UserService.getInstance();
 			UserVO user = Session.loginUser;
@@ -301,28 +302,35 @@ public class MovieService {
 			if (year - user_year >= 19) {
 				if (uVo.getCash() < adult_seat) {
 					System.out.println("돈이 부족합니다. 현금을 충전 해주세요!");
+					check = true;
 	 
 				} else if (9 <= year - user_year && year - user_year <= 18) {
 					if (uVo.getCash() < child_seat) {
 						System.out.println("돈이 부족합니다. 현금을 충전 해주세요!");
-					}
+						check = true;
+						}
 				}
+				
 			}
 			
 			int IndexNo = adminService.tb_Index(user.getId());
 			UserVO db_id = database.tb_user.get(IndexNo);
-			
-			if (year - user_year >= 19) {
+
+		if (year - user_year >= 19) {
+			if (db_id.getCash() - adult_seat >= 0) {
 				db_id.setCash(db_id.getCash() - adult_seat);
 				System.out.println("결제 되었습니다.");
 				System.out.println(uVo.getName() + "님의 현재 잔액 : " + db_id.getCash());
-			
-			} else if (9 <= year - user_year && year - user_year <= 18) {
+
+			} 
+		} else if (db_id.getCash() - child_seat >= 0) {
+			if (9 <= year - user_year && year - user_year <= 18) {
 				db_id.setCash(db_id.getCash() - child_seat);
 				System.out.println("결제 되었습니다.");
 				System.out.println(uVo.getName() + "님의 현재 잔액 : " + db_id.getCash());
-
+				} 
 			}
+		return check;
 		}
 		//예매 취소(영현)
 	public void reserveCancel() {
@@ -348,8 +356,6 @@ public class MovieService {
 			ReserveVO rVO = new ReserveVO();
 			SeatDao seatDao = SeatDao.getInstance();
 			
-
-			
 			Scanner s = new Scanner(System.in);
 
 			UserVO user = Session.loginUser;
@@ -369,12 +375,12 @@ public class MovieService {
 				rVO = new ReserveVO();
 				rVO = database.tb_reserve.get(i);
 				
-				if(name.equals(rVO.getMovieName()) && user.equals(rVO.getId()) && time.equals(rVO.getStartMovieTime()) && replayseat.equals(rVO.getSeatPosition())) {
+				if(name.equals(rVO.getMovieName()) && user.equals(rVO.getId()) 
+						&& time.equals(rVO.getStartMovieTime()) && replayseat.equals(rVO.getSeatPosition())) {
 					break;
 				}
 				
 			}
-
 			
 			int theaterPosition = rVO.getTheaterPosition(); // 영화관 번호
 			String seatPosition = rVO.getSeatPosition(); // 좌석 번호
