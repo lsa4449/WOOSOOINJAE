@@ -216,7 +216,7 @@ public class AdminService {
 			e.printStackTrace();
 		}
 	}
-
+	
 	// 회원 목록 (재석)
 	public void lookup_user() {
 		Scanner s = new Scanner(System.in);
@@ -253,7 +253,7 @@ public class AdminService {
 		} while (input != 0);
 
 	}
-
+	
 	// 회원 정보 수정하는 메소드
 	public void userEdit() {
 		Scanner s = new Scanner(System.in);

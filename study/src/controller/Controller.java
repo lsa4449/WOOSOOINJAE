@@ -375,7 +375,7 @@ public class Controller {
 			do {
 				
 				System.out.println("-------------- 메뉴 -------------- ");
-				System.out.println("1. 진짜 탈퇴 하시겠습니까..?(철회 불가능)");
+				System.out.println("1. 진짜 탈퇴 하시겠습니까?(철회 불가능)");
 				System.out.println("2. 뒤로 가기");
 				System.out.println("---------------------------------");
 				System.out.print  ("입력 : ");
