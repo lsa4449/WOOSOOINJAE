@@ -116,7 +116,7 @@ public class Controller {
 			
 		}while(menu != 0);
 		
-		showBanner("잠시후 프로그램이 종료됩니다.");
+		showBanner("프로그램이 종료됩니다.");
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
