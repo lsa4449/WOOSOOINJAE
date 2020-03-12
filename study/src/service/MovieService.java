@@ -156,8 +156,8 @@ public class MovieService {
 				}
 				
 			}while(check != true);
-
-			seatDao.theaterList_seat(); // 상영관 좌석 예약 배치도
+			seatDao.reserveTheater_seat_look(); //영화 자리 보여주게 하려고 넣었던거
+//			seatDao.theaterList_seat(); // 상영관 좌석 예약 배치도
 			
 			int index = get_indexno_tb_movie_by_movieName_movieDate_startMovieTime(movieName, movieDate, startMovieTime);
 			
@@ -346,7 +346,7 @@ public class MovieService {
 			ReserveVO rVO = new ReserveVO();
 			SeatDao seatDao = SeatDao.getInstance();
 			
-			seatDao.reserveTheater_seat_look();
+
 			
 			Scanner s = new Scanner(System.in);
 
