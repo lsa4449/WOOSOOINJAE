@@ -137,12 +137,12 @@ public class Database {
 
 	{
 		SeatVO seat = new SeatVO();
-		for (int i = 0; i < tb_theator.length; i++) {// 상화관 번호
+		for (int i = 0; i < tb_theator.length; i++) {// 상영관 번호
 			
 			seat.setTheaterNum(i);
 			for (int j = 0; j < tb_seat[i].length; j++) {// 좌석
 				seat = new SeatVO();
-				if (j < 10 || j > 30) {
+				if (j > 10 || j < 30) {
 					seat.setSeatNum(j);// 좌석 번호 // 좀 별루인 좌석
 					seat.setSeatPrice(9000); // 좌석 가격 // 성인 기준 가격
 				} else {

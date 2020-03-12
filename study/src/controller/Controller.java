@@ -53,16 +53,33 @@ public class Controller {
 
 	private void showBanner(String str) { 
 		System.out.println();
-		System.out.println("─────────────────────────────────────");
-		System.out.println("      　　☆ *　. 　☆ \r\n" + "　　☆　.        ∧＿∧　∩　* ☆ \r\n"
-				+ "     안 ━━━( .∀.)/ . ━━━ 녕!!\r\n" + "　　　. ⊂　　 ノ* ☆ \r\n"
-				+ "　　☆ * (つ ノ .☆ \r\n" + "　　　　 (ノ");
-		System.out.println("\t 영화가 보고 싶은 날엔 ――― ♪ \t\t\t");
-		System.out.println("\t       대덕 시네마 ――♪ \t\t\t");
-		System.out.println();
-		System.out.println("─────────────────────────────────────");
-		System.out.println("\t" + str + "\t" );
-		System.out.println("─────────────────────────────────────");
+	
+		System.out.println("██████╗  █████╗ ███████╗██████╗ ███████╗ ██████╗ ██╗  ██╗\r\n" + 
+				"██╔══██╗██╔══██╗██╔════╝██╔══██╗██╔════╝██╔═══██╗██║ ██╔╝\r\n" + 
+				"██║  ██║███████║█████╗  ██║  ██║█████╗  ██║   ██║█████╔╝ \r\n" + 
+				"██║  ██║██╔══██║██╔══╝  ██║  ██║██╔══╝  ██║   ██║██╔═██╗ \r\n" + 
+				"██████╔╝██║  ██║███████╗██████╔╝███████╗╚██████╔╝██║  ██╗\r\n" + 
+				"╚═════╝ ╚═╝  ╚═╝╚══════╝╚═════╝ ╚══════╝ ╚═════╝ ╚═╝  ╚═╝\r\n");
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		System.out.println("    ██████╗██╗███╗    ██╗███████╗███╗   ███╗  █████╗      \r\n" + 
+				"    ██╔════╝██║████╗  ██║██╔════╝████╗ ████║██╔══██╗     \r\n" + 
+				"    ██║     ██║██╔██╗ ██║█████╗  ██╔████╔██║███████║     \r\n" + 
+				"    ██║     ██║██║╚██╗██║██╔══╝  ██║╚██╔╝██║██╔══██║     \r\n" + 
+				"    ╚██████╗██║██║ ╚████║███████╗██║ ╚═╝ ██║██║  ██║     \r\n" + 
+				"     ╚═════╝╚═╝╚═╝  ╚═══╝╚══════╝╚═╝     ╚═╝╚═╝  ╚═╝     ");
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		System.out.println("─────────────────────────────────────────────────────────");
+		System.out.println("\t\t영화가 보고 싶은 날엔 대덕 시네마 ♪\t\t ");
+		System.out.println("\t\t" + str + "\t" );
+		System.out.println("─────────────────────────────────────────────────────────");
 	}
 	
 	private void start() {
@@ -75,7 +92,7 @@ public class Controller {
 			System.out.println("1. 회원가입");
 			System.out.println("2. 로그인");
 			System.out.println("0. 프로그램 종료");
-			System.out.println("─────────────────────────────────────");
+			System.out.println("─────────────────────────────────────────────────────────");
 			System.out.print  ("입력 : ");
 			
 			
