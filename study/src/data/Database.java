@@ -48,6 +48,45 @@ public class Database {
 
 	}
 	
+	{
+
+		UserVO user2 = new UserVO();
+		user2.setId("js123");
+		user2.setPassword("1234");
+		user2.setName("김재석");
+		user2.setBirthdate(19950414);
+		user2.setCash(0);
+		user2.setAuth(false);
+		tb_user.add(user2);
+
+	}
+	
+	{
+
+		UserVO user3 = new UserVO();
+		user3.setId("yh123");
+		user3.setPassword("1234");
+		user3.setName("전영현");
+		user3.setBirthdate(19950221);
+		user3.setCash(0);
+		user3.setAuth(false);
+		tb_user.add(user3);
+
+	}
+	
+	{
+
+		UserVO user4 = new UserVO();
+		user4.setId("dn123");
+		user4.setPassword("1234");
+		user4.setName("김덕년");
+		user4.setBirthdate(19950317);
+		user4.setCash(0);
+		user4.setAuth(false);
+		tb_user.add(user4);
+
+	}
+	
 	public ArrayList<MovieVO> tb_movie = new ArrayList<MovieVO>(); //영화
 	
 	{
@@ -63,6 +102,7 @@ public class Database {
 		int indexno = 1; // 이렇게 줘서 값을 인덱스 값을 커지게 하자
 		
 		MovieVO movie = new MovieVO();
+		movie.setMovieNum(indexno++);
 		movie.setMovieName("히트맨");
 		movie.setDirector("감독");
 		movie.setPlot("줄거리");
@@ -76,6 +116,7 @@ public class Database {
 		tb_movie.add(movie);
 		 
 		movie = new MovieVO();
+		movie.setMovieNum(indexno++);
 		movie.setMovieName("조선_명탐정_어쩌구");
 		movie.setDirector("감독");
 		movie.setPlot("줄거리");
@@ -89,6 +130,7 @@ public class Database {
 		tb_movie.add(movie);
 		
 		movie = new MovieVO();
+		movie.setMovieNum(indexno++);
 		movie.setMovieName("너의 이름은");
 		movie.setDirector("일본인");
 		movie.setPlot("몸이 바뀜");

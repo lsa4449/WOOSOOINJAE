@@ -186,7 +186,7 @@ public class MovieService {
 			}
 			
 			int menu = 0;
-			do {
+			
 			System.out.println("----------------------------");
 			System.out.println("1. 결제하기");
 			System.out.println("2. 취소하기");
@@ -198,7 +198,9 @@ public class MovieService {
 			if (menu == 1) {
 				 result = buy();
 				}
-			}while(menu != 2);
+			if (menu == 2) {
+				
+				}
 			
 			int num2 = num + Integer.parseInt(seatPos_2) - 1;
 
@@ -207,7 +209,8 @@ public class MovieService {
 				database.tb_seat[theaterPosition][num2].setSeatUse(true);
 				database.tb_seat[theaterPosition][num2].setLookInfo("■");
 
-				System.out.println("예매되었습니다.");
+				System.out.println();
+				System.out.println("영화 표가 예매되었습니다!");
 
 				ReserveVO reserve = new ReserveVO();
 

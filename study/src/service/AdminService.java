@@ -401,7 +401,7 @@ public class AdminService {
 		database.tb_movie.remove(movieIndex);// 아마 삭제 될듯
 		for (int i = movieIndex; i < database.tb_movie.size(); i++) { // 영화번호 자동으로 앞으로 당기기
 			movieVO = database.tb_movie.get(movieIndex);
-			movieVO.setMovieNum(movieVO.getMovieNum() - 1);
+			movieVO.setMovieNum(movieVO.getMovieNum() -1);
 		}
 
 		movieService.movieList();// 삭제되었는지 보여주기

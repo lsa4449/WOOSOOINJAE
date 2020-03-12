@@ -231,7 +231,7 @@ public class Controller {
 				adminService.addmovie();
 			}
 			if(input == 2) { //영화 삭제인데 영현이가 만든거 넣으면 될듯!
-				
+				adminService.movieEdit();
 			}
 			if(input == 3) { //영화 목록 조회 (재석)
 				adminService.lookup_moive();
