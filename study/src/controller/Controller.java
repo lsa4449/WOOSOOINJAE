@@ -5,7 +5,6 @@ import java.util.Scanner;
 import dao.SeatDao;
 import dao.UserDao;
 import data.Database;
-import data.MovieList;
 import data.Session;
 import service.AdminService;
 import service.MovieService;
